@@ -21,3 +21,36 @@ body {
     align-items: center;
     background-color: #f3f3f3;
 }
+.docs{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: #e4e4e4;
+    padding: 20px 20px;
+    width: 60%;
+    border-radius: 2px;
+}
+.docs h2{
+    margin-top: 0px;
+}
+code p{
+    margin: 2px;
+}
+.pad-left{
+    padding-left: 20px;
+}
+#new-toast{
+    padding: 6px 10px;
+    border: 2px solid #424242;
+    margin: 10px;
+    text-decoration: none;
+    color: #424242;
+    min-width: 100px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+#new-toast:hover{
+    color: #ffffff;
+    background-color: #424242;
+}
