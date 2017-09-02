@@ -1,0 +1,23 @@
+* {
+    box-sizing: border-box;
+}
+html,
+body {
+    height: 100%;
+}
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    background-size: 100%;
+    margin: 0;
+    padding: 0;
+    color: #424242;
+}
+.container {
+    overflow: hidden;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f3f3f3;
+}
