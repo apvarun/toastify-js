@@ -20,9 +20,11 @@
 
             this.options = {};
 
-            this.options.value = options.value || 'Hi there!';
+            this.options.text = options.text || 'Hi there!';
             this.options.duration = options.duration || 3000;
             this.options.root = options.root || root;
+
+            this.buildToast();
 
             return this;
         },
@@ -35,12 +37,14 @@
 
             var divElement = document.createElement("div");
             divElement.className = 'toastify on';
-            divElement.innerHTML = this.options.value;
+            divElement.innerHTML = this.options.text;
 
-            return divElement;
+            this.toast = divElement;
         },
 
-        showToast: function (toastElement) {
+        showToast: function () {
+
+            var toastElement = this.toast;
 
             var rootElement = document.getElementById(this.options.root);
 
@@ -50,9 +54,24 @@
 
             rootElement.insertBefore(toastElement, rootElement.firstChild);
 
-            var allToasts = document.getElementsByClassName('toastify');
+            this.reposition();
+
+            window.setTimeout(function () {
+                toastElement.classList.remove("on");
+                window.setTimeout(function () {
+                    toastElement.remove();
+                    this.reposition();
+                }.bind(this), 400);
+            }.bind(this), this.options.duration);
+
+        },
+
+        reposition: function () {
 
             var topOffset = 15;
+            
+            var allToasts = document.getElementsByClassName('toastify');
+
             for (var i = 0; i < allToasts.length; i++) {
 
                 var height = allToasts[i].offsetHeight;
@@ -61,13 +80,6 @@
 
                 topOffset += height + offset;
             }
-
-            window.setTimeout(function () {
-                toastElement.classList.remove("on");
-                window.setTimeout(function () {
-                    toastElement.remove();
-                }, 600);
-            }, this.options.duration);
 
         }
     }

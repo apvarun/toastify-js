@@ -1,13 +1,15 @@
 var options = {
-    value: "Happy toasting!"
+    text: "Happy toasting!",
+    duration: 500
 };
 
 var myToast = Toastify(options);
 
 setTimeout(function () {
-    myToast.showToast(myToast.buildToast());
+    myToast.showToast();
 }, 2000);
 
-myToast.showToast(Toastify({
-    value: "Time to get started!"
-}).buildToast());
+Toastify({
+    text: "Time to get started!",
+    duration: 5000
+}).showToast();

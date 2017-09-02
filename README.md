@@ -1,6 +1,13 @@
 # Toastify
 
+![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)
+![forthebadge](http://forthebadge.com/images/badges/uses-js.svg)
+
 Toastify is a lightweight, vanilla JS toast notification library.
+
+## Demo
+
+[Click here](https://apvarun.github.io/toastify-js/)
 
 ## Download
 
@@ -22,4 +29,4 @@ Add script at the bottom of the page
 
 ## License
 
-MIT
+MIT © [Varun A P](https://github.com/apvarun)
