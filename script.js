@@ -1,10 +1,17 @@
+// Options for the toast
 var options = {
     text: "Happy toasting!",
-    duration: 500
+    duration: 1500,
+    callback: function(){
+        this.remove();
+        Toastify.reposition();
+    }
 };
 
+// Initializing the toast
 var myToast = Toastify(options);
 
+// Toast after delay
 setTimeout(function () {
     myToast.showToast();
 }, 2000);
@@ -14,9 +21,10 @@ Toastify({
     duration: 5000
 }).showToast();
 
+// Displaying toast on manual action `Try`
 document.getElementById('new-toast').addEventListener('click', function () {
     Toastify({
         text: "This is a toast",
-        duration: 5000
+        duration: 3000
     }).showToast();
 });

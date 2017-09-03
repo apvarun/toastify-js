@@ -25,7 +25,13 @@ Add script at the bottom of the page
 
 ## Documentation
 
-*(coming soon)*
+```javascript
+Toastify({
+    text: "This is a toast",
+    duration: 3000,
+    
+}).showToast();
+```
 
 ## License
 
