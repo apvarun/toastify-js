@@ -1,3 +1,10 @@
+/*!
+ * Toastify js 0.0.1
+ * https://github.com/apvarun/toastify-js
+ * @license MIT licensed
+ *
+ * Copyright (C) 2017 Varun A P
+ */
 .toastify {
     padding: 12px 20px;
     color: #ffffff;
@@ -12,6 +19,7 @@
     transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
     border-radius: 2px;
     cursor: pointer;
+    text-decoration: none;
 }
 .toastify.on {
     opacity: 1;

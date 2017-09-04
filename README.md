@@ -29,7 +29,8 @@ Add script at the bottom of the page
 Toastify({
     text: "This is a toast",
     duration: 3000,
-    
+    destination: 'https://github.com/apvarun/toastify-js',
+    newWindow: true
 }).showToast();
 ```
 

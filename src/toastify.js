@@ -1,3 +1,10 @@
+/*!
+ * Toastify js 0.0.1
+ * https://github.com/apvarun/toastify-js
+ * @license MIT licensed
+ *
+ * Copyright (C) 2017 Varun A P
+ */
 ; (function (global) {
 
     // Object initialization
@@ -32,6 +39,8 @@
             this.options.duration = options.duration || 3000;
             this.options.selector = options.selector;
             this.options.callback = options.callback || function () { };
+            this.options.destination = options.destination;
+            this.options.newWindow = options.newWindow || false;
 
             // Returning the current object for chaining functions
             return this;
@@ -52,8 +61,28 @@
             // Adding the toast message
             divElement.innerHTML = this.options.text;
 
-            // Callback for on-click
-            divElement.addEventListener('click', this.options.callback);
+            // Adding an on-click destination path
+            if(typeof this.options.destination !== 'undefined'){
+                
+                // Setting up an anchor object
+                var linkElement = document.createElement("a");
+                linkElement.setAttribute("href", this.options.destination);
+
+                if (this.options.newWindow === true ){
+                    linkElement.setAttribute("target", "_blank");
+                }
+                
+                // Rectifying class names due to nesting
+                divElement.className = '';
+                linkElement.className = 'toastify on';
+
+                // Adding the text element inside link
+                linkElement.appendChild(divElement);
+
+                // Returning the linked element
+                return linkElement;
+
+            }
 
             // Returning the generated element
             return divElement;
@@ -67,12 +96,13 @@
 
             // Getting the root element to with the toast needs to be added
             var rootElement;
-            if (typeof this.options.selector == "undefined") {
+            if (typeof this.options.selector === "undefined") {
                 rootElement = document.body;
             } else {
                 rootElement = document.getElementById(this.options.selector);
             }
 
+            // Validating if root element is present in DOM
             if (!rootElement) {
                 throw "Root element is not defined";
             }
@@ -93,6 +123,9 @@
 
                     // Remove the elemenf from the DOM
                     toastElement.remove();
+
+                    // Calling the callback function
+                    this.options.callback.call(toastElement);
 
                     // Repositioning the toasts again
                     Toastify.reposition();

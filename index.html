@@ -5,7 +5,7 @@
     <meta charset='UTF-8'>
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toastify JS Library</title>
+    <title>Toastify JS - Pure JavaScript Library</title>
     <meta name="description" content="Toastify is a pure JavaScript library that lets you create notifications toasts/messages.">
     <meta name="keywords" content="Javascript,Library,Toastify">
     <meta name="author" content="apvarun">
@@ -20,6 +20,8 @@
         </div>
         <p>Better notification messages</p>
         <a href="#" id="new-toast">Try</a>
+        <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=Pure+JavaScript+library+for+better+notification+messages&url=https://github.com/apvarun/toastify-js&hashtags=JavaScript,toast&via=apvarun"
+            data-size="large">Tweet</a>
         <div class="docs">
             <h2>Usage</h2>
             <code>
@@ -30,14 +32,31 @@
             </code>
         </div>
         <div class="repo">
-            <a class="github-button" href="https://github.com/apvarun/toastify-js" data-icon="octicon-star" data-size="large" aria-label="Star apvarun/toastify-js on GitHub">Star</a>
+            <iframe src="https://ghbtns.com/github-btn.html?user=apvarun&repo=toastify-js&type=star&count=true&size=large" frameborder="0"
+                scrolling="0" width="160px" height="30px"></iframe>
         </div>
     </div>
 </body>
 
 <script type="text/javascript" src="src/toastify.js"></script>
 <script type="text/javascript" src="script.js"></script>
-<!-- GitHub Star button -->
-<script async defer src="https://buttons.github.io/buttons.js"></script>
+<script>
+    window.twttr = (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0],
+            t = window.twttr || {};
+        if (d.getElementById(id)) return t;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://platform.twitter.com/widgets.js";
+        fjs.parentNode.insertBefore(js, fjs);
+
+        t._e = [];
+        t.ready = function (f) {
+            t._e.push(f);
+        };
+
+        return t;
+    }(document, "script", "twitter-wjs"));
+</script>
 
 </html>

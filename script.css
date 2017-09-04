@@ -21,6 +21,9 @@ body {
     align-items: center;
     background-color: #f3f3f3;
 }
+.hidden{
+    display: none;
+}
 .docs{
     display: flex;
     justify-content: center;
@@ -55,5 +58,8 @@ code p{
     background-color: #424242;
 }
 .repo{
+    margin:10px;
+}
+.twitter-share-button{
     margin:10px;
 }
