@@ -19,7 +19,7 @@ body {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    background-color: #f3f3f3;
+    background-color: whitesmoke;
 }
 .hidden{
     display: none;
@@ -29,10 +29,10 @@ body {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    background-color: #e4e4e4;
+    background-color: #E5E5E5;
     padding: 20px 20px;
     width: 60%;
-    border-radius: 2px;
+    border-radius: 4px;
 }
 .docs h2{
     margin-top: 0px;
@@ -43,23 +43,35 @@ code p{
 .pad-left{
     padding-left: 20px;
 }
-#new-toast{
-    padding: 6px 10px;
-    border: 2px solid #424242;
-    margin: 10px;
-    text-decoration: none;
-    color: #424242;
-    min-width: 100px;
-    text-align: center;
-    transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+.buttons{
+    margin: 20px;
 }
-#new-toast:hover{
-    color: #ffffff;
-    background-color: #424242;
+.button{
+    overflow: hidden;
+    margin: 10px;
+    padding: 12px 12px;
+    cursor: pointer;
+    -webkit-transition: all 60ms ease-in-out;
+    transition: all 60ms ease-in-out;
+    text-align: center;
+    white-space: nowrap;
+    text-decoration: none !important;
+    text-transform: none;
+    text-transform: capitalize;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.3;
+    min-width: 100px;
+    display: inline-block;
+    box-shadow: 2px 5px 10px rgba(22, 22, 22, 0.1);
+    color: #4ECDC4;
+    border: 2px solid #4ECDC4;
+}
+.button:hover{
+    color: #FFFFFF;
+    background-color: #4ECDC4;
 }
 .repo{
-    margin:10px;
-}
-.twitter-share-button{
-    margin:10px;
+    margin: 10px;
 }

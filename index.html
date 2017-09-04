@@ -19,9 +19,11 @@
             <h1>Toastify</h1>
         </div>
         <p>Better notification messages</p>
-        <a href="#" id="new-toast">Try</a>
-        <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=Pure+JavaScript+library+for+better+notification+messages&url=https://github.com/apvarun/toastify-js&hashtags=JavaScript,toast&via=apvarun"
-            data-size="large">Tweet</a>
+        <div class="buttons">
+            <a href="#" id="new-toast" class="button">Try</a>
+            <a href="https://twitter.com/intent/tweet?text=Pure+JavaScript+library+for+better+notification+messages&url=https://github.com/apvarun/toastify-js&hashtags=JavaScript,toast&via=apvarun"
+                target="_blank" class="button">Tweet</a>
+        </div>
         <div class="docs">
             <h2>Usage</h2>
             <code>
@@ -40,23 +42,5 @@
 
 <script type="text/javascript" src="src/toastify.js"></script>
 <script type="text/javascript" src="script.js"></script>
-<script>
-    window.twttr = (function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0],
-            t = window.twttr || {};
-        if (d.getElementById(id)) return t;
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "https://platform.twitter.com/widgets.js";
-        fjs.parentNode.insertBefore(js, fjs);
-
-        t._e = [];
-        t.ready = function (f) {
-            t._e.push(f);
-        };
-
-        return t;
-    }(document, "script", "twitter-wjs"));
-</script>
 
 </html>
