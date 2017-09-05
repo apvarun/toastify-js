@@ -31,7 +31,9 @@ Toastify({
     duration: 3000,
     destination: 'https://github.com/apvarun/toastify-js',
     newWindow: true,
-    close: true
+    close: true,
+    positionTop: true,
+    positionLeft: true
 }).showToast();
 ```
 

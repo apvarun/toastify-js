@@ -1,5 +1,5 @@
 /*!
- * Toastify js 0.0.3
+ * Toastify js 0.0.4
  * https://github.com/apvarun/toastify-js
  * @license MIT licensed
  *
@@ -14,7 +14,6 @@
     background: linear-gradient(135deg, #73a5ff, #5477f5);
     position: fixed;
     top: -150px;
-    right: 15px;
     opacity: 0;
     transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
     border-radius: 2px;
@@ -25,7 +24,12 @@
     opacity: 1;
 }
 .toast-close{
-    margin-left: 10px;
     opacity: 0.4;
     padding: 0 5px;
+}
+.right{
+    right: 15px;
+}
+.left{
+    left: 15px;
 }

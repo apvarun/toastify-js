@@ -1,7 +1,7 @@
 // Options for the toast
 var options = {
     text: "Happy toasting!",
-    duration: 1500,
+    duration: 2500,
     callback: function () {
         this.remove();
         Toastify.reposition();
@@ -15,13 +15,25 @@ var myToast = Toastify(options);
 // Toast after delay
 setTimeout(function () {
     myToast.showToast();
+}, 3000);
+
+setTimeout(function () {
+    Toastify({
+        text: "Highly customizable",
+        duration: 3000,
+        positionTop: true,
+        positionLeft: true,
+        close: true
+    }).showToast();
 }, 2000);
 
 Toastify({
     text: "Time to get started!",
-    duration: 5000,
+    duration: 4500,
     destination: 'https://github.com/apvarun/toastify-js',
-    newWindow: true
+    newWindow: true,
+    positionTop: true,
+    positionLeft: true
 }).showToast();
 
 // Displaying toast on manual action `Try`

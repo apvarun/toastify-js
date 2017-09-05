@@ -1,5 +1,5 @@
 /*!
- * Toastify js 0.0.3
+ * Toastify js 0.0.4
  * https://github.com/apvarun/toastify-js
  * @license MIT licensed
  *
@@ -14,7 +14,7 @@
         return new Toastify.lib.init(options);
     },
         // Library version
-        version = "0.0.3";
+        version = "0.0.4";
 
     // Defining the prototype of the object
     Toastify.lib = Toastify.prototype = {
@@ -42,6 +42,8 @@
             this.options.destination = options.destination; // On-click destination
             this.options.newWindow = options.newWindow || false; // Open destination in new window
             this.options.close = options.close || false; // Show toast close icon
+            this.options.positionTop = options.positionTop || true; // Show toast close icon
+            this.options.positionLeft = options.positionLeft || false; // Show toast close icon
 
             // Returning the current object for chaining functions
             return this;
@@ -58,6 +60,12 @@
             // Creating the DOM object
             var divElement = document.createElement("div");
             divElement.className = 'toastify on';
+
+            if (this.options.positionLeft === true) {
+                divElement.className += " left";
+            } else {
+                divElement.className += " right";
+            }
 
             // Adding the toast message
             divElement.innerHTML = this.options.text;
@@ -77,7 +85,12 @@
                 }.bind(this));
 
                 // Adding the close icon to the toast element
-                divElement.appendChild(closeElement);
+                if (this.options.positionLeft === true) {
+                    divElement.prepend(closeElement);
+                } else {
+                    divElement.appendChild(closeElement);
+                }
+                
             }
 
             // Adding an on-click destination path
@@ -94,6 +107,12 @@
                 // Rectifying class names due to nesting
                 divElement.className = '';
                 linkElement.className = 'toastify on';
+
+                if (this.options.positionLeft === true) {
+                    linkElement.className += " left";
+                } else {
+                    linkElement.className += " right";
+                }
 
                 // Adding the text element inside link
                 linkElement.appendChild(divElement);
@@ -172,7 +191,8 @@
     Toastify.reposition = function () {
 
         // Top margin
-        var topOffsetSize = 15;
+        var topLeftOffsetSize = 15;
+        var topRightOffsetSize = 15;
 
         // Get all toast messages on the DOM
         var allToasts = document.getElementsByClassName('toastify');
@@ -185,10 +205,21 @@
             // Spacing between toasts
             var offset = 15;
 
-            // Setting the position
-            allToasts[i].style.top = topOffsetSize + 'px';
+            if (allToasts[i].classList.contains('left') == true) {
 
-            topOffsetSize += height + offset;
+                // Setting the position
+                allToasts[i].style.top = topLeftOffsetSize + 'px';
+
+                topLeftOffsetSize += height + offset;
+
+            } else {
+
+                // Setting the position
+                allToasts[i].style.top = topRightOffsetSize + 'px';
+
+                topRightOffsetSize += height + offset;
+
+            }
         }
 
         // Supporting function chaining
