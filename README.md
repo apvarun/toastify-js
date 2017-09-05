@@ -30,7 +30,8 @@ Toastify({
     text: "This is a toast",
     duration: 3000,
     destination: 'https://github.com/apvarun/toastify-js',
-    newWindow: true
+    newWindow: true,
+    close: true
 }).showToast();
 ```
 

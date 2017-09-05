@@ -5,7 +5,8 @@ var options = {
     callback: function () {
         this.remove();
         Toastify.reposition();
-    }
+    },
+    close: true
 };
 
 // Initializing the toast

@@ -1,5 +1,5 @@
 /*!
- * Toastify js 0.0.2
+ * Toastify js 0.0.3
  * https://github.com/apvarun/toastify-js
  * @license MIT licensed
  *
@@ -23,4 +23,9 @@
 }
 .toastify.on {
     opacity: 1;
+}
+.toast-close{
+    margin-left: 10px;
+    opacity: 0.4;
+    padding: 0 5px;
 }

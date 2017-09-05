@@ -1,5 +1,5 @@
 /*!
- * Toastify js 0.0.2
+ * Toastify js 0.0.3
  * https://github.com/apvarun/toastify-js
  * @license MIT licensed
  *
@@ -14,7 +14,7 @@
         return new Toastify.lib.init(options);
     },
         // Library version
-        version = "0.0.2";
+        version = "0.0.3";
 
     // Defining the prototype of the object
     Toastify.lib = Toastify.prototype = {
@@ -35,12 +35,13 @@
             this.options = {};
 
             // Validating the options
-            this.options.text = options.text || 'Hi there!';
-            this.options.duration = options.duration || 3000;
-            this.options.selector = options.selector;
-            this.options.callback = options.callback || function () { };
-            this.options.destination = options.destination;
-            this.options.newWindow = options.newWindow || false;
+            this.options.text = options.text || 'Hi there!'; // Display message
+            this.options.duration = options.duration || 3000; // Display duration
+            this.options.selector = options.selector; // Parent selector
+            this.options.callback = options.callback || function () { }; // Callback after display
+            this.options.destination = options.destination; // On-click destination
+            this.options.newWindow = options.newWindow || false; // Open destination in new window
+            this.options.close = options.close || false; // Show toast close icon
 
             // Returning the current object for chaining functions
             return this;
@@ -61,17 +62,35 @@
             // Adding the toast message
             divElement.innerHTML = this.options.text;
 
+            // Adding a close icon to the toast
+            if (this.options.close === true) {
+
+                // Create a span for close element
+                var closeElement = document.createElement("span");
+                closeElement.innerText = "X";
+
+                closeElement.className = 'toast-close';
+
+                // Triggering the removal of toast from DOM on close click
+                closeElement.addEventListener('click', function (event) {
+                    this.removeElement(event.target.parentElement);
+                }.bind(this));
+
+                // Adding the close icon to the toast element
+                divElement.appendChild(closeElement);
+            }
+
             // Adding an on-click destination path
-            if(typeof this.options.destination !== 'undefined'){
-                
+            if (typeof this.options.destination !== 'undefined') {
+
                 // Setting up an anchor object
                 var linkElement = document.createElement("a");
                 linkElement.setAttribute("href", this.options.destination);
 
-                if (this.options.newWindow === true ){
+                if (this.options.newWindow === true) {
                     linkElement.setAttribute("target", "_blank");
                 }
-                
+
                 // Rectifying class names due to nesting
                 divElement.className = '';
                 linkElement.className = 'toastify on';
@@ -115,27 +134,35 @@
 
             window.setTimeout(function () {
 
-                // Hiding the element
-                toastElement.classList.remove("on");
-
-                // Removing the element from DOM after transition end
-                window.setTimeout(function () {
-
-                    // Remove the elemenf from the DOM
-                    toastElement.remove();
-
-                    // Calling the callback function
-                    this.options.callback.call(toastElement);
-
-                    // Repositioning the toasts again
-                    Toastify.reposition();
-
-                }.bind(this), 400); // Binding `this` for function invocation 
+                // Remove the toast from DOM
+                this.removeElement(toastElement);
 
             }.bind(this), this.options.duration); // Binding `this` for function invocation
 
             // Supporting function chaining
             return this;
+
+        },
+
+        // Removing the element from the DOM
+        removeElement: function (toastElement) {
+
+            // Hiding the element
+            toastElement.classList.remove("on");
+
+            // Removing the element from DOM after transition end
+            window.setTimeout(function () {
+
+                // Remove the elemenf from the DOM
+                toastElement.remove();
+
+                // Calling the callback function
+                this.options.callback.call(toastElement);
+
+                // Repositioning the toasts again
+                Toastify.reposition();
+
+            }.bind(this), 400); // Binding `this` for function invocation 
 
         }
 
