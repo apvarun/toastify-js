@@ -1,5 +1,5 @@
 /*!
- * Toastify js 0.0.4
+ * Toastify js 0.0.5
  * https://github.com/apvarun/toastify-js
  * @license MIT licensed
  *
@@ -14,7 +14,7 @@
         return new Toastify.lib.init(options);
     },
         // Library version
-        version = "0.0.4";
+        version = "0.0.5";
 
     // Defining the prototype of the object
     Toastify.lib = Toastify.prototype = {
@@ -42,8 +42,8 @@
             this.options.destination = options.destination; // On-click destination
             this.options.newWindow = options.newWindow || false; // Open destination in new window
             this.options.close = options.close || false; // Show toast close icon
-            this.options.positionTop = options.positionTop || true; // Show toast close icon
-            this.options.positionLeft = options.positionLeft || false; // Show toast close icon
+            this.options.positionTop = options.positionTop || true; // toast position - top or bottom
+            this.options.positionLeft = options.positionLeft || false; // toast position - left or right
 
             // Returning the current object for chaining functions
             return this;
@@ -75,22 +75,34 @@
 
                 // Create a span for close element
                 var closeElement = document.createElement("span");
-                closeElement.innerText = "X";
+                closeElement.innerHTML = "&#10006;";
 
                 closeElement.className = 'toast-close';
 
                 // Triggering the removal of toast from DOM on close click
                 closeElement.addEventListener('click', function (event) {
+                    
                     this.removeElement(event.target.parentElement);
+
                 }.bind(this));
 
-                // Adding the close icon to the toast element
-                if (this.options.positionLeft === true) {
-                    divElement.prepend(closeElement);
-                } else {
-                    divElement.appendChild(closeElement);
-                }
+                //Calculating screen width
+                var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
                 
+                // Adding the close icon to the toast element
+                // Display on the right if screen width is less than or equal to 360px
+                if (this.options.positionLeft === true && width > 360) {
+
+                    // Adding close icon on the left of content
+                    divElement.prepend(closeElement);
+
+                } else {
+
+                    // Adding close icon on the right of content
+                    divElement.appendChild(closeElement);
+
+                }
+
             }
 
             // Adding an on-click destination path
@@ -193,6 +205,7 @@
         // Top margin
         var topLeftOffsetSize = 15;
         var topRightOffsetSize = 15;
+        var topOffsetSize = 15;
 
         // Get all toast messages on the DOM
         var allToasts = document.getElementsByClassName('toastify');
@@ -205,19 +218,33 @@
             // Spacing between toasts
             var offset = 15;
 
-            if (allToasts[i].classList.contains('left') == true) {
+            var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+
+            // Show toast in center if screen with less than or qual to 360px
+            if (width <= 360) {
 
                 // Setting the position
-                allToasts[i].style.top = topLeftOffsetSize + 'px';
+                allToasts[i].style.top = topOffsetSize + 'px';
 
-                topLeftOffsetSize += height + offset;
+                topOffsetSize += height + offset;
 
             } else {
 
-                // Setting the position
-                allToasts[i].style.top = topRightOffsetSize + 'px';
+                if (allToasts[i].classList.contains('left') == true) {
 
-                topRightOffsetSize += height + offset;
+                    // Setting the position
+                    allToasts[i].style.top = topLeftOffsetSize + 'px';
+
+                    topLeftOffsetSize += height + offset;
+
+                } else {
+
+                    // Setting the position
+                    allToasts[i].style.top = topRightOffsetSize + 'px';
+
+                    topRightOffsetSize += height + offset;
+
+                }
 
             }
         }
