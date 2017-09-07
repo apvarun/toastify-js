@@ -20,8 +20,7 @@ setTimeout(function () {
 setTimeout(function () {
     Toastify({
         text: "Highly customizable",
-        duration: 3000,
-        positionTop: true,
+        gravity: "bottom",
         positionLeft: true,
         close: true
     }).showToast();
@@ -32,8 +31,14 @@ Toastify({
     duration: 4500,
     destination: 'https://github.com/apvarun/toastify-js',
     newWindow: true,
-    positionTop: true,
+    gravity: "top",
     positionLeft: true
+}).showToast();
+
+Toastify({
+    text: "Pure JavaScript Toasts",
+    gravity: "bottom",
+    positionLeft: false
 }).showToast();
 
 // Displaying toast on manual action `Try`

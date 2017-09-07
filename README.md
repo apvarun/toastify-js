@@ -32,10 +32,12 @@ Toastify({
     destination: 'https://github.com/apvarun/toastify-js',
     newWindow: true,
     close: true,
-    positionTop: true,
-    positionLeft: true
+    gravity: "top", // `top` or `bottom`
+    positionLeft: true // `true` or `false`
 }).showToast();
 ```
+
+Toast messages will be centered on devices with screen width less than 360px.
 
 ## License
 

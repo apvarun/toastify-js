@@ -13,7 +13,6 @@
     background: -webkit-linear-gradient(315deg, #73a5ff, #5477f5);
     background: linear-gradient(135deg, #73a5ff, #5477f5);
     position: fixed;
-    top: -150px;
     opacity: 0;
     transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
     border-radius: 2px;
@@ -33,6 +32,12 @@
 }
 .left{
     left: 15px;
+}
+.top{
+    top: -150px;
+}
+.bottom{
+    bottom: -150px;
 }
 @media only screen and (max-width: 360px){
     .right, .left{

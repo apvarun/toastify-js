@@ -42,7 +42,7 @@
             this.options.destination = options.destination; // On-click destination
             this.options.newWindow = options.newWindow || false; // Open destination in new window
             this.options.close = options.close || false; // Show toast close icon
-            this.options.positionTop = options.positionTop || true; // toast position - top or bottom
+            this.options.gravity = (options.gravity == "bottom") ? "bottom" : "top"; // toast position - top or bottom
             this.options.positionLeft = options.positionLeft || false; // toast position - left or right
 
             // Returning the current object for chaining functions
@@ -61,11 +61,15 @@
             var divElement = document.createElement("div");
             divElement.className = 'toastify on';
 
+            // Positioning toast to left or right
             if (this.options.positionLeft === true) {
                 divElement.className += " left";
             } else {
                 divElement.className += " right";
             }
+
+            // Assigning gravity of element
+            divElement.className += " " + this.options.gravity;
 
             // Adding the toast message
             divElement.innerHTML = this.options.text;
@@ -81,14 +85,14 @@
 
                 // Triggering the removal of toast from DOM on close click
                 closeElement.addEventListener('click', function (event) {
-                    
+
                     this.removeElement(event.target.parentElement);
 
                 }.bind(this));
 
                 //Calculating screen width
                 var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-                
+
                 // Adding the close icon to the toast element
                 // Display on the right if screen width is less than or equal to 360px
                 if (this.options.positionLeft === true && width > 360) {
@@ -120,11 +124,15 @@
                 divElement.className = '';
                 linkElement.className = 'toastify on';
 
+                // Positioning toast to left or right
                 if (this.options.positionLeft === true) {
                     linkElement.className += " left";
                 } else {
                     linkElement.className += " right";
                 }
+
+                // Assigning gravity of element
+                linkElement.className += " " + this.options.gravity;
 
                 // Adding the text element inside link
                 linkElement.appendChild(divElement);
@@ -202,16 +210,34 @@
     // Positioning the toasts on the DOM
     Toastify.reposition = function () {
 
-        // Top margin
-        var topLeftOffsetSize = 15;
-        var topRightOffsetSize = 15;
-        var topOffsetSize = 15;
+        // Top margins with gravity
+        var topLeftOffsetSize = {
+            top: 15,
+            bottom: 15
+        };
+        var topRightOffsetSize = {
+            top: 15,
+            bottom: 15
+        };
+        var offsetSize = {
+            top: 15,
+            bottom: 15
+        };
 
         // Get all toast messages on the DOM
         var allToasts = document.getElementsByClassName('toastify');
 
+        var classUsed;
+
         // Modifying the position of each toast element
         for (var i = 0; i < allToasts.length; i++) {
+
+            // Getting the applied gravity
+            if (allToasts[i].classList.contains('top') === true) {
+                classUsed = "top";
+            } else {
+                classUsed = "bottom";
+            }
 
             var height = allToasts[i].offsetHeight;
 
@@ -224,25 +250,25 @@
             if (width <= 360) {
 
                 // Setting the position
-                allToasts[i].style.top = topOffsetSize + 'px';
+                allToasts[i].style[classUsed] = offsetSize[classUsed] + 'px';
 
-                topOffsetSize += height + offset;
+                offsetSize[classUsed] += height + offset;
 
             } else {
 
-                if (allToasts[i].classList.contains('left') == true) {
+                if (allToasts[i].classList.contains('left') === true) {
 
                     // Setting the position
-                    allToasts[i].style.top = topLeftOffsetSize + 'px';
+                    allToasts[i].style[classUsed] = topLeftOffsetSize[classUsed] + 'px';
 
-                    topLeftOffsetSize += height + offset;
+                    topLeftOffsetSize[classUsed] += height + offset;
 
                 } else {
 
                     // Setting the position
-                    allToasts[i].style.top = topRightOffsetSize + 'px';
+                    allToasts[i].style[classUsed] = topRightOffsetSize[classUsed] + 'px';
 
-                    topRightOffsetSize += height + offset;
+                    topRightOffsetSize[classUsed] += height + offset;
 
                 }
 
