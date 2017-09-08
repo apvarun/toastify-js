@@ -45,6 +45,9 @@ code p{
 }
 .buttons{
     margin: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 .button{
     overflow: hidden;
