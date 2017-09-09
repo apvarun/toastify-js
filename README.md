@@ -39,6 +39,8 @@ Toastify({
 
 Toast messages will be centered on devices with screen width less than 360px.
 
++ See the [changelog](https://github.com/apvarun/toastify-js/blob/master/CHANGELOG.md)
+
 ## License
 
 MIT © [Varun A P](https://github.com/apvarun)
