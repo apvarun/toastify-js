@@ -23,21 +23,24 @@
 .toastify.on {
     opacity: 1;
 }
-.toast-close{
+.toast-close {
     opacity: 0.4;
     padding: 0 5px;
 }
-.right{
+.right {
     right: 15px;
 }
-.left{
+.left {
     left: 15px;
 }
-.top{
+.top {
     top: -150px;
 }
-.bottom{
+.bottom {
     bottom: -150px;
+}
+.rounded {
+    border-radius: 25px;
 }
 @media only screen and (max-width: 360px){
     .right, .left{
