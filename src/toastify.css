@@ -42,6 +42,12 @@
 .rounded {
     border-radius: 25px;
 }
+.avatar{
+    width: 1.5em;
+    height: 1.5em;
+    margin: 0 5px;
+    border-radius: 2px;
+}
 @media only screen and (max-width: 360px){
     .right, .left{
         margin-left: auto;

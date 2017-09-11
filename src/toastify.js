@@ -45,6 +45,7 @@
             this.options.gravity = (options.gravity == "bottom") ? "bottom" : "top"; // toast position - top or bottom
             this.options.positionLeft = options.positionLeft || false; // toast position - left or right
             this.options.backgroundColor = options.backgroundColor || "linear-gradient(135deg, #73a5ff, #5477f5)"; // toast position - left or right
+            this.options.avatar = options.avatar || ""; // toast position - left or right
 
             // Returning the current object for chaining functions
             return this;
@@ -76,6 +77,25 @@
 
             // Adding the toast message
             divElement.innerHTML = this.options.text;
+
+            if (this.options.avatar !== "") {
+                var avatarElement = document.createElement("img");
+                avatarElement.src = this.options.avatar;
+
+                avatarElement.className = "avatar";
+
+                if (this.options.positionLeft === true) {
+
+                    // Adding close icon on the left of content
+                    divElement.appendChild(avatarElement);
+
+                } else {
+
+                    // Adding close icon on the right of content
+                    divElement.prepend(avatarElement);
+
+                }
+            }
 
             // Adding a close icon to the toast
             if (this.options.close === true) {
