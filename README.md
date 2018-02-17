@@ -1,7 +1,9 @@
 # Toastify
 
-![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)
-![forthebadge](http://forthebadge.com/images/badges/uses-js.svg)
+![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)
+![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)
+
+[![toastify-js](https://img.shields.io/badge/toastify--js-1.0.0-brightgreen.svg)](https://www.npmjs.com/package/toastify-js)
 
 Toastify is a lightweight, vanilla JS toast notification library.
 
@@ -9,18 +11,30 @@ Toastify is a lightweight, vanilla JS toast notification library.
 
 [Click here](https://apvarun.github.io/toastify-js/)
 
-## Download
+## Installation
 
-To start using **Toastify**, add the following on to your page.
+#### Toastify now supports installation via NPM
 
-```html
-<link rel="stylesheet" type="text/css" href="toastify.css">
+```
+npm install --save toastify-js
+```
+or
+```
+yarn add toastify-js -S
 ```
 
-Add script at the bottom of the page
+#### Using Toastify using the traditional method
+
+To start using **Toastify**, add the following CSS on to your page.
 
 ```html
-<script type="text/javascript" src="toastify.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+```
+
+And the script at the bottom of the page
+
+```html
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 ```
 
 ## Documentation
@@ -38,7 +52,7 @@ Toastify({
 }).showToast();
 ```
 
-Toast messages will be centered on devices with screen width less than 360px.
+> Toast messages will be centered on devices with screen width less than 360px.
 
 + See the [changelog](https://github.com/apvarun/toastify-js/blob/master/CHANGELOG.md)
 
