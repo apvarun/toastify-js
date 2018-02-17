@@ -40,7 +40,7 @@ Toastify({
     destination: 'https://github.com/apvarun/toastify-js',
     newWindow: true,
     gravity: "top",
-    positionLeft: true
+    positionLeft: true,
 }).showToast();
 
 Toastify({

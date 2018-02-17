@@ -1,11 +1,19 @@
 /*!
- * Toastify js 0.0.6
+ * Toastify js 1.0.0
  * https://github.com/apvarun/toastify-js
  * @license MIT licensed
  *
- * Copyright (C) 2017 Varun A P
+ * Copyright (C) 2018 Varun A P
  */
-; (function (global) {
+;
+(function (root, factory) {
+    if(typeof module === "object" && module.exports) {
+        require('./toastify.css');
+        module.exports = factory();
+    } else {
+        root.Toastify = factory();
+    }
+}(this, function (global) {
 
     // Object initialization
     var Toastify = function (options) {
@@ -14,7 +22,7 @@
         return new Toastify.lib.init(options);
     },
         // Library version
-        version = "0.0.5";
+        version = "1.0.0";
 
     // Defining the prototype of the object
     Toastify.lib = Toastify.prototype = {
@@ -308,7 +316,7 @@
     // Setting up the prototype for the init object
     Toastify.lib.init.prototype = Toastify.lib;
 
-    // Adding the Toastify function to the window object
-    global.Toastify = Toastify;
+    // Returning the Toastify function to be assigned to the window object/module
+    return Toastify;
 
-}(window));
+}));

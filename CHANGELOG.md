@@ -1,6 +1,9 @@
 # Changelog
 All the changes made to toastify-js library.
 
+## [1.0.0] - 2018-02-17
+- Support for modules
+
 ## [0.0.6] - 2017-09-09
 - Support for changing background [Options]
 - Optimized toast positioning logic
