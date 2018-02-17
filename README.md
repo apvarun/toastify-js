@@ -33,7 +33,8 @@ Toastify({
     newWindow: true,
     close: true,
     gravity: "top", // `top` or `bottom`
-    positionLeft: true // `true` or `false`
+    positionLeft: true, // `true` or `false`
+    backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)"
 }).showToast();
 ```
 
