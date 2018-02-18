@@ -1,5 +1,5 @@
 /*!
- * Toastify js 1.0.0
+ * Toastify js 1.1.0
  * https://github.com/apvarun/toastify-js
  * @license MIT licensed
  *
@@ -22,7 +22,7 @@
         return new Toastify.lib.init(options);
     },
         // Library version
-        version = "1.0.0";
+        version = "1.1.0";
 
     // Defining the prototype of the object
     Toastify.lib = Toastify.prototype = {
@@ -100,7 +100,7 @@
                 } else {
 
                     // Adding close icon on the right of content
-                    divElement.prepend(avatarElement);
+                    divElement.insertAdjacentElement('beforeend', avatarElement);
 
                 }
             }
@@ -118,6 +118,7 @@
                 closeElement.addEventListener('click', function (event) {
 
                     this.removeElement(event.target.parentElement);
+                    window.clearTimeout(event.target.parentElement.timeOutValue);
 
                 }.bind(this));
 
@@ -129,7 +130,7 @@
                 if (this.options.positionLeft === true && width > 360) {
 
                     // Adding close icon on the left of content
-                    divElement.prepend(closeElement);
+                    divElement.insertAdjacentElement('afterbegin', closeElement);
 
                 } else {
 
@@ -205,7 +206,7 @@
             // Repositioning the toasts in case multiple toasts are present
             Toastify.reposition();
 
-            window.setTimeout(function () {
+            toastElement.timeOutValue = window.setTimeout(function () {
 
                 // Remove the toast from DOM
                 this.removeElement(toastElement);
@@ -221,13 +222,14 @@
         removeElement: function (toastElement) {
 
             // Hiding the element
-            toastElement.classList.remove("on");
+            // toastElement.classList.remove("on");
+            toastElement.className = toastElement.className.replace(" on","");
 
             // Removing the element from DOM after transition end
             window.setTimeout(function () {
 
                 // Remove the elemenf from the DOM
-                toastElement.remove();
+                toastElement.parentNode.removeChild(toastElement);
 
                 // Calling the callback function
                 this.options.callback.call(toastElement);
@@ -267,7 +269,7 @@
         for (var i = 0; i < allToasts.length; i++) {
 
             // Getting the applied gravity
-            if (allToasts[i].classList.contains('top') === true) {
+            if (containsClass(allToasts[i], 'top') === true) {
                 classUsed = "top";
             } else {
                 classUsed = "bottom";
@@ -290,7 +292,7 @@
 
             } else {
 
-                if (allToasts[i].classList.contains('left') === true) {
+                if (containsClass(allToasts[i], 'left') === true) {
 
                     // Setting the position
                     allToasts[i].style[classUsed] = topLeftOffsetSize[classUsed] + 'px';
@@ -311,6 +313,16 @@
 
         // Supporting function chaining
         return this;
+    }
+
+    function containsClass(elem, yourClass) {
+        if(!elem || typeof yourClass !== 'string') {
+            return false;
+        } else if(elem.className && elem.className.trim().split(/\s+/gi).indexOf(yourClass) > -1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     // Setting up the prototype for the init object

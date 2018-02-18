@@ -1,6 +1,9 @@
 # Changelog
 All the changes made to toastify-js library.
 
+## [1.1.0] - 2018-02-18
+- Browser support extended to IE10+ without any polyfills
+
 ## [1.0.0] - 2018-02-17
 - Support for modules
 

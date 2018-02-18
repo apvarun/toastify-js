@@ -20,6 +20,7 @@ body {
     flex-direction: column;
     align-items: center;
     background-color: whitesmoke;
+    background-image: url("./pattern.png");
 }
 .hidden{
     display: none;
@@ -29,7 +30,8 @@ body {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    background-color: #E5E5E5;
+    background-color: white;
+    border: 1px solid #e3e3e3;
     padding: 20px 20px;
     width: 60%;
     border-radius: 4px;
@@ -54,8 +56,8 @@ code p{
     margin: 10px;
     padding: 12px 12px;
     cursor: pointer;
-    -webkit-transition: all 60ms ease-in-out;
-    transition: all 60ms ease-in-out;
+    -webkit-transition: all 200ms ease-in-out;
+    transition: all 200ms ease-in-out;
     text-align: center;
     white-space: nowrap;
     text-decoration: none;
@@ -69,10 +71,13 @@ code p{
     display: inline-block;
     box-shadow: 0 5px 20px rgba(22, 22, 22, 0.15);
     color: #5477f5;
+    background-color: Snow;
+    border: 1px solid #5477f5;
 }
 .button:hover{
     color: #FFFFFF;
     background: linear-gradient(135deg, #73a5ff, #5477f5);
+    border: 1px solid transparent;
 }
 .repo{
     margin: 10px;
