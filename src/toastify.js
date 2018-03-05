@@ -1,5 +1,5 @@
 /*!
- * Toastify js 1.1.0
+ * Toastify js 1.2.0
  * https://github.com/apvarun/toastify-js
  * @license MIT licensed
  *
@@ -22,7 +22,7 @@
         return new Toastify.lib.init(options);
     },
         // Library version
-        version = "1.1.0";
+        version = "1.2.0";
 
     // Defining the prototype of the object
     Toastify.lib = Toastify.prototype = {
@@ -117,6 +117,7 @@
                 // Triggering the removal of toast from DOM on close click
                 closeElement.addEventListener('click', function (event) {
 
+                    event.stopPropagation();
                     this.removeElement(event.target.parentElement);
                     window.clearTimeout(event.target.parentElement.timeOutValue);
 
@@ -144,36 +145,16 @@
             // Adding an on-click destination path
             if (typeof this.options.destination !== 'undefined') {
 
-                // Setting up an anchor object
-                var linkElement = document.createElement("a");
-                linkElement.setAttribute("href", this.options.destination);
+                divElement.addEventListener('click', function (event) {
 
-                if (this.options.newWindow === true) {
-                    linkElement.setAttribute("target", "_blank");
-                }
+                    event.stopPropagation();
+                    if(this.options.newWindow === true){
+                        window.open(this.options.destination, '_blank')
+                    } else {
+                        window.location = this.options.destination;
+                    }
 
-                // Rectifying class names due to nesting
-                divElement.className = '';
-                linkElement.className = 'toastify on';
-
-                // Positioning toast to left or right
-                if (this.options.positionLeft === true) {
-                    linkElement.className += " left";
-                } else {
-                    linkElement.className += " right";
-                }
-
-                // Assigning gravity of element
-                linkElement.className += " " + this.options.gravity;
-
-                divElement.style.background = "";
-                linkElement.style.background = this.options.backgroundColor;
-
-                // Adding the text element inside link
-                linkElement.appendChild(divElement);
-
-                // Returning the linked element
-                return linkElement;
+                }.bind(this));
 
             }
 

@@ -1,6 +1,9 @@
 # Changelog
 All the changes made to toastify-js library.
 
+## [1.2.0] - 2018-03-05
+- Fix issue when `destination` and `close` options is used at the same time
+
 ## [1.1.0] - 2018-02-18
 - Browser support extended to IE10+ without any polyfills
 
