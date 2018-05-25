@@ -77,6 +77,20 @@ Toastify({
 
 + See the [changelog](https://github.com/apvarun/toastify-js/blob/master/CHANGELOG.md)
 
+### Add own custom classes
+
+If you want to use custom classes (like info or warning for example) you can do that via
+
+```javascript
+Toastify({
+    text: "This is a toast",
+    backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+    classes: "info"
+}).showToast();
+
+```
+
+
 ## Browsers support
 
 | [<img src="https://raw.githubusercontent.com/godban/browsers-support-badges/master/src/images/edge.png" alt="IE / Edge" width="16px" height="16px" />](http://godban.github.io/browsers-support-badges/)<br />IE / Edge | [<img src="https://raw.githubusercontent.com/godban/browsers-support-badges/master/src/images/firefox.png" alt="Firefox" width="16px" height="16px" />](http://godban.github.io/browsers-support-badges/)<br />Firefox | [<img src="https://raw.githubusercontent.com/godban/browsers-support-badges/master/src/images/chrome.png" alt="Chrome" width="16px" height="16px" />](http://godban.github.io/browsers-support-badges/)<br />Chrome | [<img src="https://raw.githubusercontent.com/godban/browsers-support-badges/master/src/images/safari.png" alt="Safari" width="16px" height="16px" />](http://godban.github.io/browsers-support-badges/)<br />Safari | [<img src="https://raw.githubusercontent.com/godban/browsers-support-badges/master/src/images/opera.png" alt="Opera" width="16px" height="16px" />](http://godban.github.io/browsers-support-badges/)<br />Opera |
