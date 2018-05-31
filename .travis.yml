@@ -9,4 +9,4 @@ deploy:
   email: $NPM_USERNAME
   api_key: $NPM_TOKEN
   on:
-    branch: production
+    branch: master
