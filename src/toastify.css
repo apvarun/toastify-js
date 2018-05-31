@@ -1,10 +1,11 @@
 /*!
- * Toastify js 1.2.0
+ * Toastify js 1.2.2
  * https://github.com/apvarun/toastify-js
  * @license MIT licensed
  *
  * Copyright (C) 2018 Varun A P
  */
+
 .toastify {
     padding: 12px 20px;
     color: #ffffff;
@@ -20,36 +21,45 @@
     text-decoration: none;
     max-width: calc(50% - 20px);
 }
+
 .toastify.on {
     opacity: 1;
 }
+
 .toast-close {
     opacity: 0.4;
     padding: 0 5px;
 }
+
 .right {
     right: 15px;
 }
+
 .left {
     left: 15px;
 }
+
 .top {
     top: -150px;
 }
+
 .bottom {
     bottom: -150px;
 }
+
 .rounded {
     border-radius: 25px;
 }
-.avatar{
+
+.avatar {
     width: 1.5em;
     height: 1.5em;
     margin: 0 5px;
     border-radius: 2px;
 }
-@media only screen and (max-width: 360px){
-    .right, .left{
+
+@media only screen and (max-width: 360px) {
+    .right, .left {
         margin-left: auto;
         margin-right: auto;
         left: 0;
@@ -57,4 +67,3 @@
         max-width: fit-content;
     }
 }
-

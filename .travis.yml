@@ -1,0 +1,4 @@
+deploy:
+  skip_cleanup: true
+  on:
+    branch: production

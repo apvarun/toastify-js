@@ -1,10 +1,11 @@
 * {
     box-sizing: border-box;
 }
-html,
-body {
+
+html, body {
     height: 100%;
 }
+
 body {
     font-family: Helvetica, Arial, sans-serif;
     background-size: 100%;
@@ -12,6 +13,7 @@ body {
     padding: 0;
     color: #424242;
 }
+
 .container {
     overflow: hidden;
     display: flex;
@@ -22,10 +24,12 @@ body {
     background-color: whitesmoke;
     background-image: url("./pattern.png");
 }
-.hidden{
+
+.hidden {
     display: none;
 }
-.docs{
+
+.docs {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -36,22 +40,27 @@ body {
     width: 60%;
     border-radius: 4px;
 }
-.docs h2{
+
+.docs h2 {
     margin-top: 0px;
 }
-code p{
+
+code p {
     margin: 2px;
 }
-.pad-left{
+
+.pad-left {
     padding-left: 20px;
 }
-.buttons{
+
+.buttons {
     margin: 20px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
-.button{
+
+.button {
     overflow: hidden;
     margin: 10px;
     padding: 12px 12px;
@@ -74,11 +83,13 @@ code p{
     background-color: Snow;
     border: 1px solid #5477f5;
 }
-.button:hover{
+
+.button:hover {
     color: #FFFFFF;
     background: linear-gradient(135deg, #73a5ff, #5477f5);
     border: 1px solid transparent;
 }
-.repo{
+
+.repo {
     margin: 10px;
 }
