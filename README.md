@@ -90,7 +90,7 @@ If you want to use custom classes on the toast for customizing (like info or war
 Toastify({
   text: "This is a toast",
   backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
-  classes: "info",
+  className: "info",
 }).showToast();
 ```
 

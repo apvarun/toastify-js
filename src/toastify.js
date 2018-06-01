@@ -50,7 +50,7 @@
       this.options.backgroundColor =
         options.backgroundColor || "linear-gradient(135deg, #73a5ff, #5477f5)"; // toast position - left or right
       this.options.avatar = options.avatar || ""; // toast position - left or right
-      this.options.classes = options.classes || ""; // additional classes for the toast
+      this.options.className = options.className || ""; // additional class names for the toast
 
       // Returning the current object for chaining functions
       return this;
@@ -65,7 +65,7 @@
 
       // Creating the DOM object
       var divElement = document.createElement("div");
-      divElement.className = "toastify on " + this.options.classes;
+      divElement.className = "toastify on " + this.options.className;
 
       // Positioning toast to left or right
       if (this.options.positionLeft === true) {
