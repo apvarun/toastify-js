@@ -47,8 +47,7 @@
       this.options.close = options.close || false; // Show toast close icon
       this.options.gravity = options.gravity == "bottom" ? "bottom" : "top"; // toast position - top or bottom
       this.options.positionLeft = options.positionLeft || false; // toast position - left or right
-      this.options.backgroundColor =
-        options.backgroundColor || "linear-gradient(135deg, #73a5ff, #5477f5)"; // toast position - left or right
+      this.options.backgroundColor = options.backgroundColor; // toast background color
       this.options.avatar = options.avatar || ""; // toast position - left or right
       this.options.classes = options.classes || ""; // additional classes for the toast
 
@@ -77,7 +76,9 @@
       // Assigning gravity of element
       divElement.className += " " + this.options.gravity;
 
-      divElement.style.background = this.options.backgroundColor;
+      if (this.options.backgroundColor) {
+        divElement.style.background = this.options.backgroundColor;
+      }
 
       // Adding the toast message
       divElement.innerHTML = this.options.text;
