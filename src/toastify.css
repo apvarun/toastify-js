@@ -31,27 +31,27 @@
     padding: 0 5px;
 }
 
-.right {
+.toastify-right {
     right: 15px;
 }
 
-.left {
+.toastify-left {
     left: 15px;
 }
 
-.top {
+.toastify-top {
     top: -150px;
 }
 
-.bottom {
+.toastify-bottom {
     bottom: -150px;
 }
 
-.rounded {
+.toastify-rounded {
     border-radius: 25px;
 }
 
-.avatar {
+.toastify-avatar {
     width: 1.5em;
     height: 1.5em;
     margin: 0 5px;
