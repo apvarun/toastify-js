@@ -45,7 +45,7 @@
       this.options.destination = options.destination; // On-click destination
       this.options.newWindow = options.newWindow || false; // Open destination in new window
       this.options.close = options.close || false; // Show toast close icon
-      this.options.gravity = options.gravity == "bottom" ? "bottom" : "top"; // toast position - top or bottom
+      this.options.gravity = options.gravity == "bottom" ? "toastify-bottom" : "toastify-top"; // toast position - top or bottom
       this.options.positionLeft = options.positionLeft || false; // toast position - left or right
       this.options.backgroundColor = options.backgroundColor; // toast background color
       this.options.avatar = options.avatar || ""; // toast position - left or right
@@ -68,9 +68,9 @@
 
       // Positioning toast to left or right
       if (this.options.positionLeft === true) {
-        divElement.className += " left";
+        divElement.className += " toastify-left";
       } else {
-        divElement.className += " right";
+        divElement.className += " toastify-right";
       }
 
       // Assigning gravity of element
@@ -87,7 +87,7 @@
         var avatarElement = document.createElement("img");
         avatarElement.src = this.options.avatar;
 
-        avatarElement.className = "avatar";
+        avatarElement.className = "toastify-avatar";
 
         if (this.options.positionLeft === true) {
           // Adding close icon on the left of content
@@ -232,14 +232,14 @@
     // Modifying the position of each toast element
     for (var i = 0; i < allToasts.length; i++) {
       // Getting the applied gravity
-      if (containsClass(allToasts[i], "top") === true) {
-        classUsed = "top";
+      if (containsClass(allToasts[i], "toastify-top") === true) {
+        classUsed = "toastify-top";
       } else {
-        classUsed = "bottom";
+        classUsed = "toastify-bottom";
       }
 
       var height = allToasts[i].offsetHeight;
-
+      classUsed = classUsed.substr(9, classUsed.length-1)
       // Spacing between toasts
       var offset = 15;
 
@@ -252,7 +252,7 @@
 
         offsetSize[classUsed] += height + offset;
       } else {
-        if (containsClass(allToasts[i], "left") === true) {
+        if (containsClass(allToasts[i], "toastify-left") === true) {
           // Setting the position
           allToasts[i].style[classUsed] = topLeftOffsetSize[classUsed] + "px";
 
