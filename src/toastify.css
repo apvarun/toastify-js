@@ -59,7 +59,7 @@
 }
 
 @media only screen and (max-width: 360px) {
-    .right, .left {
+    .toastify-right, .toastify-left {
         margin-left: auto;
         margin-right: auto;
         left: 0;
