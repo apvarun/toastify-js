@@ -1,5 +1,5 @@
 /*!
- * Toastify js 1.2.2
+ * Toastify js 1.3.1
  * https://github.com/apvarun/toastify-js
  * @license MIT licensed
  *
