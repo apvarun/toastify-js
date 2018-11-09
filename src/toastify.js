@@ -19,7 +19,7 @@
       return new Toastify.lib.init(options);
     },
     // Library version
-    version = "1.2.2";
+    version = "1.3.1";
 
   // Defining the prototype of the object
   Toastify.lib = Toastify.prototype = {
