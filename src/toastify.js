@@ -48,7 +48,7 @@
       this.options.gravity = options.gravity == "bottom" ? "toastify-bottom" : "toastify-top"; // toast position - top or bottom
       this.options.positionLeft = options.positionLeft || false; // toast position - left or right
       this.options.backgroundColor = options.backgroundColor; // toast background color
-      this.options.avatar = options.avatar || ""; // toast position - left or right
+      this.options.avatar = options.avatar || ""; // toast icon - an image url
       this.options.className = options.className || ""; // additional class names for the toast
 
       // Returning the current object for chaining functions
@@ -102,7 +102,7 @@
       if (this.options.close === true) {
         // Create a span for close element
         var closeElement = document.createElement("span");
-        closeElement.innerHTML = "&#10006;";
+        closeElement.innerHTML = "&times;";
 
         closeElement.className = "toast-close";
 
