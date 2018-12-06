@@ -20,6 +20,7 @@
     cursor: pointer;
     text-decoration: none;
     max-width: calc(50% - 20px);
+    z-index: 2147483647;
 }
 
 .toastify.on {
