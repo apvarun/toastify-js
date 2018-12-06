@@ -2,6 +2,10 @@
 
 All the changes made to toastify-js library.
 
+## [1.3.2] - 2018-12-6
+
+* Added z-index attribute.
+
 ## [1.2.1] - 2018-05-31
 
 * Added support for Classes. Now custom classes can be added to the toast while creating it.
