@@ -7,7 +7,6 @@
  */
 (function(root, factory) {
   if (typeof module === "object" && module.exports) {
-    require("./toastify.css");
     module.exports = factory();
   } else {
     root.Toastify = factory();
