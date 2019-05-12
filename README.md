@@ -3,7 +3,7 @@
 ![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)
 ![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)
 
-[![toastify-js](https://img.shields.io/badge/toastify--js-1.3.2-brightgreen.svg)](https://www.npmjs.com/package/toastify-js)
+[![toastify-js](https://img.shields.io/badge/toastify--js-1.4-brightgreen.svg)](https://www.npmjs.com/package/toastify-js)
 
 Toastify is a lightweight, vanilla JS toast notification library.
 
@@ -47,6 +47,12 @@ yarn add toastify-js -S
 import Toastify from 'toastify-js'
 ```
 
+You can use the default CSS from Toastify as below and later override it or choose to write your own CSS.
+
+```
+import "toastify-js/src/toastify.css"
+```
+
 #### Adding ToastifyJs to HTML page using the traditional method
 
 To start using **Toastify**, add the following CSS on to your page.
@@ -75,6 +81,7 @@ Toastify({
   gravity: "top", // `top` or `bottom`
   positionLeft: true, // `true` or `false`
   backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+  stopOnFocus: true // Prevents dismissing of toast on hover
 }).showToast();
 ```
 
