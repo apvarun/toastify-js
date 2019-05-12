@@ -50,6 +50,7 @@
       this.options.backgroundColor = options.backgroundColor; // toast background color
       this.options.avatar = options.avatar || ""; // toast position - left or right
       this.options.className = options.className || ""; // additional class names for the toast
+      this.options.stopOnFocus = options.stopOnFocus || true; // stop timeout on focus
 
       // Returning the current object for chaining functions
       return this;
@@ -115,6 +116,31 @@
             window.clearTimeout(event.target.parentElement.timeOutValue);
           }.bind(this)
         );
+
+        // Clear timeout while toast is focused
+        if (this.options.stopOnFocus) {
+          const self = this;
+          // stop countdown
+          divElement.addEventListener(
+            "mouseover",
+            function(event) {
+              window.clearTimeout(event.target.timeOutValue);
+            }
+          )
+          // add back the timeout
+          divElement.addEventListener(
+            "mouseleave",
+            function() {
+              divElement.timeOutValue = window.setTimeout(
+                function() {
+                  // Remove the toast from DOM
+                  self.removeElement(divElement);
+                },
+                self.options.duration
+              )
+            }
+          )
+        }
 
         //Calculating screen width
         var width = window.innerWidth > 0 ? window.innerWidth : screen.width;
