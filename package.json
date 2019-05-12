@@ -1,6 +1,6 @@
 {
   "name": "toastify-js",
-  "version": "1.4",
+  "version": "1.4.0",
   "description":
     "Toastify is a lightweight, vanilla JS toast notification library.",
   "main": "./src/toastify.js",

@@ -2,7 +2,7 @@
 
 All the changes made to toastify-js library.
 
-## [1.4] - 2019-05-12
+## [1.4.0] - 2019-05-12
 
 * **Breaking Change**: Manually import CSS while using as module in your modern JavaScript applications.
 * Ability to pause the toast dismiss timer on hover (Using `stopOnFocus` property)
