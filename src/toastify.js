@@ -36,6 +36,8 @@
       // Creating the options object
       this.options = {};
 
+      this.toastElement = null;
+
       // Validating the options
       this.options.text = options.text || "Hi there!"; // Display message
       this.options.duration = options.duration || 3000; // Display duration
@@ -117,7 +119,7 @@
         );
 
         // Clear timeout while toast is focused
-        if (this.options.stopOnFocus) {
+        if (this.options.stopOnFocus && this.options.duration > 0) {
           const self = this;
           // stop countdown
           divElement.addEventListener(
@@ -177,7 +179,7 @@
     // Displaying the toast
     showToast: function() {
       // Creating the DOM object for the toast
-      var toastElement = this.buildToast();
+      this.toastElement = this.buildToast();
 
       // Getting the root element to with the toast needs to be added
       var rootElement;
@@ -193,21 +195,30 @@
       }
 
       // Adding the DOM element
-      rootElement.insertBefore(toastElement, rootElement.firstChild);
+      rootElement.insertBefore(this.toastElement, rootElement.firstChild);
 
       // Repositioning the toasts in case multiple toasts are present
       Toastify.reposition();
 
-      toastElement.timeOutValue = window.setTimeout(
-        function() {
-          // Remove the toast from DOM
-          this.removeElement(toastElement);
-        }.bind(this),
-        this.options.duration
-      ); // Binding `this` for function invocation
+      if (this.options.duration > 0) {
+        this.toastElement.timeOutValue = window.setTimeout(
+          function() {
+            // Remove the toast from DOM
+            this.removeElement(this.toastElement);
+          }.bind(this),
+          this.options.duration
+        ); // Binding `this` for function invocation
+      }
 
       // Supporting function chaining
       return this;
+    },
+
+    hideToast: function() {
+      if (this.toastElement.timeOutValue) {
+        clearTimeout(this.toastElement.timeOutValue);
+      }
+      this.removeElement(this.toastElement);
     },
 
     // Removing the element from the DOM
