@@ -123,7 +123,7 @@
           divElement.addEventListener(
             "mouseover",
             function(event) {
-              window.clearTimeout(event.target.timeOutValue);
+              window.clearTimeout(divElement.timeOutValue);
             }
           )
           // add back the timeout
