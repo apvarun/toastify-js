@@ -2,6 +2,10 @@
 
 All the changes made to toastify-js library.
 
+## [1.6.1] - 2019-06-29
+
+* Bugfix: Disabling `stopOnFocus`
+
 ## [1.6.0] - 2019-06-29
 
 * **Deprecation Warning**: Migrating from `positionLeft` property to `position`

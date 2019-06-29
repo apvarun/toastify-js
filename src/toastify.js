@@ -1,5 +1,5 @@
 /*!
- * Toastify js 1.6.0
+ * Toastify js 1.6.1
  * https://github.com/apvarun/toastify-js
  * @license MIT licensed
  *
@@ -18,7 +18,7 @@
       return new Toastify.lib.init(options);
     },
     // Library version
-    version = "1.6.0";
+    version = "1.6.1";
 
   // Defining the prototype of the object
   Toastify.lib = Toastify.prototype = {
@@ -52,7 +52,7 @@
       this.options.backgroundColor = options.backgroundColor; // toast background color
       this.options.avatar = options.avatar || ""; // img element src - url or a path
       this.options.className = options.className || ""; // additional class names for the toast
-      this.options.stopOnFocus = options.stopOnFocus || true; // stop timeout on focus
+      this.options.stopOnFocus = options.stopOnFocus === undefined? true: options.stopOnFocus; // stop timeout on focus
 
       // Returning the current object for chaining functions
       return this;
