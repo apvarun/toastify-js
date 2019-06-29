@@ -3,7 +3,7 @@
 ![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)
 ![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)
 
-[![toastify-js](https://img.shields.io/badge/toastify--js-1.5.0-brightgreen.svg)](https://www.npmjs.com/package/toastify-js)
+[![toastify-js](https://img.shields.io/badge/toastify--js-1.6.0-brightgreen.svg)](https://www.npmjs.com/package/toastify-js)
 
 Toastify is a lightweight, vanilla JS toast notification library.
 
@@ -79,7 +79,7 @@ Toastify({
   newWindow: true,
   close: true,
   gravity: "top", // `top` or `bottom`
-  positionLeft: true, // `true` or `false`
+  position: 'left', // `left`, `center` or `right`
   backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
   stopOnFocus: true // Prevents dismissing of toast on hover
 }).showToast();

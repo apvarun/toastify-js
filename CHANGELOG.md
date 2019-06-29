@@ -2,18 +2,27 @@
 
 All the changes made to toastify-js library.
 
+## [1.6.0] - 2019-06-29
+
+* **Deprecation Warning**: Migrating from `positionLeft` property to `position`
+* Property `position` to support `center` as a value along with `left` and `right` - Useful for centering toast messages in the page
+
+## [1.5.0] - 2019-05-30
+
+* Added persistant toast option with ability to programatically close it
+
 ## [1.4.0] - 2019-05-12
 
-* **Breaking Change**: Manually import CSS while using as module in your modern JavaScript applications.
+* **Breaking Change**: Manually import CSS while using as module in your modern JavaScript applications
 * Ability to pause the toast dismiss timer on hover (Using `stopOnFocus` property)
 
 ## [1.3.2] - 2018-12-6
 
-* Added z-index attribute.
+* Added z-index attribute
 
 ## [1.2.1] - 2018-05-31
 
-* Added support for Classes. Now custom classes can be added to the toast while creating it.
+* Added support for Classes. Now custom classes can be added to the toast while creating it
 
 ## [1.2.0] - 2018-03-05
 

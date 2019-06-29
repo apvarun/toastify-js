@@ -1,5 +1,5 @@
 /*!
- * Toastify js 1.5.0
+ * Toastify js 1.6.0
  * https://github.com/apvarun/toastify-js
  * @license MIT licensed
  *
@@ -57,6 +57,14 @@
     height: 1.5em;
     margin: 0 5px;
     border-radius: 2px;
+}
+
+.toastify-center {
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    max-width: fit-content;
 }
 
 @media only screen and (max-width: 360px) {
