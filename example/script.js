@@ -10,14 +10,14 @@ Toastify({
   destination: "https://github.com/apvarun/toastify-js",
   newWindow: true,
   gravity: "top",
-  positionLeft: true,
+  position: 'left',
 }).showToast();
 
 setTimeout(function() {
   Toastify({
     text: "Simple JavaScript Toasts",
     gravity: "top",
-    positionLeft: true,
+    position: 'center',
     backgroundColor: "#0f3443",
   }).showToast();
 }, 1000);
@@ -46,7 +46,7 @@ setTimeout(function() {
   Toastify({
     text: "Highly customizable",
     gravity: "bottom",
-    positionLeft: true,
+    position: 'left',
     close: true,
     backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
   }).showToast();

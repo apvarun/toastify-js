@@ -1,5 +1,5 @@
 /*!
- * Toastify js 1.5.0
+ * Toastify js 1.6.0
  * https://github.com/apvarun/toastify-js
  * @license MIT licensed
  *
@@ -18,7 +18,7 @@
       return new Toastify.lib.init(options);
     },
     // Library version
-    version = "1.5.0";
+    version = "1.6.0";
 
   // Defining the prototype of the object
   Toastify.lib = Toastify.prototype = {
@@ -48,6 +48,7 @@
       this.options.close = options.close || false; // Show toast close icon
       this.options.gravity = options.gravity == "bottom" ? "toastify-bottom" : "toastify-top"; // toast position - top or bottom
       this.options.positionLeft = options.positionLeft || false; // toast position - left or right
+      this.options.position = options.position || ''; // toast position - left or right
       this.options.backgroundColor = options.backgroundColor; // toast background color
       this.options.avatar = options.avatar || ""; // img element src - url or a path
       this.options.className = options.className || ""; // additional class names for the toast
@@ -68,11 +69,18 @@
       var divElement = document.createElement("div");
       divElement.className = "toastify on " + this.options.className;
 
-      // Positioning toast to left or right
-      if (this.options.positionLeft === true) {
-        divElement.className += " toastify-left";
+      // Positioning toast to left or right or center
+      if (!!this.options.position) {
+        divElement.className += " toastify-" + this.options.position;
       } else {
-        divElement.className += " toastify-right";
+        // To be depreciated in further versions
+        if (this.options.positionLeft === true) {
+          divElement.className += " toastify-left";
+          console.warn('Property `positionLeft` will be depreciated in further versions. Please use `position` instead.')
+        } else {
+          // Default position
+          divElement.className += " toastify-right";
+        }
       }
 
       // Assigning gravity of element
@@ -91,7 +99,7 @@
 
         avatarElement.className = "toastify-avatar";
 
-        if (this.options.positionLeft === true) {
+        if (this.options.position == "left" || this.options.positionLeft === true) {
           // Adding close icon on the left of content
           divElement.appendChild(avatarElement);
         } else {
@@ -148,7 +156,7 @@
 
         // Adding the close icon to the toast element
         // Display on the right if screen width is less than or equal to 360px
-        if (this.options.positionLeft === true && width > 360) {
+        if ((this.options.position == "left" || this.options.positionLeft === true) && width > 360) {
           // Adding close icon on the left of content
           divElement.insertAdjacentElement("afterbegin", closeElement);
         } else {
