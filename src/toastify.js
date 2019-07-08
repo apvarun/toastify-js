@@ -53,6 +53,7 @@
       this.options.avatar = options.avatar || ""; // img element src - url or a path
       this.options.className = options.className || ""; // additional class names for the toast
       this.options.stopOnFocus = options.stopOnFocus === undefined? true: options.stopOnFocus; // stop timeout on focus
+      this.options.onClick = options.onClick; // Callback after click
 
       // Returning the current object for chaining functions
       return this;
@@ -176,6 +177,16 @@
             } else {
               window.location = this.options.destination;
             }
+          }.bind(this)
+        );
+      }
+
+      if (typeof this.options.onClick === "function" && typeof this.options.destination === "undefined") {
+        divElement.addEventListener(
+          "click",
+          function(event) {
+            event.stopPropagation();
+            this.options.onClick();            
           }.bind(this)
         );
       }
