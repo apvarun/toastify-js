@@ -122,8 +122,8 @@
           "click",
           function(event) {
             event.stopPropagation();
-            this.removeElement(event.target.parentElement);
-            window.clearTimeout(event.target.parentElement.timeOutValue);
+            this.removeElement(this.toastElement);
+            window.clearTimeout(this.toastElement.timeOutValue);
           }.bind(this)
         );
 
