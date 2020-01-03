@@ -2,6 +2,10 @@
 
 All the changes made to toastify-js library.
 
+## [1.6.2] - 2020-01-03
+
+* Bugfix: Closing the toast when custom close icon from icon fonts are used
+
 ## [1.6.1] - 2019-06-29
 
 * Bugfix: Disabling `stopOnFocus`
