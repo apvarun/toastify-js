@@ -18,7 +18,7 @@
       return new Toastify.lib.init(options);
     },
     // Library version
-    version = "1.6.2";
+    version = "1.6.3";
 
   // Defining the prototype of the object
   Toastify.lib = Toastify.prototype = {
@@ -54,6 +54,8 @@
       this.options.className = options.className || ""; // additional class names for the toast
       this.options.stopOnFocus = options.stopOnFocus === undefined? true: options.stopOnFocus; // stop timeout on focus
       this.options.onClick = options.onClick; // Callback after click
+      this.options.containerOffset = options.containerOffset || options.containerOffset === 0 ? options.containerOffset : 15; // Starting top/bottom spacing to wrap container
+      this.options.offset = options.offset || options.offset === 0 ? options.offset : 15; // Spacing between toasts
 
       // Returning the current object for chaining functions
       return this;
@@ -217,7 +219,7 @@
       rootElement.insertBefore(this.toastElement, rootElement.firstChild);
 
       // Repositioning the toasts in case multiple toasts are present
-      Toastify.reposition();
+      Toastify.reposition(this.options.containerOffset, this.options.offset);
 
       if (this.options.duration > 0) {
         this.toastElement.timeOutValue = window.setTimeout(
@@ -256,7 +258,7 @@
           this.options.callback.call(toastElement);
 
           // Repositioning the toasts again
-          Toastify.reposition();
+          Toastify.reposition(this.options.containerOffset, this.options.offset);
         }.bind(this),
         400
       ); // Binding `this` for function invocation
@@ -264,19 +266,19 @@
   };
 
   // Positioning the toasts on the DOM
-  Toastify.reposition = function() {
+  Toastify.reposition = function(containerOffset, offset) {
     // Top margins with gravity
     var topLeftOffsetSize = {
-      top: 15,
-      bottom: 15,
+      top: containerOffset,
+      bottom: containerOffset,
     };
     var topRightOffsetSize = {
-      top: 15,
-      bottom: 15,
+      top: containerOffset,
+      bottom: containerOffset,
     };
     var offsetSize = {
-      top: 15,
-      bottom: 15,
+      top: containerOffset,
+      bottom: containerOffset,
     };
 
     // Get all toast messages on the DOM
@@ -288,16 +290,12 @@
     for (var i = 0; i < allToasts.length; i++) {
       // Getting the applied gravity
       if (containsClass(allToasts[i], "toastify-top") === true) {
-        classUsed = "toastify-top";
+        classUsed = "top";
       } else {
-        classUsed = "toastify-bottom";
+        classUsed = "bottom";
       }
 
       var height = allToasts[i].offsetHeight;
-      classUsed = classUsed.substr(9, classUsed.length-1)
-      // Spacing between toasts
-      var offset = 15;
-
       var width = window.innerWidth > 0 ? window.innerWidth : screen.width;
 
       // Show toast in center if screen with less than or qual to 360px
