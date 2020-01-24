@@ -249,8 +249,10 @@
       // Removing the element from DOM after transition end
       window.setTimeout(
         function() {
-          // Remove the elemenf from the DOM
-          toastElement.parentNode.removeChild(toastElement);
+          // Remove the elemenf from the DOM, only when the parent node was not removed before.
+          if (toastElement.parentNode) {
+            toastElement.parentNode.removeChild(toastElement);
+          }
 
           // Calling the callback function
           this.options.callback.call(toastElement);
