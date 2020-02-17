@@ -109,16 +109,15 @@ If you want to add offset to the toast, you can do that as follows:
 
 ```javascript
 Toastify({
-  text: "This is a toast",
+  text: "This is a toast with offset",
   offset: {
-    x: 10, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+    x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
     y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
-  }  
-  className: "info",
+  },
 }).showToast();
 ```
 
-Toast will be pushed 10px from left to right in x axis and 10px from top to bottom in y axis.
+Toast will be pushed 50px from left to right in x axis and 10px from top to bottom in y axis.
 
 **Note:**
 
