@@ -57,7 +57,7 @@
 
       const normalOffset = { x: 0, y: 0 };
 
-      this.options.offset = options.offset ? { ...normalOffset, ...options.offset } : normalOffset // toast offset
+      this.options.offset = options.offset || normalOffset // toast offset
 
       // Returning the current object for chaining functions
       return this;
@@ -196,25 +196,15 @@
       }
 
       // Adding offset
-      const validOffsetProps = ["x", "y"];
-
       if(typeof this.options.offset === "object") {
 
-        const safeOffset = Object.entries(this.options.offset)
-        .filter(([key]) => validOffsetProps.includes(key))
-        .reduce((list, [key, value]) => {
-          return {
-            ...list,
-            [key]: value
-          }
-        }, {});
+        var x = getAxisOffsetAValue("x", this.options);
+        var y = getAxisOffsetAValue("y", this.options);
+        
+        const xOffset = this.options.position == "left" ? x : `-${x}`;
+        const yOffset = this.options.gravity == "toastify-top" ? y : `-${y}`;
 
-        const {x, y} = safeOffset;
-
-        const xOffset = this.options.position == "left" ? x : -x;
-        const yOffset = this.options.gravity == "toastify-top" ? y : -y;
-
-        divElement.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+        divElement.style.transform = `translate(${xOffset}, ${yOffset})`;
 
       }
 
@@ -352,6 +342,22 @@
     // Supporting function chaining
     return this;
   };
+
+  // Helper function to get offset.
+  function getAxisOffsetAValue(axis, options) {
+
+    if(options.offset[axis]) {
+      if(isNaN(options.offset[axis])) {
+        return options.offset[axis];
+      }
+      else {
+        return options.offset[axis] + 'px';
+      }
+    }
+
+    return '0px';
+
+  }
 
   function containsClass(elem, yourClass) {
     if (!elem || typeof yourClass !== "string") {
