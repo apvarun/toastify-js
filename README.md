@@ -103,6 +103,8 @@ Toastify({
 }).showToast();
 ```
 
+Multiple classes also can be assigned as a string, with spaces between class names.
+
 ### Add some offset
 
 If you want to add offset to the toast, you can do that as follows:
