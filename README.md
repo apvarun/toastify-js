@@ -119,12 +119,13 @@ Toastify({
 }).showToast();
 ```
 
-Toast will be pushed 50px from left to right in x axis and 10px from top to bottom in y axis.
+Toast will be pushed 50px from right in x axis and 10px from top in y axis.
 
 **Note:**
 
-If `position` is equals to `right`, it will be pushed from right to left.
-If `gravity` is equals to `bottom`, it will be pushed from bottom to top.
+If `position` is equals to `left`, it will be pushed from left.
+
+If `gravity` is equals to `bottom`, it will be pushed from bottom.
 
 ## Browsers support
 
