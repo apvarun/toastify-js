@@ -24,6 +24,7 @@ Toastify is a lightweight, vanilla JS toast notification library.
 * Toast background color
 * Close icon display
 * Display position
+* Offset position
 
 ## Installation
 
@@ -102,7 +103,28 @@ Toastify({
 }).showToast();
 ```
 
-Multiple classes also can be assigned as a string, with spaces between class names.
+### Add some offset
+
+If you want to add offset to the toast, you can do that as follows:
+
+```javascript
+Toastify({
+  text: "This is a toast",
+  offset: {
+    x: 10, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+    y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+  }  
+  className: "info",
+}).showToast();
+```
+
+Toast will be pushed 10px from left to right in x axis and 10px from top to bottom in y axis.
+
+**Note:**
+
+If `position` is equals to `right`, it will be pushed from right to left.
+
+If `gravity` is equals to `bottom`, it will be pushed from bottom to top.
 
 ## Browsers support
 
