@@ -55,6 +55,10 @@
       this.options.stopOnFocus = options.stopOnFocus === undefined? true: options.stopOnFocus; // stop timeout on focus
       this.options.onClick = options.onClick; // Callback after click
 
+      const normalOffset = { x: 0, y: 0 };
+
+      this.options.offset = options.offset ? { ...normalOffset, ...options.offset } : normalOffset // toast offset
+
       // Returning the current object for chaining functions
       return this;
     },
@@ -191,6 +195,29 @@
         );
       }
 
+      // Adding offset
+      const validOffsetProps = ["x", "y"];
+
+      if(typeof this.options.offset === "object") {
+
+        const safeOffset = Object.entries(this.options.offset)
+        .filter(([key]) => validOffsetProps.includes(key))
+        .reduce((list, [key, value]) => {
+          return {
+            ...list,
+            [key]: value
+          }
+        }, {});
+
+        const {x, y} = safeOffset;
+
+        const xOffset = this.options.position == "left" ? x : -x;
+        const yOffset = this.options.gravity == "toastify-top" ? y : -y;
+
+        divElement.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+
+      }
+
       // Returning the generated element
       return divElement;
     },
@@ -265,6 +292,7 @@
 
   // Positioning the toasts on the DOM
   Toastify.reposition = function() {
+
     // Top margins with gravity
     var topLeftOffsetSize = {
       top: 15,
