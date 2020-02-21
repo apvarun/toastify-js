@@ -54,8 +54,8 @@
       this.options.className = options.className || ""; // additional class names for the toast
       this.options.stopOnFocus = options.stopOnFocus === undefined? true: options.stopOnFocus; // stop timeout on focus
       this.options.onClick = options.onClick; // Callback after click
-      this.options.containerOffset = options.containerOffset || options.containerOffset === 0 ? options.containerOffset : 15; // Starting top/bottom spacing to wrap container
-      this.options.offset = options.offset || options.offset === 0 ? options.offset : 15; // Spacing between toasts
+      this.options.containerOffset = isInteger(options.containerOffset) ? options.containerOffset : 15; // Starting top/bottom spacing to wrap container
+      this.options.offset = isInteger(options.offset) ? options.offset : 15; // Spacing between toasts
 
       // Returning the current object for chaining functions
       return this;
@@ -338,7 +338,12 @@
       return false;
     }
   }
-
+  
+  //Checks whether the given value is integer
+  function isInteger(value) {
+      return typeof value === 'number' && value % 1 === 0;
+  }
+  
   // Setting up the prototype for the init object
   Toastify.lib.init.prototype = Toastify.lib;
 
