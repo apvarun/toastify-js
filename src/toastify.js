@@ -40,13 +40,13 @@
 
       // Validating the options
       this.options.text = options.text || "Hi there!"; // Display message
-      this.options.duration = options.duration || 3000; // Display duration
+      this.options.duration = options.duration === 0 ? 0 : options.duration || 3000; // Display duration
       this.options.selector = options.selector; // Parent selector
       this.options.callback = options.callback || function() {}; // Callback after display
       this.options.destination = options.destination; // On-click destination
       this.options.newWindow = options.newWindow || false; // Open destination in new window
       this.options.close = options.close || false; // Show toast close icon
-      this.options.gravity = options.gravity == "bottom" ? "toastify-bottom" : "toastify-top"; // toast position - top or bottom
+      this.options.gravity = options.gravity === "bottom" ? "toastify-bottom" : "toastify-top"; // toast position - top or bottom
       this.options.positionLeft = options.positionLeft || false; // toast position - left or right
       this.options.position = options.position || ''; // toast position - left or right
       this.options.backgroundColor = options.backgroundColor; // toast background color
