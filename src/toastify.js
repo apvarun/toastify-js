@@ -127,31 +127,6 @@
           }.bind(this)
         );
 
-        // Clear timeout while toast is focused
-        if (this.options.stopOnFocus && this.options.duration > 0) {
-          var self = this;
-          // stop countdown
-          divElement.addEventListener(
-            "mouseover",
-            function(event) {
-              window.clearTimeout(divElement.timeOutValue);
-            }
-          )
-          // add back the timeout
-          divElement.addEventListener(
-            "mouseleave",
-            function() {
-              divElement.timeOutValue = window.setTimeout(
-                function() {
-                  // Remove the toast from DOM
-                  self.removeElement(divElement);
-                },
-                self.options.duration
-              )
-            }
-          )
-        }
-
         //Calculating screen width
         var width = window.innerWidth > 0 ? window.innerWidth : screen.width;
 
@@ -166,6 +141,31 @@
         }
       }
 
+      // Clear timeout while toast is focused
+      if (this.options.stopOnFocus && this.options.duration > 0) {
+        const self = this;
+        // stop countdown
+        divElement.addEventListener(
+          "mouseover",
+          function(event) {
+            window.clearTimeout(divElement.timeOutValue);
+          }
+        )
+        // add back the timeout
+        divElement.addEventListener(
+          "mouseleave",
+          function() {
+            divElement.timeOutValue = window.setTimeout(
+              function() {
+                // Remove the toast from DOM
+                self.removeElement(divElement);
+              },
+              self.options.duration
+            )
+          }
+        )
+      }
+      
       // Adding an on-click destination path
       if (typeof this.options.destination !== "undefined") {
         divElement.addEventListener(
