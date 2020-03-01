@@ -3,7 +3,7 @@
 ![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)
 ![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)
 
-[![toastify-js](https://img.shields.io/badge/toastify--js-1.6.2-brightgreen.svg)](https://www.npmjs.com/package/toastify-js)
+[![toastify-js](https://img.shields.io/badge/toastify--js-1.7.0-brightgreen.svg)](https://www.npmjs.com/package/toastify-js)
 
 Toastify is a lightweight, vanilla JS toast notification library.
 
@@ -74,7 +74,7 @@ And the script at the bottom of the page
 ```javascript
 Toastify({
   text: "This is a toast",
-  duration: 3000,
+  duration: 3000, 
   destination: "https://github.com/apvarun/toastify-js",
   newWindow: true,
   close: true,
@@ -104,6 +104,25 @@ Toastify({
 
 Multiple classes also can be assigned as a string, with spaces between class names.
 
+## API
+
+| Option Key | type | Usage | Defaults |
+|-----------------|----------------------|----------------------------------------------------------------------------|-------------|
+| text | string | Message to be displayed in the toast | "Hi there!" |
+| duration | number | Duration for which the toast should be displayed.<br>0 for permanent toast | 3000 |
+| selector | string | CSS Selector on which the toast should be added | body |
+| destination | URL string | URL to which the browser should be navigated on click of the toast |  |
+| newWindow | boolean | Decides whether the `destination` should be opened in a new window or not | false |
+| close | boolean | To show the close icon or not | false |
+| gravity | "top" or "bottom" | To show the toast from top or bottom | "top" |
+| position | "left" or "right" | To show the toast on left or right | "right" |
+| backgroundColor | CSS background value | Sets the background color of the toast |  |
+| avatar | URL string | Image/icon to be shown before text |  |
+| className | string | Ability to provide custom class name for further customization |  |
+| stopOnFocus | boolean | To stop timer when hovered over the toast (Only if duration is set) | true |
+| callback | Function | Invoked when the toast is dismissed |  |
+| onClick | Function | Invoked when the toast is clicked |  |
+
 ## Browsers support
 
 | ![][ie]<br />IE / Edge | ![][firefox]<br />Firefox | ![][chrome]<br />Chrome | ![][safari]<br />Safari | ![][opera]<br />Opera |
@@ -115,9 +134,94 @@ Multiple classes also can be assigned as a string, with spaces between class nam
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 
 <!-- prettier-ignore -->
-|  [![rndevfx](https://avatars2.githubusercontent.com/u/5052076?v=3&s=80)](https://github.com/rndevfx) | [![Wachiwi](https://avatars1.githubusercontent.com/u/4199845?v=3&s=80)](https://github.com/Wachiwi)  |
-| :--:|:--: |
-|  [rndevfx](https://github.com/rndevfx) | [Wachiwi](https://github.com/Wachiwi)  |
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/haydster7"><img alt="haydster7"
+          src="https://avatars2.githubusercontent.com/u/4540595?v=4&s=117" width="117" />
+        <br />haydster7</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/fiatjaf"><img alt="fiatjaf"
+          src="https://avatars1.githubusercontent.com/u/1653275?v=4&s=117" width="117" />
+        <br />fiatjaf</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/victorfeijo"><img alt="victorfeijo"
+          src="https://avatars2.githubusercontent.com/u/8865899?v=4&s=117" width="117" />
+        <br />victorfeijo</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/t12ung"><img alt="t12ung"
+          src="https://avatars1.githubusercontent.com/u/9781423?v=4&s=117" width="117" />
+        <br />t12ung</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/Tadaz"><img alt="Tadaz"
+          src="https://avatars0.githubusercontent.com/u/10881931?v=4&s=117" width="117" />
+        <br />Tadaz</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/mort3za"><img alt="mort3za"
+          src="https://avatars3.githubusercontent.com/u/510242?v=4&s=117" width="117" />
+        <br />mort3za</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/Wachiwi"><img alt="Wachiwi"
+          src="https://avatars2.githubusercontent.com/u/4199845?v=4&s=117" width="117" />
+        <br />Wachiwi</a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/gavinhungry"><img alt="gavinhungry"
+          src="https://avatars0.githubusercontent.com/u/744538?v=4&s=117" width="117" />
+        <br />gavinhungry</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/juliushaertl"><img alt="juliushaertl"
+          src="https://avatars0.githubusercontent.com/u/3404133?v=4&s=117" width="117" />
+        <br />juliushaertl</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/skjnldsv"><img alt="skjnldsv"
+          src="https://avatars0.githubusercontent.com/u/14975046?v=4&s=117" width="117" />
+        <br />skjnldsv</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/danielkaiser80"><img alt="danielkaiser80"
+          src="https://avatars2.githubusercontent.com/u/33827555?v=4&s=117" width="117" />
+        <br />danielkaiser80</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/d4rn0k"><img alt="d4rn0k"
+          src="https://avatars2.githubusercontent.com/u/2183269?v=4&s=117" width="117" />
+        <br />d4rn0k</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/GodzzZZZ"><img alt="GodzzZZZ"
+          src="https://avatars1.githubusercontent.com/u/36092926?v=4&s=117" width="117" />
+        <br />GodzzZZZ</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/caiomoura1994"><img alt="caiomoura1994"
+          src="https://avatars1.githubusercontent.com/u/9389139?v=4&s=117" width="117" />
+        <br />caiomoura1994</a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/rndevfx"><img alt="rndevfx"
+          src="https://avatars3.githubusercontent.com/u/5052076?v=4&s=117" width="117" />
+        <br />rndevfx</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/apvarun"><img alt="apvarun"
+          src="https://avatars1.githubusercontent.com/u/8411309?v=4&s=117" width="117" />
+        <br />apvarun</a>
+    </td>
+  </tr>
+</table>
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 

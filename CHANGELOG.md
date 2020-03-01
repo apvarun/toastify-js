@@ -2,6 +2,13 @@
 
 All the changes made to toastify-js library.
 
+## [1.7.0] - 2020-03-01
+
+* To be able to set `stopOnFocus` for toasts without close icon
+* Bugfix: `duration` can be infinite by setting as `0`
+* Bugfix: Prevent errors when parent node is removed from DOM while using frameworks
+* Bugfix: IE 9/10 compatibility fix
+
 ## [1.6.2] - 2020-01-03
 
 * Bugfix: Closing the toast when custom close icon from icon fonts are used
