@@ -19,6 +19,7 @@
     border-radius: 2px;
     cursor: pointer;
     text-decoration: none;
+    width: fit-content;
     max-width: calc(50% - 20px);
     z-index: 2147483647;
 }
@@ -64,15 +65,14 @@
     margin-right: auto;
     left: 0;
     right: 0;
-    max-width: fit-content;
 }
 
 @media only screen and (max-width: 360px) {
-    .toastify-right, .toastify-left {
+    .toastify {
         margin-left: auto;
         margin-right: auto;
         left: 0;
         right: 0;
-        max-width: fit-content;
+        max-width: calc(100% - 20px);
     }
 }
