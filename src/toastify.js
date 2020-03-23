@@ -40,6 +40,7 @@
 
       // Validating the options
       this.options.text = options.text || "Hi there!"; // Display message
+      this.options.node = options.node // Display content as node
       this.options.duration = options.duration === 0 ? 0 : options.duration || 3000; // Display duration
       this.options.selector = options.selector; // Parent selector
       this.options.callback = options.callback || function() {}; // Callback after display
@@ -91,21 +92,26 @@
         divElement.style.background = this.options.backgroundColor;
       }
 
-      // Adding the toast message
-      divElement.innerHTML = this.options.text;
+      // Adding the toast message/node
+      if (this.options.node && this.options.node.nodeType === Node.ELEMENT_NODE) {
+        // If we have a valid node, we insert it
+        divElement.appendChild(this.options.node)
+      } else {
+        divElement.innerHTML = this.options.text;
 
-      if (this.options.avatar !== "") {
-        var avatarElement = document.createElement("img");
-        avatarElement.src = this.options.avatar;
+        if (this.options.avatar !== "") {
+          var avatarElement = document.createElement("img");
+          avatarElement.src = this.options.avatar;
 
-        avatarElement.className = "toastify-avatar";
+          avatarElement.className = "toastify-avatar";
 
-        if (this.options.position == "left" || this.options.positionLeft === true) {
-          // Adding close icon on the left of content
-          divElement.appendChild(avatarElement);
-        } else {
-          // Adding close icon on the right of content
-          divElement.insertAdjacentElement("beforeend", avatarElement);
+          if (this.options.position == "left" || this.options.positionLeft === true) {
+            // Adding close icon on the left of content
+            divElement.appendChild(avatarElement);
+          } else {
+            // Adding close icon on the right of content
+            divElement.insertAdjacentElement("beforeend", avatarElement);
+          }
         }
       }
 
@@ -249,6 +255,11 @@
       // Removing the element from DOM after transition end
       window.setTimeout(
         function() {
+          // remove options node if any
+          if (this.options.node && this.options.node.parentNode) {
+            this.options.node.parentNode.removeChild(this.options.node);
+          }
+
           // Remove the elemenf from the DOM, only when the parent node was not removed before.
           if (toastElement.parentNode) {
             toastElement.parentNode.removeChild(toastElement);
