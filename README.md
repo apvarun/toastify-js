@@ -3,7 +3,7 @@
 ![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)
 ![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)
 
-[![toastify-js](https://img.shields.io/badge/toastify--js-1.7.0-brightgreen.svg)](https://www.npmjs.com/package/toastify-js)
+[![toastify-js](https://img.shields.io/badge/toastify--js-1.8.0-brightgreen.svg)](https://www.npmjs.com/package/toastify-js)
 
 Toastify is a lightweight, vanilla JS toast notification library.
 
@@ -109,6 +109,7 @@ Multiple classes also can be assigned as a string, with spaces between class nam
 | Option Key | type | Usage | Defaults |
 |-----------------|----------------------|----------------------------------------------------------------------------|-------------|
 | text | string | Message to be displayed in the toast | "Hi there!" |
+| node | ELEMENT_NODE | Provide a node to be mounted inside the toast. `node` takes higher precedence over `text` |  |
 | duration | number | Duration for which the toast should be displayed.<br>-1 for permanent toast | 3000 |
 | selector | string | CSS Selector on which the toast should be added | body |
 | destination | URL string | URL to which the browser should be navigated on click of the toast |  |
@@ -137,91 +138,156 @@ Multiple classes also can be assigned as a string, with spaces between class nam
 <table>
   <tr>
     <td align="center">
-      <a href="https://github.com/haydster7"><img alt="haydster7"
-          src="https://avatars2.githubusercontent.com/u/4540595?v=4&s=117" width="117" />
-        <br />haydster7</a>
+      <a href="https://github.com/caiomoura1994"
+        ><img
+          alt="caiomoura1994"
+          src="https://avatars1.githubusercontent.com/u/9389139?v=4"
+          width="117"
+        /><br />caiomoura1994</a
+      >
     </td>
     <td align="center">
-      <a href="https://github.com/fiatjaf"><img alt="fiatjaf"
-          src="https://avatars1.githubusercontent.com/u/1653275?v=4&s=117" width="117" />
-        <br />fiatjaf</a>
+      <a href="https://github.com/rndevfx"
+        ><img
+          alt="rndevfx"
+          src="https://avatars3.githubusercontent.com/u/5052076?v=4"
+          width="117"
+        /><br />rndevfx</a
+      >
     </td>
     <td align="center">
-      <a href="https://github.com/victorfeijo"><img alt="victorfeijo"
-          src="https://avatars2.githubusercontent.com/u/8865899?v=4&s=117" width="117" />
-        <br />victorfeijo</a>
+      <a href="https://github.com/1ess"
+        ><img
+          alt="1ess"
+          src="https://avatars1.githubusercontent.com/u/36092926?v=4"
+          width="117"
+        /><br />1ess</a
+      >
     </td>
     <td align="center">
-      <a href="https://github.com/t12ung"><img alt="t12ung"
-          src="https://avatars1.githubusercontent.com/u/9781423?v=4&s=117" width="117" />
-        <br />t12ung</a>
+      <a href="https://github.com/d4rn0k"
+        ><img
+          alt="d4rn0k"
+          src="https://avatars2.githubusercontent.com/u/2183269?v=4"
+          width="117"
+        /><br />d4rn0k</a
+      >
     </td>
     <td align="center">
-      <a href="https://github.com/Tadaz"><img alt="Tadaz"
-          src="https://avatars0.githubusercontent.com/u/10881931?v=4&s=117" width="117" />
-        <br />Tadaz</a>
+      <a href="https://github.com/danielkaiser80"
+        ><img
+          alt="danielkaiser80"
+          src="https://avatars2.githubusercontent.com/u/33827555?v=4"
+          width="117"
+        /><br />danielkaiser80</a
+      >
     </td>
     <td align="center">
-      <a href="https://github.com/mort3za"><img alt="mort3za"
-          src="https://avatars3.githubusercontent.com/u/510242?v=4&s=117" width="117" />
-        <br />mort3za</a>
+      <a href="https://github.com/skjnldsv"
+        ><img
+          alt="skjnldsv"
+          src="https://avatars0.githubusercontent.com/u/14975046?v=4"
+          width="117"
+        /><br />skjnldsv</a
+      >
     </td>
     <td align="center">
-      <a href="https://github.com/Wachiwi"><img alt="Wachiwi"
-          src="https://avatars2.githubusercontent.com/u/4199845?v=4&s=117" width="117" />
-        <br />Wachiwi</a>
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <a href="https://github.com/gavinhungry"><img alt="gavinhungry"
-          src="https://avatars0.githubusercontent.com/u/744538?v=4&s=117" width="117" />
-        <br />gavinhungry</a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/juliushaertl"><img alt="juliushaertl"
-          src="https://avatars0.githubusercontent.com/u/3404133?v=4&s=117" width="117" />
-        <br />juliushaertl</a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/skjnldsv"><img alt="skjnldsv"
-          src="https://avatars0.githubusercontent.com/u/14975046?v=4&s=117" width="117" />
-        <br />skjnldsv</a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/danielkaiser80"><img alt="danielkaiser80"
-          src="https://avatars2.githubusercontent.com/u/33827555?v=4&s=117" width="117" />
-        <br />danielkaiser80</a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/d4rn0k"><img alt="d4rn0k"
-          src="https://avatars2.githubusercontent.com/u/2183269?v=4&s=117" width="117" />
-        <br />d4rn0k</a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/GodzzZZZ"><img alt="GodzzZZZ"
-          src="https://avatars1.githubusercontent.com/u/36092926?v=4&s=117" width="117" />
-        <br />GodzzZZZ</a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/caiomoura1994"><img alt="caiomoura1994"
-          src="https://avatars1.githubusercontent.com/u/9389139?v=4&s=117" width="117" />
-        <br />caiomoura1994</a>
+      <a href="https://github.com/chasedeanda"
+        ><img
+          alt="chasedeanda"
+          src="https://avatars2.githubusercontent.com/u/8203134?v=4"
+          width="117"
+        /><br />chasedeanda</a
+      >
     </td>
   </tr>
   <tr>
     <td align="center">
-      <a href="https://github.com/rndevfx"><img alt="rndevfx"
-          src="https://avatars3.githubusercontent.com/u/5052076?v=4&s=117" width="117" />
-        <br />rndevfx</a>
+      <a href="https://github.com/Wachiwi"
+        ><img
+          alt="Wachiwi"
+          src="https://avatars2.githubusercontent.com/u/4199845?v=4"
+          width="117"
+        /><br />Wachiwi</a
+      >
     </td>
     <td align="center">
-      <a href="https://github.com/apvarun"><img alt="apvarun"
-          src="https://avatars1.githubusercontent.com/u/8411309?v=4&s=117" width="117" />
-        <br />apvarun</a>
+      <a href="https://github.com/gavinhungry"
+        ><img
+          alt="gavinhungry"
+          src="https://avatars0.githubusercontent.com/u/744538?v=4"
+          width="117"
+        /><br />gavinhungry</a
+      >
+    </td>
+    <td align="center">
+      <a href="https://github.com/haydster7"
+        ><img
+          alt="haydster7"
+          src="https://avatars2.githubusercontent.com/u/4540595?v=4"
+          width="117"
+        /><br />haydster7</a
+      >
+    </td>
+    <td align="center">
+      <a href="https://github.com/juliushaertl"
+        ><img
+          alt="juliushaertl"
+          src="https://avatars0.githubusercontent.com/u/3404133?v=4"
+          width="117"
+        /><br />juliushaertl</a
+      >
+    </td>
+    <td align="center">
+      <a href="https://github.com/mort3za"
+        ><img
+          alt="mort3za"
+          src="https://avatars3.githubusercontent.com/u/510242?v=4"
+          width="117"
+        /><br />mort3za</a
+      >
+    </td>
+    <td align="center">
+      <a href="https://github.com/Tadaz"
+        ><img
+          alt="Tadaz"
+          src="https://avatars0.githubusercontent.com/u/10881931?v=4"
+          width="117"
+        /><br />Tadaz</a
+      >
+    </td>
+    <td align="center">
+      <a href="https://github.com/t12ung"
+        ><img
+          alt="t12ung"
+          src="https://avatars1.githubusercontent.com/u/9781423?v=4"
+          width="117"
+        /><br />t12ung</a
+      >
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/victorfeijo"
+        ><img
+          alt="victorfeijo"
+          src="https://avatars2.githubusercontent.com/u/8865899?v=4"
+          width="117"
+        /><br />victorfeijo</a
+      >
+    </td>
+    <td align="center">
+      <a href="https://github.com/fiatjaf"
+        ><img
+          alt="fiatjaf"
+          src="https://avatars1.githubusercontent.com/u/1653275?v=4"
+          width="117"
+        /><br />fiatjaf</a
+      >
     </td>
   </tr>
 </table>
+
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 

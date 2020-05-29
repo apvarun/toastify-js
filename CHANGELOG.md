@@ -2,6 +2,11 @@
 
 All the changes made to toastify-js library.
 
+## [1.8.0] - 2020-05-29
+
+* Add option to provide a node instead of text
+* Updated docs: permanent toast duration 
+
 ## [1.7.0] - 2020-03-01
 
 * To be able to set `stopOnFocus` for toasts without close icon
