@@ -56,6 +56,10 @@
       this.options.stopOnFocus = options.stopOnFocus === undefined? true: options.stopOnFocus; // stop timeout on focus
       this.options.onClick = options.onClick; // Callback after click
 
+      const normalOffset = { x: 0, y: 0 };
+
+      this.options.offset = options.offset || normalOffset // toast offset
+
       // Returning the current object for chaining functions
       return this;
     },
@@ -197,6 +201,19 @@
         );
       }
 
+      // Adding offset
+      if(typeof this.options.offset === "object") {
+
+        var x = getAxisOffsetAValue("x", this.options);
+        var y = getAxisOffsetAValue("y", this.options);
+        
+        const xOffset = this.options.position == "left" ? x : `-${x}`;
+        const yOffset = this.options.gravity == "toastify-top" ? y : `-${y}`;
+
+        divElement.style.transform = `translate(${xOffset}, ${yOffset})`;
+
+      }
+
       // Returning the generated element
       return divElement;
     },
@@ -278,6 +295,7 @@
 
   // Positioning the toasts on the DOM
   Toastify.reposition = function() {
+
     // Top margins with gravity
     var topLeftOffsetSize = {
       top: 15,
@@ -337,6 +355,22 @@
     // Supporting function chaining
     return this;
   };
+
+  // Helper function to get offset.
+  function getAxisOffsetAValue(axis, options) {
+
+    if(options.offset[axis]) {
+      if(isNaN(options.offset[axis])) {
+        return options.offset[axis];
+      }
+      else {
+        return options.offset[axis] + 'px';
+      }
+    }
+
+    return '0px';
+
+  }
 
   function containsClass(elem, yourClass) {
     if (!elem || typeof yourClass !== "string") {

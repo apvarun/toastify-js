@@ -1,3 +1,4 @@
+
 # Toastify
 
 ![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)
@@ -24,6 +25,7 @@ Toastify is a lightweight, vanilla JS toast notification library.
 * Toast background color
 * Close icon display
 * Display position
+* Offset position
 
 ## Installation
 
@@ -104,6 +106,27 @@ Toastify({
 
 Multiple classes also can be assigned as a string, with spaces between class names.
 
+### Add some offset
+
+If you want to add offset to the toast, you can do that as follows:
+
+```javascript
+Toastify({
+  text: "This is a toast with offset",
+  offset: {
+    x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+    y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+  },
+}).showToast();
+```
+
+Toast will be pushed 50px from right in x axis and 10px from top in y axis.
+
+**Note:**
+
+If `position` is equals to `left`, it will be pushed from left.
+If `gravity` is equals to `bottom`, it will be pushed from bottom.
+
 ## API
 
 | Option Key | type | Usage | Defaults |
@@ -123,6 +146,7 @@ Multiple classes also can be assigned as a string, with spaces between class nam
 | stopOnFocus | boolean | To stop timer when hovered over the toast (Only if duration is set) | true |
 | callback | Function | Invoked when the toast is dismissed |  |
 | onClick | Function | Invoked when the toast is clicked |  |
+| offset | Object | Ability to add some offset to axis | |
 
 ## Browsers support
 
@@ -283,6 +307,15 @@ Multiple classes also can be assigned as a string, with spaces between class nam
           src="https://avatars1.githubusercontent.com/u/1653275?v=4"
           width="117"
         /><br />fiatjaf</a
+      >
+    </td>
+    <td align="center">
+      <a href="https://github.com/joaquinwojcik"
+        ><img
+          alt="fiatjaf"
+          src="https://avatars3.githubusercontent.com/u/3205737?v=4"
+          width="117"
+        /><br />joaquinwojcik</a
       >
     </td>
   </tr>
