@@ -2,6 +2,11 @@
 
 All the changes made to toastify-js library.
 
+## [1.9.0] - 2020-07-22
+
+* Add support for providing toast `offset`
+* Updated docs: offset 
+
 ## [1.8.0] - 2020-05-29
 
 * Add option to provide a node instead of text
