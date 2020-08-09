@@ -114,7 +114,7 @@
             divElement.appendChild(avatarElement);
           } else {
             // Adding close icon on the right of content
-            divElement.insertAdjacentElement("beforeend", avatarElement);
+            divElement.insertAdjacentElement("afterbegin", avatarElement);
           }
         }
       }
