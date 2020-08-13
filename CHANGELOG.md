@@ -2,6 +2,10 @@
 
 All the changes made to toastify-js library.
 
+## [1.9.1] - 2020-08-13
+
+* Bugfix: Avatar positioning based on toast position
+
 ## [1.9.0] - 2020-07-22
 
 * Add support for providing toast `offset`
