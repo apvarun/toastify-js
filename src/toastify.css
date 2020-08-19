@@ -65,6 +65,7 @@
     left: 0;
     right: 0;
     max-width: fit-content;
+    max-width: -moz-max-content;;
 }
 
 @media only screen and (max-width: 360px) {
