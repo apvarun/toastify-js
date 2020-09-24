@@ -2,6 +2,10 @@
 
 All the changes made to toastify-js library.
 
+## [1.9.2] - 2020-09-24
+
+* Bugfix: Max width problem for firefox browser #61
+
 ## [1.9.1] - 2020-08-13
 
 * Bugfix: Avatar positioning based on toast position

@@ -4,7 +4,7 @@
 ![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)
 ![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)
 
-[![toastify-js](https://img.shields.io/badge/toastify--js-1.9.1-brightgreen.svg)](https://www.npmjs.com/package/toastify-js)
+[![toastify-js](https://img.shields.io/badge/toastify--js-1.9.2-brightgreen.svg)](https://www.npmjs.com/package/toastify-js)
 
 Toastify is a lightweight, vanilla JS toast notification library.
 
@@ -215,6 +215,8 @@ If `gravity` is equals to `bottom`, it will be pushed from bottom.
         /><br />skjnldsv</a
       >
     </td>
+  </tr>
+  <tr>
     <td align="center">
       <a href="https://github.com/chasedeanda"
         ><img
@@ -224,8 +226,6 @@ If `gravity` is equals to `bottom`, it will be pushed from bottom.
         /><br />chasedeanda</a
       >
     </td>
-  </tr>
-  <tr>
     <td align="center">
       <a href="https://github.com/Wachiwi"
         ><img
@@ -254,6 +254,15 @@ If `gravity` is equals to `bottom`, it will be pushed from bottom.
       >
     </td>
     <td align="center">
+      <a href="https://github.com/joaquinwojcik"
+        ><img
+          alt="joaquinwojcik"
+          src="https://avatars3.githubusercontent.com/u/3205737?v=4"
+          width="117"
+        /><br />joaquinwojcik</a
+      >
+    </td>
+    <td align="center">
       <a href="https://github.com/juliushaertl"
         ><img
           alt="juliushaertl"
@@ -262,6 +271,8 @@ If `gravity` is equals to `bottom`, it will be pushed from bottom.
         /><br />juliushaertl</a
       >
     </td>
+  </tr>
+  <tr>
     <td align="center">
       <a href="https://github.com/mort3za"
         ><img
@@ -269,6 +280,15 @@ If `gravity` is equals to `bottom`, it will be pushed from bottom.
           src="https://avatars3.githubusercontent.com/u/510242?v=4"
           width="117"
         /><br />mort3za</a
+      >
+    </td>
+    <td align="center">
+      <a href="https://github.com/Sandip124"
+        ><img
+          alt="Sandip124"
+          src="https://avatars3.githubusercontent.com/u/37034590?v=4"
+          width="117"
+        /><br />Sandip124</a
       >
     </td>
     <td align="center">
@@ -289,8 +309,6 @@ If `gravity` is equals to `bottom`, it will be pushed from bottom.
         /><br />t12ung</a
       >
     </td>
-  </tr>
-  <tr>
     <td align="center">
       <a href="https://github.com/victorfeijo"
         ><img
@@ -307,15 +325,6 @@ If `gravity` is equals to `bottom`, it will be pushed from bottom.
           src="https://avatars1.githubusercontent.com/u/1653275?v=4"
           width="117"
         /><br />fiatjaf</a
-      >
-    </td>
-    <td align="center">
-      <a href="https://github.com/joaquinwojcik"
-        ><img
-          alt="fiatjaf"
-          src="https://avatars3.githubusercontent.com/u/3205737?v=4"
-          width="117"
-        /><br />joaquinwojcik</a
       >
     </td>
   </tr>
