@@ -56,9 +56,7 @@
       this.options.stopOnFocus = options.stopOnFocus === undefined? true: options.stopOnFocus; // stop timeout on focus
       this.options.onClick = options.onClick; // Callback after click
 
-      const normalOffset = { x: 0, y: 0 };
-
-      this.options.offset = options.offset || normalOffset // toast offset
+      this.options.offset = options.offset || { x: 0, y: 0 }; // toast offset
 
       // Returning the current object for chaining functions
       return this;
@@ -153,7 +151,7 @@
 
       // Clear timeout while toast is focused
       if (this.options.stopOnFocus && this.options.duration > 0) {
-        const self = this;
+        var self = this;
         // stop countdown
         divElement.addEventListener(
           "mouseover",
@@ -207,10 +205,10 @@
         var x = getAxisOffsetAValue("x", this.options);
         var y = getAxisOffsetAValue("y", this.options);
         
-        const xOffset = this.options.position == "left" ? x : `-${x}`;
-        const yOffset = this.options.gravity == "toastify-top" ? y : `-${y}`;
+        var xOffset = this.options.position == "left" ? x : "-" + x;
+        var yOffset = this.options.gravity == "toastify-top" ? y : "-" + y;
 
-        divElement.style.transform = `translate(${xOffset}, ${yOffset})`;
+        divElement.style.transform = "translate(" + xOffset + "," + yOffset + ")";
 
       }
 
