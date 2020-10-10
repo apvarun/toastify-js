@@ -2,6 +2,10 @@
 
 All the changes made to toastify-js library.
 
+## [1.9.3] - 2020-10-10
+
+* Offset IE11 compatibility #64
+
 ## [1.9.2] - 2020-09-24
 
 * Bugfix: Max width problem for firefox browser #61

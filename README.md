@@ -4,7 +4,7 @@
 ![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)
 ![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)
 
-[![toastify-js](https://img.shields.io/badge/toastify--js-1.9.2-brightgreen.svg)](https://www.npmjs.com/package/toastify-js)
+[![toastify-js](https://img.shields.io/badge/toastify--js-1.9.3-brightgreen.svg)](https://www.npmjs.com/package/toastify-js)
 
 Toastify is a lightweight, vanilla JS toast notification library.
 
@@ -325,6 +325,17 @@ If `gravity` is equals to `bottom`, it will be pushed from bottom.
           src="https://avatars1.githubusercontent.com/u/1653275?v=4"
           width="117"
         /><br />fiatjaf</a
+      >
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/prousseau-korem"
+        ><img
+          alt="prousseau-korem"
+          src="https://avatars3.githubusercontent.com/u/59747802?v=4"
+          width="117"
+        /><br />prousseau-korem</a
       >
     </td>
   </tr>

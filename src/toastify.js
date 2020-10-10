@@ -1,5 +1,5 @@
 /*!
- * Toastify js 1.9.2
+ * Toastify js 1.9.3
  * https://github.com/apvarun/toastify-js
  * @license MIT licensed
  *
@@ -18,7 +18,7 @@
       return new Toastify.lib.init(options);
     },
     // Library version
-    version = "1.9.2";
+    version = "1.9.3";
 
   // Defining the prototype of the object
   Toastify.lib = Toastify.prototype = {
