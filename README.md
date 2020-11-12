@@ -76,12 +76,12 @@ And the script at the bottom of the page
 ```javascript
 Toastify({
   text: "This is a toast",
-  duration: 3000, 
+  duration: 3000,
   destination: "https://github.com/apvarun/toastify-js",
   newWindow: true,
   close: true,
   gravity: "top", // `top` or `bottom`
-  position: 'left', // `left`, `center` or `right`
+  position: "left", // `left`, `center` or `right`
   backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
   stopOnFocus: true, // Prevents dismissing of toast on hover
   onClick: function(){} // Callback after click
