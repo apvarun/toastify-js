@@ -197,8 +197,7 @@ class Toastify {
         // If we have a valid node, we insert it
         divElement.appendChild(this.options.node)
       } else {
-        //TODO: Prevent/Warn of XSS issues with innerHTML
-        divElement.innerHTML = this.options.text;
+        divElement.innerText = this.options.text;
   
         if (this.options.avatar !== "") {
           var avatarElement = document.createElement("img");
