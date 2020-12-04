@@ -180,13 +180,13 @@ class Toastify {
   
       // Creating the DOM object
       let divElement = document.createElement("div");
-      divElement.className = "toastify on " + this.options.className;
+      divElement.className = `toastify on ${this.options.className}`;
   
       // Positioning toast to left or right or center (default right)
-      divElement.className += " toastify-" + this.options.position;
+      divElement.className += ` toastify-${this.options.position}`;
   
       // Assigning gravity of element
-      divElement.className += " " + this.options.gravity;
+      divElement.className += ` ${this.options.gravity}`;
   
       if (this.options.backgroundColor) {
         divElement.style.background = this.options.backgroundColor;
@@ -300,8 +300,8 @@ class Toastify {
       // Adding offset
       if (typeof this.options.offset === "object") {
   
-        var x = getAxisOffsetAValue("x", this.options);
-        var y = getAxisOffsetAValue("y", this.options);
+        var x = this._getAxisOffsetAValue("x", this.options);
+        var y = this._getAxisOffsetAValue("y", this.options);
   
         var xOffset = this.options.position == "left" ? x : "-" + x;
         var yOffset = this.options.gravity == "toastify-top" ? y : "-" + y;
@@ -389,45 +389,46 @@ class Toastify {
         // Show toast in center if screen with less than or qual to 360px
         if (width <= 360) {
           // Setting the position
-          allToasts[i].style[classUsed] = offsetSize[classUsed] + "px";
+          allToasts[i].style[classUsed] = `${offsetSize[classUsed]}px`;
     
           offsetSize[classUsed] += height + offset;
         } else {
           if (allToasts[i].classList.contains("toastify-left") === true) {
             // Setting the position
-            allToasts[i].style[classUsed] = topLeftOffsetSize[classUsed] + "px";
+            allToasts[i].style[classUsed] = `${topLeftOffsetSize[classUsed]}px`;
     
             topLeftOffsetSize[classUsed] += height + offset;
           } else {
             // Setting the position
-            allToasts[i].style[classUsed] = topRightOffsetSize[classUsed] + "px";
+            allToasts[i].style[classUsed] = `${topRightOffsetSize[classUsed]}px`;
     
             topRightOffsetSize[classUsed] += height + offset;
           }
         }
       }
     }
-  
-  }
-  
-  /**
-   * Helper function to get offset
-   * @param {string} axis - 'x' or 'y'
-   * @param {ToastifyConfigurationObject} options - The options object containing the offset object
-   */
-  function getAxisOffsetAValue(axis, options) {
-  
-    if (options.offset[axis]) {
-      if (isNaN(options.offset[axis])) {
-        return options.offset[axis];
-      } else {
-        return options.offset[axis] + 'px';
+
+    /**
+     * Helper function to get offset
+     * @param {string} axis - 'x' or 'y'
+     * @param {ToastifyConfigurationObject} options - The options object containing the offset object
+     */
+    _getAxisOffsetAValue(axis, options) {
+    
+      if (options.offset[axis]) {
+        if (isNaN(options.offset[axis])) {
+          return options.offset[axis];
+        } else {
+          return `${options.offset[axis]}px`;
+        }
       }
+    
+      return '0px';
+    
     }
   
-    return '0px';
-  
   }
+  
   
   // Returning the Toastify function to be assigned to the window object/module
   function StartToastifyInstance(options) {
