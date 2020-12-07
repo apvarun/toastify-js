@@ -73,7 +73,7 @@ class Toastify {
       // Getting the root element to with the toast needs to be added
       if (typeof this.options.selector === "string") {
         this._rootElement = document.getElementById(this.options.selector);
-      } else if (this.options.selector instanceof HTMLElement) {
+      } else if (this.options.selector instanceof HTMLElement || this.options.selector instanceof ShadowRoot) {
         this._rootElement = this.options.selector;
       } else {
         this._rootElement = document.body;
@@ -365,7 +365,7 @@ class Toastify {
       };
     
       // Get all toast messages that have been added to the container (selector)
-      let allToasts = this._rootElement.getElementsByClassName("toastify");
+      let allToasts = this._rootElement.querySelectorAll(".toastify");
     
       let classUsed;
     

@@ -134,7 +134,7 @@ If `gravity` is equals to `bottom`, it will be pushed from bottom.
 | text | string | Message to be displayed in the toast | "Hi there!" |
 | node | ELEMENT_NODE | Provide a node to be mounted inside the toast. `node` takes higher precedence over `text` |  |
 | duration | number | Duration for which the toast should be displayed.<br>-1 for permanent toast | 3000 |
-| selector | string | CSS Selector on which the toast should be added | body |
+| selector | string | ELEMENT_NODE | ShadowRoot | CSS Selector or Element Node on which the toast should be added | body |
 | destination | URL string | URL to which the browser should be navigated on click of the toast |  |
 | newWindow | boolean | Decides whether the `destination` should be opened in a new window or not | false |
 | close | boolean | To show the close icon or not | false |
