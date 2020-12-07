@@ -200,7 +200,7 @@ class Toastify {
         divElement.innerText = this.options.text;
   
         if (this.options.avatar !== "") {
-          var avatarElement = document.createElement("img");
+          let avatarElement = document.createElement("img");
           avatarElement.src = this.options.avatar;
   
           avatarElement.className = "toastify-avatar";
@@ -234,7 +234,7 @@ class Toastify {
         );
   
         //Calculating screen width
-        var width = window.innerWidth > 0 ? window.innerWidth : screen.width;
+        const width = window.innerWidth > 0 ? window.innerWidth : screen.width;
   
         // Adding the close icon to the toast element
         // Display on the right if screen width is less than or equal to 360px
@@ -299,13 +299,13 @@ class Toastify {
       // Adding offset
       if (typeof this.options.offset === "object") {
   
-        var x = this._getAxisOffsetAValue("x", this.options);
-        var y = this._getAxisOffsetAValue("y", this.options);
+        const x = this._getAxisOffsetAValue("x", this.options);
+        const y = this._getAxisOffsetAValue("y", this.options);
   
-        var xOffset = this.options.position == "left" ? x : "-" + x;
-        var yOffset = this.options.gravity == "toastify-top" ? y : "-" + y;
+        const xOffset = this.options.position == "left" ? x : `-${x}`;
+        const yOffset = this.options.gravity == "toastify-top" ? y : `-${y}`;
   
-        divElement.style.transform = "translate(" + xOffset + "," + yOffset + ")";
+        divElement.style.transform = `translate(${xOffset},${yOffset})`;
   
       }
   
