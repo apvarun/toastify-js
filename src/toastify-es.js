@@ -25,6 +25,7 @@
  * @property {Function} callback - Invoked when the toast is dismissed
  * @property {Function} onClick - Invoked when the toast is clicked
  * @property {Object} offset - Ability to add some offset to axis
+ * @property {boolean} escapeMarkup - Toggle the default behavior of escaping HTML markup
  */
 
 
@@ -134,6 +135,7 @@ class Toastify {
      * @param {Function} [options.callback] - Invoked when the toast is dismissed
      * @param {Function} [options.onClick] - Invoked when the toast is clicked
      * @param {Object} [options.offset] - Ability to add some offset to axis
+     * @param {boolean} [options.escapeMarkup=true] - Toggle the default behavior of escaping HTML markup
      * @private
      */
     _init(options) {
@@ -158,7 +160,8 @@ class Toastify {
         offset: {
           x: 0,
           y: 0
-        }
+        },
+        escapeMarkup: true
       }, options);
       this.toastElement = null;
   
@@ -197,7 +200,11 @@ class Toastify {
         // If we have a valid node, we insert it
         divElement.appendChild(this.options.node)
       } else {
-        divElement.innerText = this.options.text;
+        if (this.options.escapeMarkup) {
+          divElement.innerText = this.options.text;
+        } else {
+          divElement.innerHTML = this.options.text;
+        }
   
         if (this.options.avatar !== "") {
           let avatarElement = document.createElement("img");
