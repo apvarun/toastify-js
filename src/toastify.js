@@ -61,6 +61,8 @@
       this.options.escapeMarkup = options.escapeMarkup !== undefined ? options.escapeMarkup : true;
       this.options.style = options.style || {};
 
+      this.options.style.background = this.options.style.background || options.backgroundColor;
+
       // Returning the current object for chaining functions
       return this;
     },
@@ -95,9 +97,7 @@
 
       if (this.options.backgroundColor) {
         // This is being deprecated in favor of using the style HTML DOM property
-        // We'll go ahead and just add the `backgroundColor` to the `style` object to simulate correct settings moving forward
         console.warn('DEPRECATION NOTICE: "backgroundColor" is being deprecated. Please use the "style.background" property.');
-        this.options.style.background = this.options.backgroundColor;
       }
 
       // Loop through our style object and apply styles to divElement

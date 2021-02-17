@@ -171,6 +171,7 @@ class Toastify {
       this.options.gravity = options.gravity === "bottom" ? "toastify-bottom" : "toastify-top"; // toast position - top or bottom
       this.options.stopOnFocus = options.stopOnFocus === undefined ? true : options.stopOnFocus; // stop timeout on focus
   
+      this.options.style.background = this.options.style.background || options.backgroundColor;
     }
   
     /**
@@ -196,9 +197,7 @@ class Toastify {
   
       if (this.options.backgroundColor) {
         // This is being deprecated in favor of using the style HTML DOM property
-        // We'll go ahead and just add the `backgroundColor` to the `style` object to simulate correct settings moving forward
         console.warn('DEPRECATION NOTICE: "backgroundColor" is being deprecated. Please use the "style.background" property.');
-        this.options.style.background = this.options.backgroundColor;
       }
 
       // Loop through our style object and apply styles to divElement
