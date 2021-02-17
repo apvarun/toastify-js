@@ -140,7 +140,7 @@ If `gravity` is equals to `bottom`, it will be pushed from bottom.
 | close | boolean | To show the close icon or not | false |
 | gravity | "top" or "bottom" | To show the toast from top or bottom | "top" |
 | position | "left" or "right" | To show the toast on left or right | "right" |
-| backgroundColor | CSS background value | Sets the background color of the toast. To be deprecated, use `style.backgroundColor` option instead |  |
+| backgroundColor | CSS background value | To be deprecated, use `style.background` option instead. Sets the background color of the toast |  |
 | avatar | URL string | Image/icon to be shown before text |  |
 | className | string | Ability to provide custom class name for further customization |  |
 | stopOnFocus | boolean | To stop timer when hovered over the toast (Only if duration is set) | true |
