@@ -134,19 +134,21 @@ If `gravity` is equals to `bottom`, it will be pushed from bottom.
 | text | string | Message to be displayed in the toast | "Hi there!" |
 | node | ELEMENT_NODE | Provide a node to be mounted inside the toast. `node` takes higher precedence over `text` |  |
 | duration | number | Duration for which the toast should be displayed.<br>-1 for permanent toast | 3000 |
-| selector | string | ELEMENT_NODE | ShadowRoot | CSS Selector or Element Node on which the toast should be added | body |
+| selector | string \| ELEMENT_NODE | ShadowRoot | CSS Selector or Element Node on which the toast should be added | body |
 | destination | URL string | URL to which the browser should be navigated on click of the toast |  |
 | newWindow | boolean | Decides whether the `destination` should be opened in a new window or not | false |
 | close | boolean | To show the close icon or not | false |
 | gravity | "top" or "bottom" | To show the toast from top or bottom | "top" |
 | position | "left" or "right" | To show the toast on left or right | "right" |
-| backgroundColor | CSS background value | Sets the background color of the toast |  |
+| backgroundColor | CSS background value | Sets the background color of the toast. To be deprecated, use `style.backgroundColor` option instead |  |
 | avatar | URL string | Image/icon to be shown before text |  |
 | className | string | Ability to provide custom class name for further customization |  |
 | stopOnFocus | boolean | To stop timer when hovered over the toast (Only if duration is set) | true |
 | callback | Function | Invoked when the toast is dismissed |  |
 | onClick | Function | Invoked when the toast is clicked |  |
 | offset | Object | Ability to add some offset to axis | |
+| escapeMarkup | boolean | Toggle the default behavior of escaping HTML markup | true |
+| style | object | Use the HTML DOM Style properties to add any style directly to toast | |
 
 ## Browsers support
 

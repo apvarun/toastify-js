@@ -59,6 +59,7 @@
       this.options.offset = options.offset || { x: 0, y: 0 }; // toast offset
 
       this.options.escapeMarkup = options.escapeMarkup !== undefined ? options.escapeMarkup : true;
+      this.options.style = options.style || {};
 
       // Returning the current object for chaining functions
       return this;
@@ -93,7 +94,14 @@
       divElement.className += " " + this.options.gravity;
 
       if (this.options.backgroundColor) {
+        //This is being deprecated in favor of using the style HTML DOM property
+        console.warn('DEPRECATION NOTICE: "backgroundColor" is being deprecated. Please use the "style.backgroundColor" property.');
         divElement.style.background = this.options.backgroundColor;
+      }
+
+      // Loop through our style object and apply styles to divElement
+      for (const property in this.options.style) {
+        divElement.style[property] = this.options.style[property];
       }
 
       // Adding the toast message/node

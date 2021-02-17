@@ -18,7 +18,7 @@
  * @property {boolean} close - To show the close icon or not
  * @property {string} gravity - To show the toast from top or bottom
  * @property {string} position - To show the toast on left or right
- * @property {string} backgroundColor - Sets the background color of the toast
+ * @property {string} backgroundColor - Sets the background color of the toast (to be deprecated)
  * @property {url} avatar - Image/icon to be shown before text
  * @property {string} className - Ability to provide custom class name for further customization
  * @property {boolean} stopOnFocus - To stop timer when hovered over the toast (Only if duration is set)
@@ -26,6 +26,7 @@
  * @property {Function} onClick - Invoked when the toast is clicked
  * @property {Object} offset - Ability to add some offset to axis
  * @property {boolean} escapeMarkup - Toggle the default behavior of escaping HTML markup
+ * @property {Object} style - Use the HTML DOM style property to add styles to toast
  */
 
 
@@ -128,7 +129,7 @@ class Toastify {
      * @param {boolean} [options.close=false] - To show the close icon or not
      * @param {string} [options.gravity=toastify-top] - To show the toast from top or bottom
      * @param {string} [options.position=right] - To show the toast on left or right
-     * @param {string} [options.backgroundColor] - Sets the background color of the toast
+     * @param {string} [options.backgroundColor] - Sets the background color of the toast (To be deprecated)
      * @param {url} [options.avatar] - Image/icon to be shown before text
      * @param {string} [options.className] - Ability to provide custom class name for further customization
      * @param {boolean} [options.stopOnFocus] - To stop timer when hovered over the toast (Only if duration is set)
@@ -136,6 +137,7 @@ class Toastify {
      * @param {Function} [options.onClick] - Invoked when the toast is clicked
      * @param {Object} [options.offset] - Ability to add some offset to axis
      * @param {boolean} [options.escapeMarkup=true] - Toggle the default behavior of escaping HTML markup
+     * @param {Object} [options.style] - Use the HTML DOM style property to add styles to toast
      * @private
      */
     _init(options) {
@@ -161,7 +163,8 @@ class Toastify {
           x: 0,
           y: 0
         },
-        escapeMarkup: true
+        escapeMarkup: true,
+        style: {}
       }, options);
       this.toastElement = null;
   
@@ -192,7 +195,14 @@ class Toastify {
       divElement.className += ` ${this.options.gravity}`;
   
       if (this.options.backgroundColor) {
+        // This is being deprecated in favor of using the style HTML DOM property
+        console.warn('DEPRECATION NOTICE: "backgroundColor" is being deprecated. Please use the "style.backgroundColor" property.');
         divElement.style.background = this.options.backgroundColor;
+      }
+
+      // Loop through our style object and apply styles to divElement
+      for (const property in this.options.style) {
+        divElement.style[property] = this.options.style[property];
       }
   
       // Adding the toast message/node
