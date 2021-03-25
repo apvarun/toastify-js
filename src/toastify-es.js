@@ -18,7 +18,7 @@
  * @property {boolean} close - To show the close icon or not
  * @property {string} gravity - To show the toast from top or bottom
  * @property {string} position - To show the toast on left or right
- * @property {string} backgroundColor - Sets the background color of the toast (to be deprecated)
+ * @property {string} backgroundColor - Deprecated: Sets the background color of the toast
  * @property {url} avatar - Image/icon to be shown before text
  * @property {string} className - Ability to provide custom class name for further customization
  * @property {boolean} stopOnFocus - To stop timer when hovered over the toast (Only if duration is set)
@@ -166,6 +166,12 @@ class Toastify {
         escapeMarkup: true,
         style: {}
       }, options);
+      
+      if (this.options.backgroundColor) {
+        // This is being deprecated in favor of using the style HTML DOM property
+        console.warn('DEPRECATION NOTICE: "backgroundColor" is being deprecated. Please use the "style.background" property.');
+      }
+
       this.toastElement = null;
   
       this.options.gravity = options.gravity === "bottom" ? "toastify-bottom" : "toastify-top"; // toast position - top or bottom
@@ -194,11 +200,6 @@ class Toastify {
   
       // Assigning gravity of element
       divElement.className += ` ${this.options.gravity}`;
-  
-      if (this.options.backgroundColor) {
-        // This is being deprecated in favor of using the style HTML DOM property
-        console.warn('DEPRECATION NOTICE: "backgroundColor" is being deprecated. Please use the "style.background" property.');
-      }
 
       // Loop through our style object and apply styles to divElement
       for (const property in this.options.style) {
