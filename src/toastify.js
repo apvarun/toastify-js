@@ -58,6 +58,11 @@
 
       this.options.offset = options.offset || { x: 0, y: 0 }; // toast offset
 
+      this.options.escapeMarkup = options.escapeMarkup !== undefined ? options.escapeMarkup : true;
+      this.options.style = options.style || {};
+
+      this.options.style.background = this.options.style.background || options.backgroundColor;
+
       // Returning the current object for chaining functions
       return this;
     },
@@ -91,7 +96,13 @@
       divElement.className += " " + this.options.gravity;
 
       if (this.options.backgroundColor) {
-        divElement.style.background = this.options.backgroundColor;
+        // This is being deprecated in favor of using the style HTML DOM property
+        console.warn('DEPRECATION NOTICE: "backgroundColor" is being deprecated. Please use the "style.background" property.');
+      }
+
+      // Loop through our style object and apply styles to divElement
+      for (const property in this.options.style) {
+        divElement.style[property] = this.options.style[property];
       }
 
       // Adding the toast message/node
@@ -99,7 +110,11 @@
         // If we have a valid node, we insert it
         divElement.appendChild(this.options.node)
       } else {
-        divElement.innerHTML = this.options.text;
+        if (this.options.escapeMarkup) {
+          divElement.innerText = this.options.text;
+        } else {
+          divElement.innerHTML = this.options.text;
+        }
 
         if (this.options.avatar !== "") {
           var avatarElement = document.createElement("img");
@@ -223,10 +238,12 @@
 
       // Getting the root element to with the toast needs to be added
       var rootElement;
-      if (typeof this.options.selector === "undefined") {
-        rootElement = document.body;
-      } else {
+      if (typeof this.options.selector === "string") {
         rootElement = document.getElementById(this.options.selector);
+      } else if (this.options.selector instanceof HTMLElement || this.options.selector instanceof ShadowRoot) {
+        rootElement = this.options.selector;
+      } else {
+        rootElement = document.body;
       }
 
       // Validating if root element is present in DOM
