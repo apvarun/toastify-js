@@ -4,7 +4,7 @@
 ![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)
 ![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)
 
-[![toastify-js](https://img.shields.io/badge/toastify--js-1.9.3-brightgreen.svg)](https://www.npmjs.com/package/toastify-js)
+[![toastify-js](https://img.shields.io/badge/toastify--js-1.10.0-brightgreen.svg)](https://www.npmjs.com/package/toastify-js)
 
 Toastify is a lightweight, vanilla JS toast notification library.
 
@@ -149,6 +149,8 @@ If `gravity` is equals to `bottom`, it will be pushed from bottom.
 | offset | Object | Ability to add some offset to axis | |
 | escapeMarkup | boolean | Toggle the default behavior of escaping HTML markup | true |
 | style | object | Use the HTML DOM Style properties to add any style directly to toast | |
+
+> Deprecated properties: `backgroundColor` -  use `style.background` option instead
 
 ## Browsers support
 

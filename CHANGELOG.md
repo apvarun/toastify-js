@@ -2,6 +2,17 @@
 
 All the changes made to toastify-js library.
 
+## [1.10.0] - 2021-03-25
+
+* `selector` now supports a DOM Node, along with ID string ([#65](https://github.com/apvarun/toastify-js/pull/65))
+* New property - `escapeMarkup` - Toggle the default behavior of escaping HTML markup
+* New property - `style` - Use the HTML DOM Style properties to add any style directly to toast
+* Adds `toastify-es.js`, to be used from node_modules until there are no compatibility issues
+
+### Deprecations:
+
+* `backgroundColor` is deprecated. Use `style.background` instead
+
 ## [1.9.3] - 2020-10-10
 
 * Offset IE11 compatibility #64
