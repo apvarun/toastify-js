@@ -276,7 +276,7 @@
 
       // Adding the DOM element
       var elementToInsert = Toastify.defaults.oldestFirst ? rootElement.firstChild : rootElement.lastChild;
-      rootElement.insertBefore(this.toastElement, rootElement.firstChild);
+      rootElement.insertBefore(this.toastElement, elementToInsert);
 
       // Repositioning the toasts in case multiple toasts are present
       Toastify.reposition();
