@@ -39,31 +39,31 @@ class Toastify {
        * @public
        */
       this.version = "1.10.0";
-  
+
       /**
        * The configuration object to configure Toastify
        * @type {ToastifyConfigurationObject}
        * @public
        */
       this.options = {};
-  
+
       /**
        * The element that is the Toast
        * @type {Element}
        * @public
        */
       this.toastElement = null;
-  
+
       /**
        * The root element that contains all the toasts
        * @type {Element}
        * @private
        */
       this._rootElement = document.body;
-      
+
       this._init(options);
     }
-  
+
     /**
      * Display the toast
      * @public
@@ -71,7 +71,7 @@ class Toastify {
     showToast() {
       // Creating the DOM object for the toast
       this.toastElement = this._buildToast();
-  
+
       // Getting the root element to with the toast needs to be added
       if (typeof this.options.selector === "string") {
         this._rootElement = document.getElementById(this.options.selector);
@@ -80,18 +80,18 @@ class Toastify {
       } else {
         this._rootElement = document.body;
       }
-  
+
       // Validating if root element is present in DOM
       if (!this._rootElement) {
         throw "Root element is not defined";
       }
-  
+
       // Adding the DOM element
       this._rootElement.insertBefore(this.toastElement, this._rootElement.firstChild);
-  
+
       // Repositioning the toasts in case multiple toasts are present
       this._reposition();
-  
+
       if (this.options.duration > 0) {
         this.toastElement.timeOutValue = window.setTimeout(
           () => {
@@ -101,11 +101,11 @@ class Toastify {
           this.options.duration
         ); // Binding `this` for function invocation
       }
-  
+
       // Supporting function chaining
       return this;
     }
-  
+
     /**
      * Hide the toast
      * @public
@@ -116,7 +116,7 @@ class Toastify {
       }
       this._removeElement(this.toastElement);
     }
-  
+
     /**
      * Init the Toastify class
      * @param {ToastifyConfigurationObject} options - The configuration object to configure Toastify
@@ -141,7 +141,7 @@ class Toastify {
      * @private
      */
     _init(options) {
-  
+
       // Setting defaults
       this.options = Object.assign({
         text: "Hi there!",
@@ -166,20 +166,20 @@ class Toastify {
         escapeMarkup: true,
         style: {}
       }, options);
-      
+
       if (this.options.backgroundColor) {
         // This is being deprecated in favor of using the style HTML DOM property
         console.warn('DEPRECATION NOTICE: "backgroundColor" is being deprecated. Please use the "style.background" property.');
       }
 
       this.toastElement = null;
-  
+
       this.options.gravity = options.gravity === "bottom" ? "toastify-bottom" : "toastify-top"; // toast position - top or bottom
       this.options.stopOnFocus = options.stopOnFocus === undefined ? true : options.stopOnFocus; // stop timeout on focus
-  
+
       this.options.style.background = this.options.style.background || options.backgroundColor;
     }
-  
+
     /**
      * Build the Toastify element
      * @returns {Element}
@@ -190,14 +190,14 @@ class Toastify {
       if (!this.options) {
         throw "Toastify is not initialized";
       }
-  
+
       // Creating the DOM object
       let divElement = document.createElement("div");
       divElement.className = `toastify on ${this.options.className}`;
-  
+
       // Positioning toast to left or right or center (default right)
       divElement.className += ` toastify-${this.options.position}`;
-  
+
       // Assigning gravity of element
       divElement.className += ` ${this.options.gravity}`;
 
@@ -205,7 +205,7 @@ class Toastify {
       for (const property in this.options.style) {
         divElement.style[property] = this.options.style[property];
       }
-  
+
       // Adding the toast message/node
       if (this.options.node && this.options.node.nodeType === Node.ELEMENT_NODE) {
         // If we have a valid node, we insert it
@@ -216,13 +216,13 @@ class Toastify {
         } else {
           divElement.innerHTML = this.options.text;
         }
-  
+
         if (this.options.avatar !== "") {
           let avatarElement = document.createElement("img");
           avatarElement.src = this.options.avatar;
-  
+
           avatarElement.className = "toastify-avatar";
-  
+
           if (this.options.position == "left") {
             // Adding close icon on the left of content
             divElement.appendChild(avatarElement);
@@ -232,15 +232,15 @@ class Toastify {
           }
         }
       }
-  
+
       // Adding a close icon to the toast
       if (this.options.close === true) {
         // Create a span for close element
         let closeElement = document.createElement("span");
         closeElement.innerHTML = "&#10006;";
-  
+
         closeElement.className = "toast-close";
-  
+
         // Triggering the removal of toast from DOM on close click
         closeElement.addEventListener(
           "click",
@@ -250,10 +250,10 @@ class Toastify {
             window.clearTimeout(this.toastElement.timeOutValue);
           }
         );
-  
+
         //Calculating screen width
         const width = window.innerWidth > 0 ? window.innerWidth : screen.width;
-  
+
         // Adding the close icon to the toast element
         // Display on the right if screen width is less than or equal to 360px
         if ((this.options.position == "left") && width > 360) {
@@ -264,7 +264,7 @@ class Toastify {
           divElement.appendChild(closeElement);
         }
       }
-  
+
       // Clear timeout while toast is focused
       if (this.options.stopOnFocus && this.options.duration > 0) {
         // stop countdown
@@ -288,7 +288,7 @@ class Toastify {
           }
         )
       }
-  
+
       // Adding an on-click destination path
       if (typeof this.options.destination !== "undefined") {
         divElement.addEventListener(
@@ -303,7 +303,7 @@ class Toastify {
           }
         );
       }
-  
+
       if (typeof this.options.onClick === "function" && typeof this.options.destination === "undefined") {
         divElement.addEventListener(
           "click",
@@ -313,32 +313,32 @@ class Toastify {
           }
         );
       }
-  
+
       // Adding offset
       if (typeof this.options.offset === "object") {
-  
+
         const x = this._getAxisOffsetAValue("x", this.options);
         const y = this._getAxisOffsetAValue("y", this.options);
-  
+
         const xOffset = this.options.position == "left" ? x : `-${x}`;
         const yOffset = this.options.gravity == "toastify-top" ? y : `-${y}`;
-  
+
         divElement.style.transform = `translate(${xOffset},${yOffset})`;
-  
+
       }
-  
+
       // Returning the generated element
       return divElement;
     }
-  
+
     /**
      * Remove the toast from the DOM
-     * @param {Element} toastElement 
+     * @param {Element} toastElement
      */
     _removeElement(toastElement) {
       // Hiding the element
       toastElement.className = toastElement.className.replace(" on", "");
-  
+
       // Removing the element from DOM after transition end
       window.setTimeout(
         () => {
@@ -346,28 +346,28 @@ class Toastify {
           if (this.options.node && this.options.node.parentNode) {
             this.options.node.parentNode.removeChild(this.options.node);
           }
-  
-          // Remove the elemenf from the DOM, only when the parent node was not removed before.
+
+          // Remove the element from the DOM, only when the parent node was not removed before.
           if (toastElement.parentNode) {
             toastElement.parentNode.removeChild(toastElement);
           }
-  
+
           // Calling the callback function
           this.options.callback.call(toastElement);
-  
+
           // Repositioning the toasts again
           this._reposition();
         },
         400
       ); // Binding `this` for function invocation
     }
-  
+
     /**
      * Position the toast on the DOM
      * @private
      */
     _reposition() {
-  
+
       // Top margins with gravity
       let topLeftOffsetSize = {
         top: 15,
@@ -381,12 +381,12 @@ class Toastify {
         top: 15,
         bottom: 15,
       };
-    
+
       // Get all toast messages that have been added to the container (selector)
       let allToasts = this._rootElement.querySelectorAll(".toastify");
-    
+
       let classUsed;
-    
+
       // Modifying the position of each toast element
       for (let i = 0; i < allToasts.length; i++) {
         // Getting the applied gravity
@@ -395,30 +395,30 @@ class Toastify {
         } else {
           classUsed = "toastify-bottom";
         }
-    
+
         let height = allToasts[i].offsetHeight;
         classUsed = classUsed.substr(9, classUsed.length - 1)
         // Spacing between toasts
         let offset = 15;
-    
+
         let width = window.innerWidth > 0 ? window.innerWidth : screen.width;
-    
-        // Show toast in center if screen with less than or qual to 360px
+
+        // Show toast in center if screen with less than or equal to 360px
         if (width <= 360) {
           // Setting the position
           allToasts[i].style[classUsed] = `${offsetSize[classUsed]}px`;
-    
+
           offsetSize[classUsed] += height + offset;
         } else {
           if (allToasts[i].classList.contains("toastify-left") === true) {
             // Setting the position
             allToasts[i].style[classUsed] = `${topLeftOffsetSize[classUsed]}px`;
-    
+
             topLeftOffsetSize[classUsed] += height + offset;
           } else {
             // Setting the position
             allToasts[i].style[classUsed] = `${topRightOffsetSize[classUsed]}px`;
-    
+
             topRightOffsetSize[classUsed] += height + offset;
           }
         }
@@ -431,7 +431,7 @@ class Toastify {
      * @param {ToastifyConfigurationObject} options - The options object containing the offset object
      */
     _getAxisOffsetAValue(axis, options) {
-    
+
       if (options.offset[axis]) {
         if (isNaN(options.offset[axis])) {
           return options.offset[axis];
@@ -439,17 +439,17 @@ class Toastify {
           return `${options.offset[axis]}px`;
         }
       }
-    
+
       return '0px';
-    
+
     }
-  
+
   }
-  
-  
+
+
   // Returning the Toastify function to be assigned to the window object/module
   function StartToastifyInstance(options) {
     return new Toastify(options);
   }
-  
+
   export default StartToastifyInstance;

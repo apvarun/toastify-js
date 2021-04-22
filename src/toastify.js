@@ -188,7 +188,7 @@
           }
         )
       }
-      
+
       // Adding an on-click destination path
       if (typeof this.options.destination !== "undefined") {
         divElement.addEventListener(
@@ -209,7 +209,7 @@
           "click",
           function(event) {
             event.stopPropagation();
-            this.options.onClick();            
+            this.options.onClick();
           }.bind(this)
         );
       }
@@ -219,7 +219,7 @@
 
         var x = getAxisOffsetAValue("x", this.options);
         var y = getAxisOffsetAValue("y", this.options);
-        
+
         var xOffset = this.options.position == "left" ? x : "-" + x;
         var yOffset = this.options.gravity == "toastify-top" ? y : "-" + y;
 
@@ -292,7 +292,7 @@
             this.options.node.parentNode.removeChild(this.options.node);
           }
 
-          // Remove the elemenf from the DOM, only when the parent node was not removed before.
+          // Remove the element from the DOM, only when the parent node was not removed before.
           if (toastElement.parentNode) {
             toastElement.parentNode.removeChild(toastElement);
           }
@@ -346,7 +346,7 @@
 
       var width = window.innerWidth > 0 ? window.innerWidth : screen.width;
 
-      // Show toast in center if screen with less than or qual to 360px
+      // Show toast in center if screen with less than or equal to 360px
       if (width <= 360) {
         // Setting the position
         allToasts[i].style[classUsed] = offsetSize[classUsed] + "px";
