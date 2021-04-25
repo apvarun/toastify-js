@@ -32,6 +32,29 @@
 
 class Toastify {
 
+    defaults = {
+      oldestFirst: true,
+      text: "Toastify is awesome!",
+      node: undefined,
+      duration: 3000,
+      selector: undefined,
+      callback: function() {},
+      destination: undefined,
+      newWindow: false,
+      close: false,
+      gravity: "toastify-top",
+      positionLeft: false,
+      position: "",
+      backgroundColor: "",
+      avatar: "",
+      className: "",
+      stopOnFocus: true,
+      onClick: function() {},
+      offset: { x: 0, y: 0 },
+      escapeMarkup: true,
+      style: { background: "" },
+    };
+
     constructor(options) {
       /**
        * The version of Toastify
@@ -143,29 +166,7 @@ class Toastify {
     _init(options) {
 
       // Setting defaults
-      this.options = Object.assign({
-        text: "Hi there!",
-        node: undefined,
-        duration: 3000,
-        selector: undefined,
-        callback: function() {},
-        destination: undefined,
-        newWindow: false,
-        close: false,
-        gravity: "toastify-top",
-        position: "right",
-        backgroundColor: undefined,
-        avatar: "",
-        className: "",
-        stopOnFocus: undefined,
-        onClick: undefined,
-        offset: {
-          x: 0,
-          y: 0
-        },
-        escapeMarkup: true,
-        style: {}
-      }, options);
+      this.options = Object.assign(this.defaults, options);
 
       if (this.options.backgroundColor) {
         // This is being deprecated in favor of using the style HTML DOM property

@@ -22,14 +22,14 @@
 
   // Set the default global options
   Toastify.defaults = {
-    oldestFirst: false,
+    oldestFirst: true,
     text: "Toastify is awesome!",
-    node: null,
+    node: undefined,
     duration: 3000,
-    selector: null,
+    selector: undefined,
     callback: function () {
     },
-    destination: null,
+    destination: undefined,
     newWindow: false,
     close: false,
     gravity: "toastify-top",
