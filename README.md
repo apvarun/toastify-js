@@ -3,7 +3,7 @@
 
 ![Built with JavaScript](https://img.shields.io/badge/Built%20with-JavaScript-red?style=for-the-badge&logo=javascript)
 
-[![toastify-js](https://img.shields.io/badge/toastify--js-1.10.0-brightgreen.svg)](https://www.npmjs.com/package/toastify-js)
+[![toastify-js](https://img.shields.io/badge/toastify--js-1.11.0-brightgreen.svg)](https://www.npmjs.com/package/toastify-js)
 ![MIT License](https://img.shields.io/npm/l/toastify-js)
 
 Toastify is a lightweight, vanilla JS toast notification library.
@@ -149,6 +149,7 @@ If `gravity` is equals to `bottom`, it will be pushed from bottom.
 | offset | Object | Ability to add some offset to axis | |
 | escapeMarkup | boolean | Toggle the default behavior of escaping HTML markup | true |
 | style | object | Use the HTML DOM Style properties to add any style directly to toast | |
+| oldestFirst | boolean | Set the order in which toasts are stacked in page | true |
 
 > Deprecated properties: `backgroundColor` -  use `style.background` option instead
 
@@ -166,199 +167,252 @@ If `gravity` is equals to `bottom`, it will be pushed from bottom.
 <table>
   <tr>
     <td align="center">
-      <a href="https://github.com/AStoker"
-        ><img
+      <a href="https://github.com/AStoker">
+        <img
           alt="AStoker"
           src="https://avatars.githubusercontent.com/u/2907279?v=4"
           width="117"
-        /><br />AStoker</a
-      >
+        />
+        <br />
+        AStoker
+      </a>
     </td>
     <td align="center">
-      <a href="https://github.com/caiomoura1994"
-        ><img
+      <a href="https://github.com/caiomoura1994">
+        <img
           alt="caiomoura1994"
           src="https://avatars.githubusercontent.com/u/9389139?v=4"
           width="117"
-        /><br />caiomoura1994</a
-      >
+        />
+        <br />
+        caiomoura1994
+      </a>
     </td>
     <td align="center">
-      <a href="https://github.com/rndevfx"
-        ><img
+      <a href="https://github.com/rndevfx">
+        <img
           alt="rndevfx"
           src="https://avatars.githubusercontent.com/u/5052076?v=4"
           width="117"
-        /><br />rndevfx</a
-      >
+        />
+        <br />
+        rndevfx
+      </a>
     </td>
     <td align="center">
-      <a href="https://github.com/1ess"
-        ><img
+      <a href="https://github.com/1ess">
+        <img
           alt="1ess"
           src="https://avatars.githubusercontent.com/u/36092926?v=4"
           width="117"
-        /><br />1ess</a
-      >
+        />
+        <br />
+        1ess
+      </a>
     </td>
     <td align="center">
-      <a href="https://github.com/d4rn0k"
-        ><img
+      <a href="https://github.com/d4rn0k">
+        <img
           alt="d4rn0k"
           src="https://avatars.githubusercontent.com/u/2183269?v=4"
           width="117"
-        /><br />d4rn0k</a
-      >
+        />
+        <br />
+        d4rn0k
+      </a>
     </td>
     <td align="center">
-      <a href="https://github.com/danielkaiser80"
-        ><img
+      <a href="https://github.com/danielkaiser80">
+        <img
           alt="danielkaiser80"
           src="https://avatars.githubusercontent.com/u/33827555?v=4"
           width="117"
-        /><br />danielkaiser80</a
-      >
+        />
+        <br />
+        danielkaiser80
+      </a>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <a href="https://github.com/skjnldsv"
-        ><img
+      <a href="https://github.com/skjnldsv">
+        <img
           alt="skjnldsv"
           src="https://avatars.githubusercontent.com/u/14975046?v=4"
           width="117"
-        /><br />skjnldsv</a
-      >
+        />
+        <br />
+        skjnldsv
+      </a>
     </td>
     <td align="center">
-      <a href="https://github.com/chasedeanda"
-        ><img
+      <a href="https://github.com/chasedeanda">
+        <img
           alt="chasedeanda"
           src="https://avatars.githubusercontent.com/u/8203134?v=4"
           width="117"
-        /><br />chasedeanda</a
-      >
+        />
+        <br />
+        chasedeanda
+      </a>
     </td>
     <td align="center">
-      <a href="https://github.com/Wachiwi"
-        ><img
+      <a href="https://github.com/chrisgraham">
+        <img
+          alt="chrisgraham"
+          src="https://avatars.githubusercontent.com/u/195389?v=4"
+          width="117"
+        />
+        <br />
+        chrisgraham
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/Wachiwi">
+        <img
           alt="Wachiwi"
           src="https://avatars.githubusercontent.com/u/4199845?v=4"
           width="117"
-        /><br />Wachiwi</a
-      >
+        />
+        <br />
+        Wachiwi
+      </a>
     </td>
     <td align="center">
-      <a href="https://github.com/FeixuRuins"
-        ><img
+      <a href="https://github.com/FeixuRuins">
+        <img
           alt="FeixuRuins"
           src="https://avatars.githubusercontent.com/u/66232834?v=4"
           width="117"
-        /><br />FeixuRuins</a
-      >
+        />
+        <br />
+        FeixuRuins
+      </a>
     </td>
     <td align="center">
-      <a href="https://github.com/gavinhungry"
-        ><img
+      <a href="https://github.com/gavinhungry">
+        <img
           alt="gavinhungry"
           src="https://avatars.githubusercontent.com/u/744538?v=4"
           width="117"
-        /><br />gavinhungry</a
-      >
+        />
+        <br />
+        gavinhungry
+      </a>
     </td>
+  </tr>
+  <tr>
     <td align="center">
-      <a href="https://github.com/haydster7"
-        ><img
+      <a href="https://github.com/haydster7">
+        <img
           alt="haydster7"
           src="https://avatars.githubusercontent.com/u/4540595?v=4"
           width="117"
-        /><br />haydster7</a
-      >
+        />
+        <br />
+        haydster7
+      </a>
     </td>
-  </tr>
-  <tr>
     <td align="center">
-      <a href="https://github.com/joaquinwojcik"
-        ><img
+      <a href="https://github.com/joaquinwojcik">
+        <img
           alt="joaquinwojcik"
           src="https://avatars.githubusercontent.com/u/3205737?v=4"
           width="117"
-        /><br />joaquinwojcik</a
-      >
+        />
+        <br />
+        joaquinwojcik
+      </a>
     </td>
     <td align="center">
-      <a href="https://github.com/juliushaertl"
-        ><img
+      <a href="https://github.com/juliushaertl">
+        <img
           alt="juliushaertl"
           src="https://avatars.githubusercontent.com/u/3404133?v=4"
           width="117"
-        /><br />juliushaertl</a
-      >
+        />
+        <br />
+        juliushaertl
+      </a>
     </td>
     <td align="center">
-      <a href="https://github.com/mort3za"
-        ><img
+      <a href="https://github.com/mort3za">
+        <img
           alt="mort3za"
           src="https://avatars.githubusercontent.com/u/510242?v=4"
           width="117"
-        /><br />mort3za</a
-      >
+        />
+        <br />
+        mort3za
+      </a>
     </td>
     <td align="center">
-      <a href="https://github.com/Sandip124"
-        ><img
+      <a href="https://github.com/Sandip124">
+        <img
           alt="Sandip124"
           src="https://avatars.githubusercontent.com/u/37034590?v=4"
           width="117"
-        /><br />Sandip124</a
-      >
+        />
+        <br />
+        Sandip124
+      </a>
     </td>
     <td align="center">
-      <a href="https://github.com/Tadaz"
-        ><img
+      <a href="https://github.com/Tadaz">
+        <img
           alt="Tadaz"
           src="https://avatars.githubusercontent.com/u/10881931?v=4"
           width="117"
-        /><br />Tadaz</a
-      >
-    </td>
-    <td align="center">
-      <a href="https://github.com/t12ung"
-        ><img
-          alt="t12ung"
-          src="https://avatars.githubusercontent.com/u/9781423?v=4"
-          width="117"
-        /><br />t12ung</a
-      >
+        />
+        <br />
+        Tadaz
+      </a>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <a href="https://github.com/victorfeijo"
-        ><img
+      <a href="https://github.com/t12ung">
+        <img
+          alt="t12ung"
+          src="https://avatars.githubusercontent.com/u/9781423?v=4"
+          width="117"
+        />
+        <br />
+        t12ung
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/victorfeijo">
+        <img
           alt="victorfeijo"
           src="https://avatars.githubusercontent.com/u/8865899?v=4"
           width="117"
-        /><br />victorfeijo</a
-      >
+        />
+        <br />
+        victorfeijo
+      </a>
     </td>
     <td align="center">
-      <a href="https://github.com/fiatjaf"
-        ><img
+      <a href="https://github.com/fiatjaf">
+        <img
           alt="fiatjaf"
           src="https://avatars.githubusercontent.com/u/1653275?v=4"
           width="117"
-        /><br />fiatjaf</a
-      >
+        />
+        <br />
+        fiatjaf
+      </a>
     </td>
     <td align="center">
-      <a href="https://github.com/prousseau-korem"
-        ><img
+      <a href="https://github.com/prousseau-korem">
+        <img
           alt="prousseau-korem"
           src="https://avatars.githubusercontent.com/u/59747802?v=4"
           width="117"
-        /><br />prousseau-korem</a
-      >
+        />
+        <br />
+        prousseau-korem
+      </a>
     </td>
   </tr>
 </table>
@@ -370,7 +424,7 @@ If `gravity` is equals to `bottom`, it will be pushed from bottom.
 
 MIT © [Varun A P](https://github.com/apvarun)
 
-<a href="https://www.buymeacoffee.com/apvarun" target="_blank" rel="noopener"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 145px !important;"></a>
+<a href="https://www.buymeacoffee.com/apvarun" target="_blank" rel="noopener"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" height="40" width="145" alt="Buy Me A Coffee"></a>
 
 [ie]: https://raw.githubusercontent.com/godban/browsers-support-badges/master/src/images/edge.png
 [firefox]: https://raw.githubusercontent.com/godban/browsers-support-badges/master/src/images/firefox.png

@@ -2,6 +2,10 @@
 
 All the changes made to toastify-js library.
 
+## [1.11.0] - 2021-04-25
+
+* New property `oldestFirst` allows to set the order of adding new toasts to page (#70 and #71)
+
 ## [1.10.0] - 2021-03-25
 
 * `selector` now supports a DOM Node, along with ID string ([#65](https://github.com/apvarun/toastify-js/pull/65))
