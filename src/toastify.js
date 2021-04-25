@@ -316,7 +316,7 @@
             this.options.node.parentNode.removeChild(this.options.node);
           }
 
-          // Remove the elemenf from the DOM, only when the parent node was not removed before.
+          // Remove the element from the DOM, only when the parent node was not removed before.
           if (toastElement.parentNode) {
             toastElement.parentNode.removeChild(toastElement);
           }
@@ -370,7 +370,7 @@
 
       var width = window.innerWidth > 0 ? window.innerWidth : screen.width;
 
-      // Show toast in center if screen with less than or qual to 360px
+      // Show toast in center if screen with less than or equal to 360px
       if (width <= 360) {
         // Setting the position
         allToasts[i].style[classUsed] = offsetSize[classUsed] + "px";
