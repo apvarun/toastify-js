@@ -124,7 +124,7 @@
       }
 
       // Loop through our style object and apply styles to divElement
-      for (const property in this.options.style) {
+      for (var property in this.options.style) {
         divElement.style[property] = this.options.style[property];
       }
 
