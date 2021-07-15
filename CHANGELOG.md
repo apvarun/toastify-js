@@ -2,6 +2,10 @@
 
 All the changes made to toastify-js library.
 
+## [1.11.1] - 2021-07-15
+
+* Bugfix: IE11 support broke since style option #77
+
 ## [1.11.0] - 2021-04-25
 
 * New property `oldestFirst` allows to set the order of adding new toasts to page (#70 and #71)

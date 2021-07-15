@@ -1,5 +1,5 @@
 /*!
- * Toastify js 1.11.0
+ * Toastify js 1.11.1
  * https://github.com/apvarun/toastify-js
  * @license MIT licensed
  *
@@ -18,7 +18,7 @@
       return new Toastify.lib.init(options);
     },
     // Library version
-    version = "1.11.0";
+    version = "1.11.1";
 
   // Set the default global options
   Toastify.defaults = {

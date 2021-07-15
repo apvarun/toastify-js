@@ -1,5 +1,5 @@
 /*!
- * Toastify js 1.11.0
+ * Toastify js 1.11.1
  * https://github.com/apvarun/toastify-js
  * @license MIT licensed
  *
@@ -61,7 +61,7 @@ class Toastify {
        * @type {string}
        * @public
        */
-      this.version = "1.11.0";
+      this.version = "1.11.1";
 
       /**
        * The configuration object to configure Toastify
