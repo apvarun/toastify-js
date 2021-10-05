@@ -306,7 +306,7 @@
     removeElement: function(toastElement) {
       // Hiding the element
       // toastElement.classList.remove("on");
-      toastElement.className = toastElement.className.replace(" on", "");
+      toastElement.className = toastElement.className.replace(" on", " off");
 
       // Removing the element from DOM after transition end
       window.setTimeout(
@@ -327,7 +327,7 @@
           // Repositioning the toasts again
           Toastify.reposition();
         }.bind(this),
-        400
+        500
       ); // Binding `this` for function invocation
     },
   };
