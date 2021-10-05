@@ -99,7 +99,7 @@
 
       // Creating the DOM object
       var divElement = document.createElement("div");
-      divElement.className = "toastify on " + this.options.className;
+      divElement.className = "toast-on " + this.options.className;
 
       // Positioning toast to left or right or center
       if (!!this.options.position) {
@@ -161,7 +161,7 @@
         var closeElement = document.createElement("span");
         closeElement.innerHTML = "&#10006;";
 
-        closeElement.className = "toast-close";
+        closeElement.className = "toast-off";
 
         // Triggering the removal of toast from DOM on close click
         closeElement.addEventListener(
@@ -306,7 +306,7 @@
     removeElement: function(toastElement) {
       // Hiding the element
       // toastElement.classList.remove("on");
-      toastElement.className = toastElement.className.replace(" on", " off");
+      toastElement.className = toastElement.className.replace("-on", "");
 
       // Removing the element from DOM after transition end
       window.setTimeout(
@@ -327,7 +327,7 @@
           // Repositioning the toasts again
           Toastify.reposition();
         }.bind(this),
-        500
+        400
       ); // Binding `this` for function invocation
     },
   };
