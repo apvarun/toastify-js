@@ -177,8 +177,9 @@ class Toastify {
 
       this.options.gravity = options.gravity === "bottom" ? "toastify-bottom" : "toastify-top"; // toast position - top or bottom
       this.options.stopOnFocus = options.stopOnFocus === undefined ? true : options.stopOnFocus; // stop timeout on focus
-
-      this.options.style.background = this.options.style.background || options.backgroundColor;
+      if(options.backgroundColor) {
+        this.options.style.background = options.backgroundColor;
+      }
     }
 
     /**

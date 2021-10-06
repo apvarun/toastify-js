@@ -84,7 +84,9 @@
       this.options.offset = options.offset || Toastify.defaults.offset; // toast offset
       this.options.escapeMarkup = options.escapeMarkup !== undefined ? options.escapeMarkup : Toastify.defaults.escapeMarkup;
       this.options.style = options.style || Toastify.defaults.style;
-      this.options.style.background = options.style.background || Toastify.defaults.backgroundColor || options.backgroundColor;
+      if(options.backgroundColor) {
+        this.options.style.background = options.backgroundColor;
+      }
 
       // Returning the current object for chaining functions
       return this;
