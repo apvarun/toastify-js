@@ -82,8 +82,10 @@ Toastify({
   close: true,
   gravity: "top", // `top` or `bottom`
   position: "left", // `left`, `center` or `right`
-  backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
   stopOnFocus: true, // Prevents dismissing of toast on hover
+  style: {
+    background: "linear-gradient(to right, #00b09b, #96c93d)",
+  }
   onClick: function(){} // Callback after click
 }).showToast();
 ```
@@ -99,8 +101,10 @@ If you want to use custom classes on the toast for customizing (like info or war
 ```javascript
 Toastify({
   text: "This is a toast",
-  backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
   className: "info",
+  style: {
+    background: "linear-gradient(to right, #00b09b, #96c93d)",
+  }
 }).showToast();
 ```
 

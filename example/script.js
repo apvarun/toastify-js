@@ -18,7 +18,9 @@ setTimeout(function() {
     text: "Simple JavaScript Toasts",
     gravity: "top",
     position: 'center',
-    backgroundColor: "#0f3443",
+    style: {
+      background: '#0f3443'
+    }
   }).showToast();
 }, 1000);
 
@@ -31,7 +33,9 @@ var options = {
     Toastify.reposition();
   },
   close: true,
-  backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+  style: {
+    background: "linear-gradient(to right, #00b09b, #96c93d)",
+  }
 };
 
 // Initializing the toast
@@ -48,7 +52,9 @@ setTimeout(function() {
     gravity: "bottom",
     position: 'left',
     close: true,
-    backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
+    style: {
+      background: "linear-gradient(to right, #ff5f6d, #ffc371)",
+    }
   }).showToast();
 }, 3000);
 
@@ -58,7 +64,9 @@ document.getElementById("new-toast").addEventListener("click", function() {
     text: "I am a toast",
     duration: 3000,
     close: i % 3 ? true : false,
-    backgroundColor: bgColors[i % 2],
+    style: {
+      background: bgColors[i % 2],
+    }
   }).showToast();
   i++;
 });
