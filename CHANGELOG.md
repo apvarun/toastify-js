@@ -2,6 +2,11 @@
 
 All the changes made to toastify-js library.
 
+## [1.11.2] - 2021-10-06
+
+* Bugfix: Style Options: "backgroundColor" not working! (#81)
+* Bugfix: "ShadowRoot is undefined" in older browsers (#83)
+
 ## [1.11.1] - 2021-07-15
 
 * Bugfix: IE11 support broke since style option #77
