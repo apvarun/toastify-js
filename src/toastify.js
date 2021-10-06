@@ -263,7 +263,7 @@
       var rootElement;
       if (typeof this.options.selector === "string") {
         rootElement = document.getElementById(this.options.selector);
-      } else if (this.options.selector instanceof HTMLElement || this.options.selector instanceof ShadowRoot) {
+      } else if (this.options.selector instanceof HTMLElement || (typeof ShadowRoot !== 'undefined' && this.options.selector instanceof ShadowRoot)) {
         rootElement = this.options.selector;
       } else {
         rootElement = document.body;
