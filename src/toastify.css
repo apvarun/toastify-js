@@ -28,6 +28,12 @@
 }
 
 .toast-close {
+    background: transparent;
+    border: 0;
+    color: white;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1em;
     opacity: 0.4;
     padding: 0 5px;
 }
