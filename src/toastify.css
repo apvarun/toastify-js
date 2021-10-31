@@ -29,7 +29,11 @@
 
 .toast-close {
     opacity: 0.4;
-    padding: 0 5px;
+    padding: 0 15px;
+}
+
+.toast-close:hover {
+    opacity: 1;
 }
 
 .toastify-right {
