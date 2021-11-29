@@ -104,7 +104,7 @@
       divElement.className = "toastify on " + this.options.className;
 
       // Positioning toast to left or right or center
-      if (!!this.options.position) {
+      if (this.options.position) {
         divElement.className += " toastify-" + this.options.position;
       } else {
         // To be depreciated in further versions
