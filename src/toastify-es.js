@@ -238,10 +238,11 @@ class Toastify {
       // Adding a close icon to the toast
       if (this.options.close === true) {
         // Create a span for close element
-        let closeElement = document.createElement("span");
-        closeElement.innerHTML = "&#10006;";
-
+        let closeElement = document.createElement("button");
+        closeElement.type = "button";
+        closeElement.setAttribute("aria-label", "Close");
         closeElement.className = "toast-close";
+        closeElement.innerHTML = "&#10006;";
 
         // Triggering the removal of toast from DOM on close click
         closeElement.addEventListener(
