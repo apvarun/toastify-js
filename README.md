@@ -3,7 +3,7 @@
 
 ![Built with JavaScript](https://img.shields.io/badge/Built%20with-JavaScript-red?style=for-the-badge&logo=javascript)
 
-[![toastify-js](https://img.shields.io/badge/toastify--js-1.11.2-brightgreen.svg)](https://www.npmjs.com/package/toastify-js)
+[![toastify-js](https://img.shields.io/badge/toastify--js-1.12.0-brightgreen.svg)](https://www.npmjs.com/package/toastify-js)
 ![MIT License](https://img.shields.io/npm/l/toastify-js)
 
 Toastify is a lightweight, vanilla JS toast notification library.
