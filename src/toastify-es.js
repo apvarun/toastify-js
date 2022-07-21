@@ -26,6 +26,7 @@
  * @property {Function} onClick - Invoked when the toast is clicked
  * @property {Object} offset - Ability to add some offset to axis
  * @property {boolean} escapeMarkup - Toggle the default behavior of escaping HTML markup
+ * @property {string} ariaLive - Use the HTML DOM style property to add styles to toast
  * @property {Object} style - Use the HTML DOM style property to add styles to toast
  */
 
@@ -52,6 +53,7 @@ class Toastify {
       onClick: function() {},
       offset: { x: 0, y: 0 },
       escapeMarkup: true,
+      ariaLive: "polite",
       style: { background: "" },
     };
 
@@ -160,6 +162,7 @@ class Toastify {
      * @param {Function} [options.onClick] - Invoked when the toast is clicked
      * @param {Object} [options.offset] - Ability to add some offset to axis
      * @param {boolean} [options.escapeMarkup=true] - Toggle the default behavior of escaping HTML markup
+     * @param {string} [options.ariaLive] - Announce the toast to screen readers
      * @param {Object} [options.style] - Use the HTML DOM style property to add styles to toast
      * @private
      */
@@ -206,6 +209,11 @@ class Toastify {
       // Loop through our style object and apply styles to divElement
       for (const property in this.options.style) {
         divElement.style[property] = this.options.style[property];
+      }
+
+      // Announce the toast to screen readers
+      if (this.options.ariaLive) {
+        divElement.setAttribute('aria-live', this.options.ariaLive)
       }
 
       // Adding the toast message/node

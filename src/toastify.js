@@ -43,6 +43,7 @@
     },
     offset: {x: 0, y: 0},
     escapeMarkup: true,
+    ariaLive: 'polite',
     style: {background: ''}
   };
 
@@ -83,6 +84,7 @@
       this.options.onClick = options.onClick || Toastify.defaults.onClick; // Callback after click
       this.options.offset = options.offset || Toastify.defaults.offset; // toast offset
       this.options.escapeMarkup = options.escapeMarkup !== undefined ? options.escapeMarkup : Toastify.defaults.escapeMarkup;
+      this.options.ariaLive = options.ariaLive || Toastify.defaults.ariaLive;
       this.options.style = options.style || Toastify.defaults.style;
       if(options.backgroundColor) {
         this.options.style.background = options.backgroundColor;
@@ -128,6 +130,11 @@
       // Loop through our style object and apply styles to divElement
       for (var property in this.options.style) {
         divElement.style[property] = this.options.style[property];
+      }
+
+      // Announce the toast to screen readers
+      if (this.options.ariaLive) {
+        divElement.setAttribute('aria-live', this.options.ariaLive)
       }
 
       // Adding the toast message/node
