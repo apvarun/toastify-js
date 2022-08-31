@@ -33,6 +33,9 @@
 
 class Toastify {
 
+    static multiple = true
+    static activeToasts = []
+
     defaults = {
       oldestFirst: true,
       text: "Toastify is awesome!",
@@ -127,6 +130,14 @@ class Toastify {
         ); // Binding `this` for function invocation
       }
 
+      if(Toastify.multiple === false){
+        // call hideToast on all the the toasts that are currently showing
+        Toastify.activeToasts.forEach(toast => toast.hideToast())
+      }
+
+      // Add toast to the static "toasts" array
+      Toastify.activeToasts.push(this)
+
       // Supporting function chaining
       return this;
     }
@@ -140,6 +151,13 @@ class Toastify {
         clearTimeout(this.toastElement.timeOutValue);
       }
       this._removeElement(this.toastElement);
+      // Remove toast from the "activeToasts" array
+      const index = Toastify.activeToasts.indexOf(this)
+      // Make sure a valid index was found before removing
+      if(index != -1){
+        // Remove the toast from the activeToasts array
+        Toastify.activeToasts.splice(index, 1)
+      }
     }
 
     /**
