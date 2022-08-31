@@ -151,6 +151,7 @@ class Toastify {
         clearTimeout(this.toastElement.timeOutValue);
       }
       this._removeElement(this.toastElement);
+      
       // Remove toast from the "activeToasts" array
       const index = Toastify.activeToasts.indexOf(this)
       // Make sure a valid index was found before removing
