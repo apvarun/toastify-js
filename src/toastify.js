@@ -305,8 +305,8 @@
       }
 
       if(Toastify.multiple === false){
-        // call hideToast on all the the toasts that are currently showing
-        Toastify.activeToasts.forEach(toast => toast.hideToast())
+        // call hideToast on all the the toasts that are currently "showing"
+        Toastify.activeToasts.forEach(toast => toast.removeElement(toast.toastElement))
       }
 
       // Add toast to the static "toasts" array
@@ -321,14 +321,6 @@
         clearTimeout(this.toastElement.timeOutValue);
       }
       this.removeElement(this.toastElement);
-
-      // Remove toast from the "activeToasts" array
-      const index = Toastify.activeToasts.indexOf(this)
-      // Make sure a valid index was found before removing
-      if(index != -1){
-        // Remove the toast from the activeToasts array
-        Toastify.activeToasts.splice(index, 1)
-      }
     },
 
     // Removing the element from the DOM
@@ -352,6 +344,14 @@
 
           // Calling the callback function
           this.options.callback.call(toastElement);
+
+          // Remove toast from the "activeToasts" array
+          const index = Toastify.activeToasts.indexOf(this)
+          // Make sure an index was found before removing
+          if(index != -1){
+            // Remove the toast from the activeToasts array
+            Toastify.activeToasts.splice(index, 1)
+          }
 
           // Repositioning the toasts again
           Toastify.reposition();
