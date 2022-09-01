@@ -74,6 +74,7 @@ And the script at the bottom of the page
 ## Documentation
 
 ```javascript
+Toastify.multiple = true // Default - Allows multiple toasts to be displayed
 Toastify({
   text: "This is a toast",
   duration: 3000,
