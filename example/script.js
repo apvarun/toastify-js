@@ -70,3 +70,15 @@ document.getElementById("new-toast").addEventListener("click", function() {
   }).showToast();
   i++;
 });
+
+document.getElementById("multiple").addEventListener("change", function(e){
+  const element = document.getElementById("multiple-code")
+  if(e.currentTarget.checked == true){
+    Toastify.multiple = true
+    element.textContent = "Toastify.multiple = true"
+  }
+  else{
+    Toastify.multiple = false
+    element.textContent = "Toastify.multiple = false"
+  }
+})
