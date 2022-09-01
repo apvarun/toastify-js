@@ -420,6 +420,17 @@ If `gravity` is equals to `bottom`, it will be pushed from bottom.
         prousseau-korem
       </a>
     </td>
+    <td align="center">
+      <a href="https://github.com/TrevorSlobodnick">
+        <img
+          alt="Trevor Slobodnick"
+          src="https://avatars.githubusercontent.com/u/59592643?v=4"
+          width="117"
+        />
+        <br />
+        Trevor Slobodnick
+      </a>
+    </td>
   </tr>
 </table>
 
