@@ -155,6 +155,8 @@ If `gravity` is equals to `bottom`, it will be pushed from bottom.
 | style | object | Use the HTML DOM Style properties to add any style directly to toast | |
 | ariaLive | string | Announce the toast to screen readers, see https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions for options | "polite" |
 | oldestFirst | boolean | Set the order in which toasts are stacked in page | true |
+| progressBar | boolean | To show the close time progress bar or not | false |
+| progressBarColor | string | Set the progress bar color |  |
 
 > Deprecated properties: `backgroundColor` -  use `style.background` option instead
 
