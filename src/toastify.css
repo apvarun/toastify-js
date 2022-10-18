@@ -23,8 +23,25 @@
     z-index: 2147483647;
 }
 
+.toast-progress {
+    height: 5px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-size: 0 100%;
+    background: transparent no-repeat 0 0;
+    animation-timing-function: linear;
+    animation-name: progress;
+    animation-play-state: paused;
+}
+
 .toastify.on {
     opacity: 1;
+}
+
+.toastify.on .toast-progress {
+    animation-play-state: running;
 }
 
 .toast-close {
@@ -72,6 +89,15 @@
     right: 0;
     max-width: fit-content;
     max-width: -moz-fit-content;
+}
+
+@keyframes progress {
+    0% {
+        background-size: 0 100%;
+    }
+    100% {
+        background-size: 100% 100%;
+    }
 }
 
 @media only screen and (max-width: 360px) {

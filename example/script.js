@@ -58,6 +58,21 @@ setTimeout(function() {
   }).showToast();
 }, 3000);
 
+// Toast with progress bar
+setTimeout(function() {
+    Toastify({
+        text: "With progress bar",
+        gravity: "top",
+        position: 'left',
+        style: {
+            background: '#0f3443'
+        },
+        progressBar: true,
+        progressBarColor: 'coral',
+        duration: 4500
+    }).showToast();
+}, 4500);
+
 // Displaying toast on manual action `Try`
 document.getElementById("new-toast").addEventListener("click", function() {
   Toastify({
