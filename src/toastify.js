@@ -264,7 +264,6 @@
         divElement.style.transform = "translate(" + xOffset + "," + yOffset + ")";
 
       }
-        console.log('@@@', this.options)
 
       if (this.options.progressBar) {
           var bar = document.createElement("div")
