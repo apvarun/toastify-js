@@ -83,6 +83,7 @@ Toastify({
   gravity: "top", // `top` or `bottom`
   position: "left", // `left`, `center` or `right`
   stopOnFocus: true, // Prevents dismissing of toast on hover
+  stopOnWindowBlur: true, // Prevents dismissing of toast if the window is not focused
   style: {
     background: "linear-gradient(to right, #00b09b, #96c93d)",
   },
@@ -148,6 +149,7 @@ If `gravity` is equals to `bottom`, it will be pushed from bottom.
 | avatar | URL string | Image/icon to be shown before text |  |
 | className | string | Ability to provide custom class name for further customization |  |
 | stopOnFocus | boolean | To stop timer when hovered over the toast (Only if duration is set) | true |
+| stopOnWindowBlur | boolean | To stop timer if window is not focused (Only if duration is set) | true |
 | callback | Function | Invoked when the toast is dismissed |  |
 | onClick | Function | Invoked when the toast is clicked |  |
 | offset | Object | Ability to add some offset to axis | |
