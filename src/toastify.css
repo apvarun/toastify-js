@@ -19,7 +19,8 @@
     border-radius: 2px;
     cursor: pointer;
     text-decoration: none;
-    max-width: calc(50% - 20px);
+    box-sizing: border-box;
+    max-width: calc(100% - 30px);
     z-index: 2147483647;
 }
 
