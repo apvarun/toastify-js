@@ -316,7 +316,7 @@
       // Repositioning the toasts in case multiple toasts are present
       Toastify.reposition();
 
-      if (this.options.duration > 0) {
+      if (this.options.duration > 0 && document.visibilityState === 'visible') {
         this.toastElement.timeOutValue = window.setTimeout(
           function() {
             // Remove the toast from DOM
