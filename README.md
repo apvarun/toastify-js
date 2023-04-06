@@ -154,6 +154,7 @@ If `gravity` is equals to `bottom`, it will be pushed from bottom.
 | escapeMarkup | boolean | Toggle the default behavior of escaping HTML markup | true |
 | style | object | Use the HTML DOM Style properties to add any style directly to toast | |
 | ariaLive | string | Announce the toast to screen readers, see https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions for options | "polite" |
+| allowPropagation | boolean | allow events inside the modal to propagate when destination is undefined | false |
 | oldestFirst | boolean | Set the order in which toasts are stacked in page | true |
 
 > Deprecated properties: `backgroundColor` -  use `style.background` option instead
