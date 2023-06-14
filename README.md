@@ -71,11 +71,11 @@ And the script at the bottom of the page
 
 > Files are delivered via the CDN service provided by [jsdeliver](https://www.jsdelivr.com/)
 ## Usage Example
-
+#### HTML
 ```html
-        <button class="show-notification">Show Notification</button>
+<button class="show-notification">Show Notification</button>
 ```
-
+#### JavaScript
 ```javascript
 document.querySelector('.show-notification').addEventListener('click', () => {
   Toastify({
