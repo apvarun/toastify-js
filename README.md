@@ -70,7 +70,31 @@ And the script at the bottom of the page
 ```
 
 > Files are delivered via the CDN service provided by [jsdeliver](https://www.jsdelivr.com/)
+## Usage Example
+#### HTML
+```html
+<button class="show-notification">Show Notification</button>
+```
+#### JavaScript
+```javascript
+document.querySelector('.show-notification').addEventListener('click', () => {
+  Toastify({
+    text: "This is a toast",
+    duration: 2000,
+    gravity: "bottom", // `top` or `bottom`
+    position: "right", // `left`, `center` or `right`
+    stopOnFocus: true,
+    style: {
+      background: "#003B7C",
+      borderRadius: "10px",
+    },
+    
+    //Other options ...
+    
+  }).showToast();
+})
 
+```
 ## Documentation
 
 ```javascript
