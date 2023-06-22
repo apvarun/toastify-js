@@ -198,7 +198,7 @@
       }
 
       // Clear timeout while toast is focused
-      if (this.options.stopOnFocus && this.options.duration > 0) {
+      if (this.options.stopOnFocus && this.options.duration > 0 && this.options.duration !== Infinity) {
         var self = this;
         // stop countdown
         divElement.addEventListener(
