@@ -134,11 +134,11 @@ Toastify({
   text: 'I am a toast',
   duration: 3000,
   sound: {
-    default: true,
-    type: 'bell',
-    src: './sounds/alert.wav',
+    default: true, // Use the default sound (set to false if a custom sound file is provided)
+    type: 'bell', // Specify type [bell,alert,pop]
+    src: './sounds/alert.wav', // Specify the source file for the custom sound (make sure 'default' is set to false)
   }
-}).showToast();
+}).showToast()
 ```
 To utilize the sound feature in Toastify, follow these steps:
 
