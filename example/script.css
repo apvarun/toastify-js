@@ -174,3 +174,9 @@ code p {
         position: static;
     }
 }
+
+/* Disable carbon ads */
+#carbonads {
+    display: none !important;
+}
+  

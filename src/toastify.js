@@ -449,6 +449,10 @@
   // Function to trigger sound
   function makeSound(obj){
     if(obj.default){
+      const availableSound = ['bell','alert', 'pop'];
+      if(!availableSound.includes(obj.type)){
+        throw "Please select default sound type ('bell','alert','pop')";
+      }
       const path = `${'./sounds/'+obj.type+'.wav'}`
       var audio = new Audio(path);
       // Play the bell sound

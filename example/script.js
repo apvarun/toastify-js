@@ -77,8 +77,8 @@ Toastify({
   text: "I am a toast",
   duration: 3000,
   sound: {
-    default: false,
-    type: 'bell',
+    default: true,
+    type: 'pop',
     src: './sounds/alert.wav' // If having custom file
   },
   close: i % 3 ? true : false,
