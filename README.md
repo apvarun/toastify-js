@@ -175,7 +175,7 @@ With this new sound support feature, you can create visually and audibly appeali
 | style | object | Use the HTML DOM Style properties to add any style directly to toast | |
 | ariaLive | string | Announce the toast to screen readers, see https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions for options | "polite" |
 | oldestFirst | boolean | Set the order in which toasts are stacked in page | true |
-| soundType | string | Default `type`: 'pop', 'alert', 'bell'
+| soundType | string | For default type use `type` | 'pop', 'alert', 'bell'
 
 > Deprecated properties: `backgroundColor` -  use `style.background` option instead
 
