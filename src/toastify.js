@@ -44,7 +44,9 @@
     offset: {x: 0, y: 0},
     escapeMarkup: true,
     ariaLive: 'polite',
-    style: {background: ''}
+    style: {background: ''},
+    progressBar: false,
+    progressBarColor: ''
   };
 
   // Defining the prototype of the object
@@ -86,6 +88,9 @@
       this.options.escapeMarkup = options.escapeMarkup !== undefined ? options.escapeMarkup : Toastify.defaults.escapeMarkup;
       this.options.ariaLive = options.ariaLive || Toastify.defaults.ariaLive;
       this.options.style = options.style || Toastify.defaults.style;
+      this.options.progressBarColor = options.progressBarColor || Toastify.defaults.progressBarColor; // toast progress bar color
+      this.options.progressBar = options.progressBar || Toastify.defaults.progressBar; // toast progress bar show
+
       if(options.backgroundColor) {
         this.options.style.background = options.backgroundColor;
       }
@@ -258,6 +263,14 @@
 
         divElement.style.transform = "translate(" + xOffset + "," + yOffset + ")";
 
+      }
+
+      if (this.options.progressBar) {
+          var bar = document.createElement("div")
+          bar.className += "toast-progress";
+          bar.style.backgroundImage = "linear-gradient(90deg, " + this.options.progressBarColor + ", "+ this.options.progressBarColor +")";
+          bar.style.animationDuration = this.options.duration + "ms";
+          divElement.appendChild(bar);
       }
 
       // Returning the generated element

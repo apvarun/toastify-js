@@ -28,6 +28,8 @@
  * @property {boolean} escapeMarkup - Toggle the default behavior of escaping HTML markup
  * @property {string} ariaLive - Use the HTML DOM style property to add styles to toast
  * @property {Object} style - Use the HTML DOM style property to add styles to toast
+ * @param {boolean} [options.progressBar] - Show toast progress bar
+ * @param {string} [options.progressBarColor] - Sets the toast progress bar color
  */
 
 
@@ -55,6 +57,8 @@ class Toastify {
       escapeMarkup: true,
       ariaLive: "polite",
       style: { background: "" },
+      progressBar: false,
+      progressBarColor: ''
     };
 
     constructor(options) {
@@ -164,6 +168,8 @@ class Toastify {
      * @param {boolean} [options.escapeMarkup=true] - Toggle the default behavior of escaping HTML markup
      * @param {string} [options.ariaLive] - Announce the toast to screen readers
      * @param {Object} [options.style] - Use the HTML DOM style property to add styles to toast
+     * @param {boolean} [options.progressBar] - Show toast progress bar
+     * @param {string} [options.progressBarColor] - Sets the toast progress bar color
      * @private
      */
     _init(options) {
@@ -336,6 +342,14 @@ class Toastify {
 
         divElement.style.transform = `translate(${xOffset},${yOffset})`;
 
+      }
+
+      if (this.options.progressBar)
+        var bar = document.createElement("div")
+        bar.className += "toast-progress";
+        bar.style.backgroundImage = "linear-gradient(90deg, " + this.options.progressBarColor + ", "+ this.options.progressBarColor +")";
+        bar.style.animationDuration = this.options.duration + "ms";
+        divElement.appendChild(bar);
       }
 
       // Returning the generated element
