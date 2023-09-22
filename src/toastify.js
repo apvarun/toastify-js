@@ -44,6 +44,7 @@
     offset: {x: 0, y: 0},
     escapeMarkup: true,
     ariaLive: 'polite',
+    allowPropagation: false,
     style: {background: ''}
   };
 
@@ -85,6 +86,7 @@
       this.options.offset = options.offset || Toastify.defaults.offset; // toast offset
       this.options.escapeMarkup = options.escapeMarkup !== undefined ? options.escapeMarkup : Toastify.defaults.escapeMarkup;
       this.options.ariaLive = options.ariaLive || Toastify.defaults.ariaLive;
+      this.options.allowPropagation = options.allowPropagation !== undefined ? options.allowPropagation : Toastify.defaults.allowPropagation;
       this.options.style = options.style || Toastify.defaults.style;
       if(options.backgroundColor) {
         this.options.style.background = options.backgroundColor;
@@ -241,7 +243,9 @@
         divElement.addEventListener(
           "click",
           function(event) {
-            event.stopPropagation();
+            if (!this.options.allowPropagation) {
+              event.stopPropagation();
+            }
             this.options.onClick();
           }.bind(this)
         );

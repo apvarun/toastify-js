@@ -26,7 +26,8 @@
  * @property {Function} onClick - Invoked when the toast is clicked
  * @property {Object} offset - Ability to add some offset to axis
  * @property {boolean} escapeMarkup - Toggle the default behavior of escaping HTML markup
- * @property {string} ariaLive - Use the HTML DOM style property to add styles to toast
+ * @property {string} ariaLive - Announce the toast to screen readers
+ * @property {boolean} allowPropagation - Allow events inside the modal to propagate when destination is undefined
  * @property {Object} style - Use the HTML DOM style property to add styles to toast
  */
 
@@ -54,6 +55,7 @@ class Toastify {
       offset: { x: 0, y: 0 },
       escapeMarkup: true,
       ariaLive: "polite",
+      allowPropagation: false,
       style: { background: "" },
     };
 
@@ -162,7 +164,9 @@ class Toastify {
      * @param {Function} [options.onClick] - Invoked when the toast is clicked
      * @param {Object} [options.offset] - Ability to add some offset to axis
      * @param {boolean} [options.escapeMarkup=true] - Toggle the default behavior of escaping HTML markup
+     * @property {boolean} allowPropagation - Allow events inside the modal to propagate when destination is undefined
      * @param {string} [options.ariaLive] - Announce the toast to screen readers
+     * 
      * @param {Object} [options.style] - Use the HTML DOM style property to add styles to toast
      * @private
      */
@@ -319,7 +323,9 @@ class Toastify {
         divElement.addEventListener(
           "click",
           (event) => {
-            event.stopPropagation();
+            if (!this.options.allowPropagation) {
+              event.stopPropagation();
+            }
             this.options.onClick();
           }
         );
