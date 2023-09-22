@@ -39,6 +39,7 @@
     avatar: "",
     className: "",
     stopOnFocus: true,
+    stopOnWindowBlur: true,
     onClick: function () {
     },
     offset: {x: 0, y: 0},
@@ -81,6 +82,7 @@
       this.options.avatar = options.avatar || Toastify.defaults.avatar; // img element src - url or a path
       this.options.className = options.className || Toastify.defaults.className; // additional class names for the toast
       this.options.stopOnFocus = options.stopOnFocus === undefined ? Toastify.defaults.stopOnFocus : options.stopOnFocus; // stop timeout on focus
+      this.options.stopOnWindowBlur = options.stopOnWindowBlur === undefined ? Toastify.defaults.stopOnWindowBlur : options.stopOnWindowBlur;
       this.options.onClick = options.onClick || Toastify.defaults.onClick; // Callback after click
       this.options.offset = options.offset || Toastify.defaults.offset; // toast offset
       this.options.escapeMarkup = options.escapeMarkup !== undefined ? options.escapeMarkup : Toastify.defaults.escapeMarkup;
@@ -222,6 +224,29 @@
         )
       }
 
+      // Clear timeout while window is not focused
+      if (this.options.stopOnWindowBlur && this.options.duration > 0) {
+        var self = this;
+        document.addEventListener(
+          "visibilitychange",
+          function() {
+            if (document.visibilityState === 'visible') {
+              // add back the timeout
+              divElement.timeOutValue = window.setTimeout(
+                function() {
+                  // Remove the toast from DOM
+                  self.removeElement(divElement);
+                },
+                  self.options.duration
+              )
+            } else {
+              // stop countdown
+              window.clearTimeout(divElement.timeOutValue);
+            }
+          }
+        )
+      }
+
       // Adding an on-click destination path
       if (typeof this.options.destination !== "undefined") {
         divElement.addEventListener(
@@ -291,7 +316,7 @@
       // Repositioning the toasts in case multiple toasts are present
       Toastify.reposition();
 
-      if (this.options.duration > 0) {
+      if (this.options.duration > 0 && document.visibilityState === 'visible') {
         this.toastElement.timeOutValue = window.setTimeout(
           function() {
             // Remove the toast from DOM
