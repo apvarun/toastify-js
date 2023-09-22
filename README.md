@@ -74,6 +74,7 @@ And the script at the bottom of the page
 ## Documentation
 
 ```javascript
+Toastify.multiple = true // Default - Allows multiple toasts to be displayed
 Toastify({
   text: "This is a toast",
   duration: 3000,
@@ -417,6 +418,17 @@ If `gravity` is equals to `bottom`, it will be pushed from bottom.
         />
         <br />
         prousseau-korem
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/TrevorSlobodnick">
+        <img
+          alt="Trevor Slobodnick"
+          src="https://avatars.githubusercontent.com/u/59592643?v=4"
+          width="117"
+        />
+        <br />
+        Trevor Slobodnick
       </a>
     </td>
   </tr>

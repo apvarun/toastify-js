@@ -25,9 +25,16 @@
             <a href="https://twitter.com/intent/tweet?text=Pure+JavaScript+library+for+better+notification+messages&url=https://apvarun.github.io/toastify-js/&hashtags=JavaScript,toast&via=apvarun"
                 target="_blank" class="button">Tweet</a>
         </div>
+        <div class="settings">
+            <div class="form-check">
+                <label for="multiple">Display Multiple Toasts?</label>
+                <input type="checkbox" value="" id="multiple" checked>
+            </div>
+        </div>
         <div class="docs">
             <h2>Usage</h2>
             <code>
+                <p id="multiple-code"></p>
                 <p>Toastify({</p>
                 <p class="pad-left">text: "This is a toast",</p>
                 <p class="pad-left">duration: 3000</p>
