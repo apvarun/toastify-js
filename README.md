@@ -17,6 +17,7 @@ Toastify is a lightweight, vanilla JS toast notification library.
 * Multiple stacked notifications
 * Customizable
 * No blocking of execution thread
+* Sound Support for Toast Notifications
 
 ### Customization options
 
@@ -124,12 +125,31 @@ Toastify({
 }).showToast();
 ```
 
-Toast will be pushed 50px from right in x axis and 10px from top in y axis.
+### Add Sound
+
+This feature enhances the Toastify library by providing sound support for toast notifications. Now you can add custom sounds to your toast notifications, making them more engaging and interactive. The sound feature allows you to specify the type of sound (e.g., bell or alert) and even use your own custom sound files. With this addition, you can create a more immersive user experience and capture your users' attention with audio cues.
+
+```javascript
+Toastify({
+  text: 'I am a toast',
+  duration: 3000,
+  sound: {
+    default: true, // Use the default sound (set to false if a custom sound file is provided)
+    type: 'bell', // Specify type [bell,alert,pop]
+    src: './sounds/alert.wav', // Specify the source file for the custom sound (make sure 'default' is set to false)
+  }
+}).showToast()
+```
+To utilize the sound feature in Toastify, follow these steps:
 
 **Note:**
 
-If `position` is equals to `left`, it will be pushed from left.
-If `gravity` is equals to `bottom`, it will be pushed from bottom.
+Set the sound property to an object with the following properties:
+  - `default`: Set it to `true` to use the default sound provided by Toastify. Set it to false if you want to use a custom sound file.
+  - `type`: Specify the type of sound you want to use. Available options are 'bell' and 'alert'.
+  - `src`: If `default` is set to `false`, provide the path to your custom sound file using the src property.
+
+With this new sound support feature, you can create visually and audibly appealing toast notifications, enriching your users' experience on your website or application.
 
 ## API
 
@@ -155,6 +175,7 @@ If `gravity` is equals to `bottom`, it will be pushed from bottom.
 | style | object | Use the HTML DOM Style properties to add any style directly to toast | |
 | ariaLive | string | Announce the toast to screen readers, see https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions for options | "polite" |
 | oldestFirst | boolean | Set the order in which toasts are stacked in page | true |
+| soundType | string | For default type use `type` | 'pop', 'alert', 'bell'
 
 > Deprecated properties: `backgroundColor` -  use `style.background` option instead
 

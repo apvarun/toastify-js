@@ -6,11 +6,14 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Toastify JS - Pure JavaScript Toast Notificaton Library</title>
-    <meta name="description" content="Toastify is a pure JavaScript library that lets you create notifications toasts/messages.">
+    <meta name="description"
+        content="Toastify is a pure JavaScript library that lets you create notifications toasts/messages.">
     <meta name="keywords" content="Javascript,Library,Toastify">
     <meta name="author" content="apvarun">
     <link rel="stylesheet" type="text/css" href="example/script.css">
     <link rel="stylesheet" type="text/css" href="src/toastify.css">
+    <!-- Prism plugin css -->
+    <link rel="stylesheet" type="text/css" href="src/plugin/prism/prism.css">
 </head>
 
 <body id="root">
@@ -21,29 +24,42 @@
         <p>Better notification messages</p>
         <div class="buttons">
             <a href="#" id="new-toast" class="button">Try</a>
-            <a href="https://github.com/apvarun/toastify-js/blob/master/README.md" target="_blank" class="button">Docs</a>
+            <a href="#" id="new-toast-sound" class="button">Try with sound</a>
+            <a href="https://github.com/apvarun/toastify-js/blob/master/README.md" target="_blank"
+                class="button">Docs</a>
             <a href="https://twitter.com/intent/tweet?text=Pure+JavaScript+library+for+better+notification+messages&url=https://apvarun.github.io/toastify-js/&hashtags=JavaScript,toast&via=apvarun"
                 target="_blank" class="button">Tweet</a>
         </div>
         <div class="docs">
             <h2>Usage</h2>
-            <code>
-                <p>Toastify({</p>
-                <p class="pad-left">text: "This is a toast",</p>
-                <p class="pad-left">duration: 3000</p>
-                <p>}).showToast();</p>
-            </code>
+            <h4>Normal Toast</h4>
+            <iframe
+                src="https://carbon.now.sh/embed?bg=rgba%28255%2C255%2C255%2C1%29&t=seti&wt=none&l=auto&width=680&ds=false&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=7px&ph=12px&ln=false&fl=1&fm=Hack&fs=14px&lh=133%25&si=false&es=2x&wm=false&code=Toastify%28%257B%250A%2520%2520%2520%2520text%253A%2520%2522This%2520is%2520a%2520toast%2522%252C%250A%2520%2520%2520%2520duration%253A%25203000%250A%257D%29.showToast%28%29%253B"
+                style="width: 283px; height: 185px; border:0; transform: scale(1); overflow:hidden;"
+                sandbox="allow-scripts allow-same-origin">
+            </iframe>
+
+            <h4>Sound Toast</h4>
+            <iframe
+                src="https://carbon.now.sh/embed?bg=rgba%28255%2C255%2C255%2C1%29&t=seti&wt=none&l=auto&width=680&ds=false&dsyoff=20px&dsblur=68px&wc=true&wa=true&pv=7px&ph=12px&ln=false&fl=1&fm=Hack&fs=14px&lh=133%25&si=false&es=2x&wm=false&code=Toastify%28%257B%250A%2520%2520text%253A%2520%27I%2520am%2520a%2520toast%27%252C%250A%2520%2520duration%253A%25203000%252C%250A%2520%2520sound%253A%2520%257B%250A%2520%2520%2520%2520default%253A%2520true%252C%2520%252F%252F%2520Use%2520the%2520default%2520sound%2520%28set%2520to%2520false%2520if%2520a%2520custom%2520sound%2520file%2520is%2520provided%29%250A%2520%2520%2520%2520type%253A%2520%27bell%27%252C%2520%252F%252F%2520Specify%2520type%2520%255Bbell%252Calert%252Cpop%255D%250A%2520%2520%2520%2520src%253A%2520%27.%252Fsounds%252Falert.wav%27%252C%2520%252F%252F%2520Specify%2520the%2520source%2520file%2520for%2520the%2520custom%2520sound%2520%28make%2520sure%2520%27default%27%2520is%2520set%2520to%2520false%29%250A%2520%2520%257D%250A%257D%29.showToast%28%29"
+                style="width: 1024px; height: 274px; border:0; transform: scale(1); overflow:hidden;"
+                sandbox="allow-scripts allow-same-origin">
+            </iframe>
         </div>
         <div class="repo">
-            <iframe src="https://ghbtns.com/github-btn.html?user=apvarun&repo=toastify-js&type=star&count=true&size=large" frameborder="0"
-                scrolling="0" width="160px" height="30px"></iframe>
+            <iframe
+                src="https://ghbtns.com/github-btn.html?user=apvarun&repo=toastify-js&type=star&count=true&size=large"
+                frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
         </div>
-        <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CEAIP2QI&placement=apvarungithubio" id="_carbonads_js"></script>
+        <script async type="text/javascript"
+            src="//cdn.carbonads.com/carbon.js?serve=CEAIP2QI&placement=apvarungithubio" id="_carbonads_js"></script>
     </div>
 </body>
 
 <script type="text/javascript" src="src/toastify.js"></script>
 <script type="text/javascript" src="example/script.js"></script>
+<!-- Prism plugin JS -->
+<script type="text/javascript" src="/src/plugin/prism/prism.js"></script>
 
 <script>
     (function (i, s, o, g, r, a, m) {
