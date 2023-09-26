@@ -31,7 +31,7 @@ Toastify is a lightweight, vanilla JS toast notification library.
 
 #### Toastify now supports installation via NPM
 
-* Run the below command to add toastify-js to your exisitng or new project.
+* Run the below command to add toastify-js to your existing or new project.
 
 ```
 npm install --save toastify-js
