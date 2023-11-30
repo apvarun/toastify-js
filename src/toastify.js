@@ -39,6 +39,9 @@
     avatar: "",
     className: "",
     stopOnFocus: true,
+    progressBar: true,
+    progressBarStyle: {background: 'gray', barBackground: 'red', height: '5px'},
+    progressBarPosition: 'bottom',
     onClick: function () {
     },
     offset: {x: 0, y: 0},
@@ -81,6 +84,9 @@
       this.options.avatar = options.avatar || Toastify.defaults.avatar; // img element src - url or a path
       this.options.className = options.className || Toastify.defaults.className; // additional class names for the toast
       this.options.stopOnFocus = options.stopOnFocus === undefined ? Toastify.defaults.stopOnFocus : options.stopOnFocus; // stop timeout on focus
+      this.options.progressBar = options.progressBar === true ? Toastify.defaults.progressBar : options.progressBar;
+      this.options.progressBarStyle = options.progressBarStyle || Toastify.defaults.progressBarStyle;
+      this.options.progressBarPosition = options.progressBarPosition || Toastify.defaults.progressBarPosition; // progress bar position - top or bottom
       this.options.onClick = options.onClick || Toastify.defaults.onClick; // Callback after click
       this.options.offset = options.offset || Toastify.defaults.offset; // toast offset
       this.options.escapeMarkup = options.escapeMarkup !== undefined ? options.escapeMarkup : Toastify.defaults.escapeMarkup;
@@ -195,6 +201,70 @@
           // Adding close icon on the right of content
           divElement.appendChild(closeElement);
         }
+      }
+
+      if(this.options.progressBar === true) {
+
+        // Progress bar background
+
+        var progressBarBg = document.createElement("div");
+        progressBarBg.style = 'width: 100%; display: block; position: absolute; left: 0;';
+        progressBarBg.style.background = this.options.progressBarStyle.background;
+        progressBarBg.style.height = this.options.progressBarStyle.height;
+
+        if( this.options.progressBarPosition === 'top' ) {
+          progressBarBg.style.top = 0;
+        } else {
+          progressBarBg.style.bottom = 0;
+        }
+        
+        progressBarBg.className = "toast-progress-bar-bg";
+
+        divElement.appendChild(progressBarBg);
+
+        // Progress bar element
+
+        var progressBar = document.createElement("div");
+        progressBar.style = 'width: 0%; height: 5px; background: ' + this.options.progressBarStyle.barBackground + ';';
+        progressBar.className = 'toast-progress-bar';
+
+        progressBarBg.appendChild( progressBar );
+
+        var duration = this.options.duration;
+
+        //Progress bar animation
+
+        function startProgressBar() {
+          var increase = setInterval(frame, duration / 100);
+          var width = 0;
+          function frame() {
+            if (width >= 100) {
+              clearInterval(increase);
+            } else {
+              width++;
+              progressBar.style.width = width + '%';
+            }
+          }
+
+          divElement.addEventListener(
+            "mouseover",
+            function(event) {
+              clearInterval(increase);
+            }
+          )
+        }
+
+        // Fire progress bar initially
+        startProgressBar();
+
+        // Restart progress bar
+        divElement.addEventListener(
+          "mouseleave",
+          function() {
+            startProgressBar();
+          }
+        )
+
       }
 
       // Clear timeout while toast is focused
