@@ -39,7 +39,7 @@
     avatar: "",
     className: "",
     stopOnFocus: true,
-    onClick: function () {
+    onClick: function (event = null) {
     },
     offset: {x: 0, y: 0},
     escapeMarkup: true,
@@ -242,7 +242,7 @@
           "click",
           function(event) {
             event.stopPropagation();
-            this.options.onClick();
+            this.options.onClick(event);
           }.bind(this)
         );
       }
