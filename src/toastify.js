@@ -32,6 +32,7 @@
     destination: undefined,
     newWindow: false,
     close: false,
+    closeIcon: "&#10006;",
     gravity: "toastify-top",
     positionLeft: false,
     position: '',
@@ -74,6 +75,7 @@
       this.options.destination = options.destination || Toastify.defaults.destination; // On-click destination
       this.options.newWindow = options.newWindow || Toastify.defaults.newWindow; // Open destination in new window
       this.options.close = options.close || Toastify.defaults.close; // Show toast close icon
+      this.options.closeIcon = options.closeIcon || Toastify.defaults.closeIcon; // Text to use as toast close icon
       this.options.gravity = options.gravity === "bottom" ? "toastify-bottom" : Toastify.defaults.gravity; // toast position - top or bottom
       this.options.positionLeft = options.positionLeft || Toastify.defaults.positionLeft; // toast position - left or right
       this.options.position = options.position || Toastify.defaults.position; // toast position - left or right
@@ -171,7 +173,7 @@
         closeElement.type = "button";
         closeElement.setAttribute("aria-label", "Close");
         closeElement.className = "toast-close";
-        closeElement.innerHTML = "&#10006;";
+        closeElement.innerHTML = this.options.closeIcon;
 
         // Triggering the removal of toast from DOM on close click
         closeElement.addEventListener(
