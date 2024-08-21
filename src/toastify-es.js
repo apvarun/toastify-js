@@ -22,6 +22,7 @@
  * @property {url} avatar - Image/icon to be shown before text
  * @property {string} className - Ability to provide custom class name for further customization
  * @property {boolean} stopOnFocus - To stop timer when hovered over the toast (Only if duration is set)
+ * @property {boolean} stopOnWindowBlur - To stop timer if window is not focused (Only if duration is set)
  * @property {Function} callback - Invoked when the toast is dismissed
  * @property {Function} onClick - Invoked when the toast is clicked
  * @property {Object} offset - Ability to add some offset to axis
@@ -50,6 +51,7 @@ class Toastify {
       avatar: "",
       className: "",
       stopOnFocus: true,
+      stopOnWindowBlur: true,
       onClick: function() {},
       offset: { x: 0, y: 0 },
       escapeMarkup: true,
@@ -117,7 +119,7 @@ class Toastify {
       // Repositioning the toasts in case multiple toasts are present
       this._reposition();
 
-      if (this.options.duration > 0) {
+      if (this.options.duration > 0 && document.visibilityState === 'visible') {
         this.toastElement.timeOutValue = window.setTimeout(
           () => {
             // Remove the toast from DOM
@@ -158,6 +160,7 @@ class Toastify {
      * @param {url} [options.avatar] - Image/icon to be shown before text
      * @param {string} [options.className] - Ability to provide custom class name for further customization
      * @param {boolean} [options.stopOnFocus] - To stop timer when hovered over the toast (Only if duration is set)
+     * @param {boolean} [options.stopOnWindowBlur] - To stop timer if window is not focused (Only if duration is set)
      * @param {Function} [options.callback] - Invoked when the toast is dismissed
      * @param {Function} [options.onClick] - Invoked when the toast is clicked
      * @param {Object} [options.offset] - Ability to add some offset to axis
@@ -296,6 +299,28 @@ class Toastify {
               },
               this.options.duration
             )
+          }
+        )
+      }
+
+      // Clear timeout while window is not focused
+      if (this.options.stopOnWindowBlur && this.options.duration > 0) {
+        document.addEventListener(
+          "visibilitychange",
+          (event) => {
+            if (document.visibilityState === 'visible') {
+              // add back the timeout
+              divElement.timeOutValue = window.setTimeout(
+                () => {
+                  // Remove the toast from DOM
+                  this._removeElement(divElement);
+                },
+                this.options.duration
+              )
+            } else {
+              // stop countdown
+              window.clearTimeout(divElement.timeOutValue);
+            }
           }
         )
       }
