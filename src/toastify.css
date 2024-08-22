@@ -21,6 +21,8 @@
     text-decoration: none;
     max-width: calc(50% - 20px);
     z-index: 2147483647;
+    display: flex;
+    align-items: center;
 }
 
 .toastify.on {
@@ -35,7 +37,7 @@
     font-family: inherit;
     font-size: 1em;
     opacity: 0.4;
-    padding: 0 5px;
+    padding: 8px;
 }
 
 .toastify-right {
@@ -59,10 +61,10 @@
 }
 
 .toastify-avatar {
-    width: 1.5em;
-    height: 1.5em;
-    margin: -7px 5px;
-    border-radius: 2px;
+    width: 2em;
+    height: 2em;
+    margin: 0 8px;
+    border-radius: 4px;
 }
 
 .toastify-center {
@@ -75,7 +77,8 @@
 }
 
 @media only screen and (max-width: 360px) {
-    .toastify-right, .toastify-left {
+    .toastify-right,
+    .toastify-left {
         margin-left: auto;
         margin-right: auto;
         left: 0;
