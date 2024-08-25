@@ -29,6 +29,21 @@ body {
     display: none;
 }
 
+.settings{
+    width: 60%;
+    background-color: white;
+    border: 1px solid #e3e3e3;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    border-radius: 4px;
+}
+
+.settings #multiple{ 
+    /* Make checkbox bigger */
+    transform: scale(1.2);
+}
+
 .docs {
     display: flex;
     justify-content: center;
