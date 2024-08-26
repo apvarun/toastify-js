@@ -44,7 +44,8 @@
     offset: {x: 0, y: 0},
     escapeMarkup: true,
     ariaLive: 'polite',
-    style: {background: ''}
+    style: {background: ''},
+    sound: {enable: false}
   };
 
   // Defining the prototype of the object
@@ -89,7 +90,9 @@
       if(options.backgroundColor) {
         this.options.style.background = options.backgroundColor;
       }
-
+      if(options.sound) {
+        this.options.sound = options.sound || false; // To enable disable sounds
+      }
       // Returning the current object for chaining functions
       return this;
     },
@@ -300,6 +303,12 @@
           this.options.duration
         ); // Binding `this` for function invocation
       }
+      // // If toast with sound
+      if(this.options.sound && typeof this.options.sound === 'object'){
+        console.log('this.options.sound.type',this.options.sound, typeof this.options.sound === 'object' )
+        // Check is default or not
+        makeSound({default: this.options.sound.default, type:this.options.sound.type, src: !this.options.sound.default ? this.options.sound.src : ''});
+      }
 
       // Supporting function chaining
       return this;
@@ -435,6 +444,25 @@
     } else {
       return false;
     }
+  }
+
+  // Function to trigger sound
+  function makeSound(obj){
+    if(obj.default){
+      const availableSound = ['bell','alert', 'pop'];
+      if(!availableSound.includes(obj.type)){
+        throw "Please select default sound type ('bell','alert','pop')";
+      }
+      const path = `${'./sounds/'+obj.type+'.wav'}`
+      var audio = new Audio(path);
+      // Play the bell sound
+      audio.play();
+   } else if(!obj.default) {
+      const path = obj.src
+      var audio = new Audio(path);
+      // Play the bell sound
+      audio.play();
+   }
   }
 
   // Setting up the prototype for the init object
