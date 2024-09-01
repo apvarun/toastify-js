@@ -31,7 +31,7 @@
  */
 
 
-class Toastify {
+export class Toastify {
 
     defaults = {
       oldestFirst: true,
