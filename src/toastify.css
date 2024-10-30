@@ -70,8 +70,13 @@
     margin-right: auto;
     left: 0;
     right: 0;
-    max-width: fit-content;
-    max-width: -moz-fit-content;
+    max-width: fit-content;   
+}
+
+@supports (max-width: -moz-fit-content) {
+    .toastify-center {
+        max-width: -moz-fit-content;
+    }
 }
 
 @media only screen and (max-width: 360px) {
