@@ -86,6 +86,7 @@
       this.options.escapeMarkup = options.escapeMarkup !== undefined ? options.escapeMarkup : Toastify.defaults.escapeMarkup;
       this.options.ariaLive = options.ariaLive || Toastify.defaults.ariaLive;
       this.options.style = options.style || Toastify.defaults.style;
+      this.options.oldestFirst = options.oldestFirst !== undefined ? options.oldestFirst : Toastify.defaults.oldestFirst;
       if(options.backgroundColor) {
         this.options.style.background = options.backgroundColor;
       }
@@ -285,7 +286,7 @@
       }
 
       // Adding the DOM element
-      var elementToInsert = Toastify.defaults.oldestFirst ? rootElement.firstChild : rootElement.lastChild;
+      var elementToInsert = Toastify.options.oldestFirst ? rootElement.firstChild : rootElement.lastChild;
       rootElement.insertBefore(this.toastElement, elementToInsert);
 
       // Repositioning the toasts in case multiple toasts are present
