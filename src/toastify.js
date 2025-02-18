@@ -242,7 +242,7 @@
           "click",
           function(event) {
             event.stopPropagation();
-            this.options.onClick();
+            this.options.onClick(event);
           }.bind(this)
         );
       }
