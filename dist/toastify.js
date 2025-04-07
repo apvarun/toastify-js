@@ -115,14 +115,16 @@
         visibility: this.element.style.visibility,
         position: this.element.style.position,
         left: this.element.style.left,
-        top: this.element.style.top
+        top: this.element.style.top,
+        transformOrigin: this.element.style.transformOrigin
       };
       this.applyStyles(this.element, {
         display: "block",
         visibility: "hidden",
         position: "absolute",
-        left: "-9999px",
-        top: "-9999px"
+        left: "0",
+        top: "0",
+        transformOrigin: "right bottom"
       });
       document.body.appendChild(this.element);
       const { height, width } = this.element.getBoundingClientRect();
