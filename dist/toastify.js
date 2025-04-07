@@ -44,8 +44,8 @@
       oldestFirst: true
     };
     options;
-    element;
     root;
+    element;
     gravity;
     position;
     oldestFirst;
@@ -55,7 +55,6 @@
     closeButtonHandler;
     animationEndHandler;
     clickHandler;
-    closeHandler;
     content;
     closeButton;
     /**
@@ -135,7 +134,7 @@
       return this;
     }
     ensureCloseMethod() {
-      if (this.options.duration && this.options.duration <= 0 && !this.options.close && !this.options.onClick) {
+      if (isNullOrUndefined(this.options.duration) && isNullOrUndefined(this.options.close) && isNullOrUndefined(this.options.onClick)) {
         this.options.onClick = () => this.hide("other");
       }
       return this;

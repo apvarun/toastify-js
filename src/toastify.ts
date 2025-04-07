@@ -14,8 +14,8 @@ export interface ToastOptions {
     position?: Position;
     className?: string | string[];
     stopOnFocus?: boolean;
-    onClose?: (e: Event) => void;
-    onClick?: (e: Event) => void;
+    onClose?: (this: Toast, e: Event) => void;
+    onClick?: (this: Toast, e: Event) => void;
     style?: Partial<CSSStyleDeclaration>;
     oldestFirst?: boolean;
 }
@@ -84,11 +84,9 @@ export class Toast {
         stopOnFocus: true,
         oldestFirst: true,
     };
-
     public options: Options;
-
-    public element: HTMLElement;
     public root: Element;
+    public element: HTMLElement;
 
     public gravity: Gravity;
     public position: Position;
@@ -100,7 +98,6 @@ export class Toast {
     private closeButtonHandler?: () => void;
     private animationEndHandler?: (e: AnimationEvent) => void;
     private clickHandler?: (e: Event) => void;
-    private closeHandler?: (e: Event) => void;
 
     private content?: HTMLDivElement;
     private closeButton?: HTMLSpanElement;
@@ -115,7 +112,7 @@ export class Toast {
             ...options
         };
 
-        this.root =  ToastManager.getContainer(this.options.gravity, this.options.position);
+        this.root = ToastManager.getContainer(this.options.gravity, this.options.position);
         this.gravity = this.options.gravity;
         this.position = this.options.position;
         this.stopOnFocus = this.options.stopOnFocus;
@@ -190,7 +187,7 @@ export class Toast {
             top: '0',
             transformOrigin: 'right bottom',
         });
-        
+
         document.body.appendChild(this.element);
         const { height, width } = this.element.getBoundingClientRect();
         this.element.style.setProperty('--toast-height', `${height}px`);
@@ -202,7 +199,7 @@ export class Toast {
     }
 
     private ensureCloseMethod(): this {
-        if (this.options.duration && this.options.duration <= 0 && !this.options.close && !this.options.onClick) {
+        if (isNullOrUndefined(this.options.duration) && isNullOrUndefined(this.options.close) && isNullOrUndefined(this.options.onClick)) {
             this.options.onClick = () => this.hide('other');
         }
         return this;

@@ -58,9 +58,13 @@
     background: rgb(55, 208, 255);
     color: white;
     cursor: pointer;
+    white-space:normal;
+    word-break:break-all;
+    overflow:hidden;
 }
 
 .toast:hover {
+    z-index: 2147483648;
     --toast-scale: 1.15;
 }
 
@@ -167,14 +171,4 @@
     font-size: 12px;
     line-height: 12px;
     transform-origin: center center;
-}
-
-@media (max-width: 480px) {
-    .toast-container {
-        width: 100%;
-    }
-    .toast {
-        max-width: 100%;
-        width: 100%;
-    }
 }
