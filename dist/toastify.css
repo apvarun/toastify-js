@@ -50,6 +50,7 @@
   box-sizing: border-box;
   background: rgb(55, 208, 255);
   color: white;
+  cursor: pointer;
 }
 .toast:hover {
   --toast-scale: 1.15;
