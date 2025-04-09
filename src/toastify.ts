@@ -221,7 +221,6 @@ export class Toast {
             this.closeButtonHandler = () => this.hide('close-button');
             this.closeButton.addEventListener('click', this.closeButtonHandler);
             this.element.appendChild(this.closeButton);
-            debugger
         }
         return this;
     }
