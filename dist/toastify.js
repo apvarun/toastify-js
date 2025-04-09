@@ -5,6 +5,7 @@
   const isNullOrUndefined = (obj) => isUndefined(obj) || isNull(obj);
   const activeToasts = /* @__PURE__ */ new Set();
   const toastTimeouts = /* @__PURE__ */ new Map();
+  const toastIntervals = /* @__PURE__ */ new Map();
   const toastContainers = /* @__PURE__ */ new Map();
   function debounce(fn, delay, { immediate = false } = {}) {
     let timer = null;
@@ -48,18 +49,34 @@
   };
   const addTimeout = (toast, callback) => {
     delTimeout(toast);
+    const startTime = Date.now();
+    const duration = toast.options.duration;
+    const updateRemainingTime = () => {
+      const elapsed = Date.now() - startTime;
+      const remaining = Math.max(0, duration - elapsed);
+      toast.element.style.setProperty("--toast-progress", `${remaining / duration}`);
+    };
+    const intervalId = window.setInterval(updateRemainingTime, 100);
     const timeoutId = window.setTimeout(() => {
+      clearInterval(intervalId);
       callback();
       delTimeout(toast);
-    }, toast.options.duration);
+    }, duration);
     toastTimeouts.set(toast, timeoutId);
+    toastIntervals.set(toast, intervalId);
   };
   const delTimeout = (toast) => {
     const timeoutId = toastTimeouts.get(toast);
+    const intervalId = toastIntervals.get(toast);
     if (!isNullOrUndefined(timeoutId)) {
       clearTimeout(timeoutId);
       toastTimeouts.delete(toast);
     }
+    if (!isNullOrUndefined(intervalId)) {
+      clearInterval(intervalId);
+      toastIntervals.delete(toast);
+    }
+    toast.element.style.setProperty("--toast-progress", `0`);
   };
   const offscreenContainer = document.createElement("div");
   offscreenContainer.classList.add("offscreen-container");
@@ -83,12 +100,13 @@
     position;
     oldestFirst;
     stopOnFocus;
+    content;
+    progress;
     mouseOverHandler;
     mouseLeaveHandler;
     closeButtonHandler;
     animationEndHandler;
     clickHandler;
-    content;
     closeButton;
     /**
      * Create a Toastify instance
@@ -122,11 +140,14 @@
       if (this.options.text) {
         this.content.textContent = this.options.text;
       }
-      if (this.options.node) {
-        this.content.appendChild(this.options.node);
-      }
       if (this.options.style) {
         this.applyStyles(this.content, this.options.style);
+      }
+      if (!isNullOrUndefined(this.options.duration) && this.options.duration > 0) {
+        this.progress = document.createElement("div");
+        this.progress.classList.add("toast-progress");
+        this.content.appendChild(this.progress);
+        console.log(this.content.querySelector(".toast-progress"));
       }
       this.element.appendChild(this.content);
       return this;
@@ -147,10 +168,12 @@
       this.element.style.removeProperty("--toast-height");
       this.element.style.removeProperty("--toast-width");
       this.element.style.setProperty("max-height", "none", "important");
+      if (this.position == "center") this.element.style.setProperty("max-width", `${this.root.getBoundingClientRect().width}px`, "important");
       const { height, width } = this.element.getBoundingClientRect();
       this.element.style.setProperty("--toast-height", `${height}px`);
       this.element.style.setProperty("--toast-width", `${width}px`);
       this.element.style.removeProperty("max-height");
+      this.element.style.removeProperty("max-width");
       if (!this.element.classList.contains("show")) offscreenContainer.removeChild(this.element);
       return this;
     }
