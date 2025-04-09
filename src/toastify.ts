@@ -76,7 +76,7 @@ const addTimeout = (toast: Toast, callback: () => void): void => {
 const delTimeout = (toast: Toast): void => {
     const timeoutId = toastTimeouts.get(toast);
     const intervalId = toastIntervals.get(toast);
-    
+
     if (!isNullOrUndefined(timeoutId)) {
         clearTimeout(timeoutId);
         toastTimeouts.delete(toast);
@@ -105,7 +105,7 @@ export interface ToastOptions {
     position?: Position;
     className?: string | string[];
     stopOnFocus?: boolean;
-    onClose?: (this: Toast, e: CustomEvent<{reason: CloseReason}>) => void;
+    onClose?: (this: Toast, e: CustomEvent<{ reason: CloseReason }>) => void;
     onClick?: (this: Toast, e: MouseEvent) => void;
     style?: Partial<CSSStyleDeclaration>;
     oldestFirst?: boolean;
@@ -120,7 +120,7 @@ interface Options {
     duration?: number;
     close?: boolean;
     className?: string | string[];
-    onClose?: (this: Toast, e: CustomEvent<{reason: CloseReason}>) => void;
+    onClose?: (this: Toast, e: CustomEvent<{ reason: CloseReason }>) => void;
     onClick?: (this: Toast, e: MouseEvent) => void;
     style?: Partial<CSSStyleDeclaration>;
 }
@@ -231,7 +231,7 @@ export class Toast {
         this.element.style.removeProperty('--toast-height');
         this.element.style.removeProperty('--toast-width');
         this.element.style.setProperty('max-height', 'none', 'important');
-        if (this.position == 'center') this.element.style.setProperty('max-width', `${this.root.getBoundingClientRect().width}px`, 'important'); 
+        if (this.position == 'center') this.element.style.setProperty('max-width', `${this.root.getBoundingClientRect().width}px`, 'important');
         const { height, width } = this.element.getBoundingClientRect();
         this.element.style.setProperty('--toast-height', `${height}px`);
         this.element.style.setProperty('--toast-width', `${width}px`);
