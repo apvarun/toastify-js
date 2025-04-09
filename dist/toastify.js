@@ -139,6 +139,9 @@
       if (this.options.text) {
         this.content.textContent = this.options.text;
       }
+      if (this.options.node) {
+        this.content.appendChild(this.options.node);
+      }
       if (this.options.style) {
         this.applyStyles(this.content, this.options.style);
       }
