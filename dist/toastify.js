@@ -36,9 +36,9 @@
     const containerId = `toast-container-${gravity}-${position}`;
     if (!toastContainers.has(containerId)) {
       const container = document.createElement("div");
+      container.id = containerId;
       container.classList.add(
         "toast-container",
-        containerId,
         `toast-${gravity}`,
         `toast-${position}`
       );
@@ -54,7 +54,7 @@
     const updateRemainingTime = () => {
       const elapsed = Date.now() - startTime;
       const remaining = Math.max(0, duration - elapsed);
-      toast.element.style.setProperty("--toast-progress", `${remaining / duration}`);
+      toast.progress.style.setProperty("--toast-progress", `${remaining / duration}`);
     };
     const intervalId = window.setInterval(updateRemainingTime, 100);
     const timeoutId = window.setTimeout(() => {
@@ -76,7 +76,7 @@
       clearInterval(intervalId);
       toastIntervals.delete(toast);
     }
-    toast.element.style.setProperty("--toast-progress", `0`);
+    toast.progress.style.setProperty("--toast-progress", `0`);
   };
   const offscreenContainer = document.createElement("div");
   offscreenContainer.classList.add("offscreen-container");
@@ -127,7 +127,7 @@
       activeToasts.add(this);
     }
     applyBaseStyles() {
-      this.element.classList.add("toast", `toast-${this.gravity}`, `toast-${this.position}`);
+      this.element.classList.add("toast");
       if (this.options.className) {
         const classes = Array.isArray(this.options.className) ? this.options.className : [this.options.className];
         classes.forEach((cls) => this.element.classList.add(cls));

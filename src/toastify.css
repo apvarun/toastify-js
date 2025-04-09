@@ -19,36 +19,6 @@
     top: 0;
 }
 
-.toast-container-top-left .toast {
-    margin: 10px 0 0 10px;
-    transform-origin: left center;
-}
-
-.toast-container-top-center .toast {
-    margin: 10px 0 0 0;
-    transform-origin: top;
-}
-
-.toast-container-top-right .toast {
-    margin: 10px 10px 0 0;
-    transform-origin: right center;
-}
-
-.toast-container-bottom-left .toast {
-    margin: 0 0 10px 10px;
-    transform-origin: left center;
-}
-
-.toast-container-bottom-center .toast {
-    margin: 0 0 10px 0;
-    transform-origin: bottom;
-}
-
-.toast-container-bottom-right .toast {
-    margin: 0 10px 10px 0;
-    transform-origin: right center;
-}
-
 .toast-container.toast-bottom {
     bottom: 0;
 }
@@ -67,6 +37,35 @@
 .toast-container.toast-right {
     right: 0;
     align-items: flex-end;
+}
+#toast-container-top-left .toast {
+    margin: 10px 0 0 10px;
+    transform-origin: left center;
+}
+
+#toast-container-top-center .toast {
+    margin: 10px 0 0 0;
+    transform-origin: top;
+}
+
+#toast-container-top-right .toast {
+    margin: 10px 10px 0 0;
+    transform-origin: right center;
+}
+
+#toast-container-bottom-left .toast {
+    margin: 0 0 10px 10px;
+    transform-origin: left center;
+}
+
+#toast-container-bottom-center .toast {
+    margin: 0 0 10px 0;
+    transform-origin: bottom;
+}
+
+#toast-container-bottom-right .toast {
+    margin: 0 10px 10px 0;
+    transform-origin: right center;
 }
 
 .toast {
@@ -117,14 +116,15 @@
     --toast-scale: 1.15;
 }
 
-.toast.toast-left .toast-progress {
+.toast-container.toast-left .toast .toast-content .toast-progress {
     transform-origin: left;
 }
-.toast.toast-center .toast-progress {
+
+.toast-container.toast-center .toast .toast-content .toast-progress {
     transform-origin: center;
 }
 
-.toast.toast-right .toast-progress {
+.toast-container.toast-right .toast .toast-content .toast-progress {
     transform-origin: right;
 }
 
