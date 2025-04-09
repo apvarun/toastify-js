@@ -1,9 +1,83 @@
 export type Gravity = 'top' | 'bottom';
 export type Position = 'left' | 'center' | 'right';
 export type CloseReason = 'timeout' | 'close-button' | 'other';
+type DebounceOptions = {
+    immediate?: boolean
+}
 const isNull = (obj: unknown): obj is null => obj === null;
 const isUndefined = (obj: unknown): obj is undefined => typeof obj === 'undefined';
 const isNullOrUndefined = (obj: unknown): obj is null | undefined => isUndefined(obj) || isNull(obj);
+const activeToasts = new Set<Toast>();
+const toastTimeouts = new Map<Toast, number>();
+const toastContainers = new Map<string, HTMLElement>();
+function debounce<T extends (...args: any[]) => any>(
+    fn: T,
+    delay: number,
+    { immediate = false }: DebounceOptions = {}
+) {
+    let timer: ReturnType<typeof setTimeout> | null = null
+    const debounced = function (this: any, ...args: Parameters<T>) {
+        const callNow = immediate && !timer
+        if (timer) {
+            clearTimeout(timer)
+        }
+        timer = setTimeout(() => {
+            timer = null
+            if (!immediate) {
+                fn.apply(this, args)
+            }
+        }, delay)
+        if (callNow) {
+            fn.apply(this, args)
+        }
+    } as T & { cancel: () => void }
+    debounced.cancel = () => {
+        if (timer) {
+            clearTimeout(timer)
+            timer = null
+        }
+    }
+    return debounced
+}
+const getContainer = (gravity: Gravity, position: Position): HTMLElement => {
+    const containerId = `toast-container-${gravity}-${position}`;
+    if (!toastContainers.has(containerId)) {
+        const container = document.createElement('div');
+        container.classList.add(
+            'toast-container',
+            containerId,
+            `toast-${gravity}`,
+            `toast-${position}`
+        );
+        document.body.appendChild(container);
+        toastContainers.set(containerId, container);
+    }
+    return toastContainers.get(containerId)!;
+};
+const addTimeout = (toast: Toast, callback: () => void): void => {
+    delTimeout(toast);
+    const timeoutId = window.setTimeout(() => {
+        callback();
+        delTimeout(toast);
+    }, toast.options.duration);
+    toastTimeouts.set(toast, timeoutId);
+};
+const delTimeout = (toast: Toast): void => {
+    const timeoutId = toastTimeouts.get(toast);
+    if (!isNullOrUndefined(timeoutId)) {
+        clearTimeout(timeoutId);
+        toastTimeouts.delete(toast);
+    }
+};
+const offscreenContainer = document.createElement('div');
+offscreenContainer.classList.add('offscreen-container');
+document.body.appendChild(offscreenContainer);
+
+window.addEventListener('resize', debounce(() => {
+    for (const toast of activeToasts) {
+        toast.setToastRect();
+    }
+}, 100));
 export interface ToastOptions {
     root?: Element;
     text?: string;
@@ -14,8 +88,8 @@ export interface ToastOptions {
     position?: Position;
     className?: string | string[];
     stopOnFocus?: boolean;
-    onClose?: (this: Toast, e: Event) => void;
-    onClick?: (this: Toast, e: Event) => void;
+    onClose?: (this: Toast, e: CustomEvent<{reason: CloseReason}>) => void;
+    onClick?: (this: Toast, e: MouseEvent) => void;
     style?: Partial<CSSStyleDeclaration>;
     oldestFirst?: boolean;
 }
@@ -29,49 +103,10 @@ interface Options {
     duration?: number;
     close?: boolean;
     className?: string | string[];
-    onClose?: (this: Toast, e: Event) => void;
-    onClick?: (this: Toast, e: Event) => void;
+    onClose?: (this: Toast, e: CustomEvent<{reason: CloseReason}>) => void;
+    onClick?: (this: Toast, e: MouseEvent) => void;
     style?: Partial<CSSStyleDeclaration>;
 }
-
-class ToastManager {
-    private static timeoutMap = new Map<Toast, number>();
-    private static containers = new Map<string, HTMLElement>();
-
-    static getContainer(gravity: Gravity, position: Position): HTMLElement {
-        const containerId = `toast-container-${gravity}-${position}`;
-        if (this.containers.has(containerId)) {
-            return this.containers.get(containerId)!;
-        }
-        return this.createContainer(containerId, gravity, position);
-    }
-
-    private static createContainer(id: string, gravity: Gravity, position: Position): HTMLElement {
-        const container = document.createElement('div');
-        container.classList.add('toast-container', id, `toast-${gravity}`, `toast-${position}`);
-        container.setAttribute('role', 'region');
-        document.body.appendChild(container);
-        this.containers.set(id, container);
-        return container;
-    }
-
-    static addTimeout(toast: Toast, callback: () => void) {
-        this.delTimeout(toast);
-        const timeoutId = window.setTimeout(() => {
-            callback();
-            this.delTimeout(toast);
-        }, toast.options.duration);
-        this.timeoutMap.set(toast, timeoutId);
-    }
-
-    static delTimeout(toast: Toast) {
-        if (this.timeoutMap.has(toast)) {
-            clearTimeout(this.timeoutMap.get(toast)!);
-            this.timeoutMap.delete(toast);
-        }
-    }
-}
-
 /**
  * Toast
  * @example
@@ -97,7 +132,7 @@ export class Toast {
     private mouseLeaveHandler?: () => void;
     private closeButtonHandler?: () => void;
     private animationEndHandler?: (e: AnimationEvent) => void;
-    private clickHandler?: (e: Event) => void;
+    private clickHandler?: (e: MouseEvent) => void;
 
     private content?: HTMLDivElement;
     private closeButton?: HTMLSpanElement;
@@ -112,7 +147,7 @@ export class Toast {
             ...options
         };
 
-        this.root = ToastManager.getContainer(this.options.gravity, this.options.position);
+        this.root = getContainer(this.options.gravity, this.options.position);
         this.gravity = this.options.gravity;
         this.position = this.options.position;
         this.stopOnFocus = this.options.stopOnFocus;
@@ -123,8 +158,9 @@ export class Toast {
             .addCloseButton()
             .createContent()
             .ensureCloseMethod()
-            .measureDimensions()
             .bindEvents();
+
+        activeToasts.add(this);
     }
 
     private applyBaseStyles(): this {
@@ -168,36 +204,18 @@ export class Toast {
         return this;
     }
 
-
-    private measureDimensions(): this {
-        const originalStyles = {
-            display: this.element.style.display,
-            visibility: this.element.style.visibility,
-            position: this.element.style.position,
-            left: this.element.style.left,
-            top: this.element.style.top,
-            transformOrigin: this.element.style.transformOrigin,
-        };
-
-        this.applyStyles(this.element, {
-            display: 'block',
-            visibility: 'hidden',
-            position: 'absolute',
-            left: '0',
-            top: '0',
-            transformOrigin: 'right bottom',
-        });
-
-        document.body.appendChild(this.element);
+    public setToastRect(): this {
+        if (!this.element.classList.contains('show')) offscreenContainer.appendChild(this.element);
+        this.element.style.removeProperty('--toast-height');
+        this.element.style.removeProperty('--toast-width');
+        this.element.style.setProperty('max-height', 'none', 'important');
         const { height, width } = this.element.getBoundingClientRect();
         this.element.style.setProperty('--toast-height', `${height}px`);
         this.element.style.setProperty('--toast-width', `${width}px`);
-        document.body.removeChild(this.element);
-
-        this.applyStyles(this.element, originalStyles);
+        this.element.style.removeProperty('max-height');
+        if (!this.element.classList.contains('show')) offscreenContainer.removeChild(this.element);
         return this;
     }
-
     private ensureCloseMethod(): this {
         if (isNullOrUndefined(this.options.duration) && isNullOrUndefined(this.options.close) && isNullOrUndefined(this.options.onClick)) {
             this.options.onClick = () => this.hide('other');
@@ -207,8 +225,8 @@ export class Toast {
 
     private bindEvents(): this {
         if (this.stopOnFocus && !isNullOrUndefined(this.options.duration) && this.options.duration > 0) {
-            this.mouseOverHandler = () => ToastManager.delTimeout(this);
-            this.mouseLeaveHandler = () => ToastManager.addTimeout(this, () => this.hide('timeout'));
+            this.mouseOverHandler = () => delTimeout(this);
+            this.mouseLeaveHandler = () => addTimeout(this, () => this.hide('timeout'));
             this.element.addEventListener('mouseover', this.mouseOverHandler);
             this.element.addEventListener('mouseleave', this.mouseLeaveHandler);
         }
@@ -220,13 +238,23 @@ export class Toast {
     }
 
     private applyStyles(element: HTMLElement, styles: Partial<CSSStyleDeclaration>) {
+        function camelToKebab(str: string): string {
+            return str.replace(/([A-Z])/g, '-$1').toLowerCase();
+        }
         for (const key in styles) {
-            if (styles[key] === undefined) continue;
-            element.style[key] = styles[key];
+            const value = styles[key];
+            const property = camelToKebab(key);
+            if (isNullOrUndefined(value)) {
+                element.style.removeProperty(property);
+                continue;
+            }
+            const important = value.includes('!important');
+            const cleanValue = value.replace(/\s*!important\s*/, '').trim();
+            element.style.setProperty(property, cleanValue, important ? 'important' : '');
         }
     }
 
-    private cutoverAnimation(animation: boolean): this {
+    private toggleAnimationState(animation: boolean): this {
         if (!this.element.classList.replace(animation ? 'hide' : 'show', animation ? 'show' : 'hide')) {
             this.element.classList.add(animation ? 'show' : 'hide');
         }
@@ -248,7 +276,7 @@ export class Toast {
 
     private setupAutoHide(): this {
         if (!isNullOrUndefined(this.options.duration) && this.options.duration > 0) {
-            ToastManager.addTimeout(this, () => this.hide('timeout'));
+            addTimeout(this, () => this.hide('timeout'));
         }
         return this;
     }
@@ -257,9 +285,10 @@ export class Toast {
      * @returns this Instance for method chaining
      */
     public show(): this {
-        this.insertToastElement()
-            .setupAutoHide()
-            .cutoverAnimation(true);
+        this.setToastRect()
+            .insertToastElement()
+            .toggleAnimationState(true)
+            .setupAutoHide();
         return this;
     }
 
@@ -293,7 +322,8 @@ export class Toast {
      */
     public hide(reason: CloseReason = 'other'): void {
         if (!this.element) return;
-        ToastManager.delTimeout(this);
+        delTimeout(this);
+        activeToasts.delete(this);
         this.animationEndHandler = (e: AnimationEvent) => {
             if (e.animationName.startsWith('toast-out')) {
                 this.element.removeEventListener('animationend', this.animationEndHandler!);
@@ -305,7 +335,7 @@ export class Toast {
         };
         this.element.addEventListener('animationend', this.animationEndHandler);
         this.removeEventListeners()
-            .cutoverAnimation(false);
+            .toggleAnimationState(false);
     }
 
     /**

@@ -1,3 +1,9 @@
+.offscreen-container {
+    position: absolute;
+    visibility: hidden;
+    pointer-events: none;
+}
+
 .toast-container {
     isolation: isolate;
     position: fixed;
@@ -37,12 +43,11 @@
     --toast-rate: 1;
     --toast-translate: 0;
     --toast-scale: 1;
-    --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
-    --ease-in-back: cubic-bezier(0.36, 0, 0.66, -0.56);
     position: relative;
-    transition: transform calc(0.4s * var(--toast-rate)) var(--ease-out-back), opacity calc(0.3s * var(--toast-rate)) ease;
+    transition: transform calc(0.4s * var(--toast-rate)) cubic-bezier(0.34, 1.56, 0.64, 1), opacity calc(0.3s * var(--toast-rate)) ease;
     transform: translate3d(0, var(--toast-translate), 0) scale(var(--toast-scale));
     max-width: 480px;
+    max-height: 0px;
     will-change: transform, opacity;
     backface-visibility: hidden;
     contain: content;
@@ -58,9 +63,9 @@
     background: rgb(55, 208, 255);
     color: white;
     cursor: pointer;
-    white-space:normal;
-    word-break:break-all;
-    overflow:hidden;
+    white-space: normal;
+    word-break: break-all;
+    overflow: hidden;
 }
 
 .toast:hover {
@@ -88,7 +93,7 @@
     transform-origin: left center;
 }
 
-.toast.toast-bottom.toast-center { 
+.toast.toast-bottom.toast-center {
     margin: 0 0 10px 0;
     transform-origin: bottom;
 }
@@ -117,11 +122,10 @@
 @keyframes toast-in-top {
     from {
         opacity: 0;
-        max-height: 0;
-        --toast-translate: -100%;
+        max-height: 0px;
     }
+
     to {
-        opacity: 1;
         max-height: var(--toast-height);
     }
 }
@@ -129,36 +133,33 @@
 @keyframes toast-in-bottom {
     from {
         opacity: 0;
-        max-height: 0;
-        --toast-translate: 100%;
+        max-height: 0px;
     }
+
     to {
-        opacity: 1;
         max-height: var(--toast-height);
     }
 }
 
 @keyframes toast-out-top {
     from {
-        opacity: 1;
         max-height: var(--toast-height);
     }
+
     to {
         opacity: 0;
-        max-height: 0;
-        --toast-translate: 100%;
+        max-height: 0px;
     }
 }
 
 @keyframes toast-out-bottom {
     from {
-        opacity: 1;
         max-height: var(--toast-height);
     }
+
     to {
         opacity: 0;
-        max-height: 0;
-        --toast-translate: -100%;
+        max-height: 0px;
     }
 }
 

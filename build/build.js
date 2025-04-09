@@ -19,7 +19,7 @@ esbuild.buildSync({
     entryPoints: [mainPath],
     outfile: join(distPath, `${packageConfig.name}.js`),
     minify: false,
-    sourcemap: false,
+    sourcemap: true,
     platform: 'browser',
     format: 'iife',
     target: tsConfig.target,

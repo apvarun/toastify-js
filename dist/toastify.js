@@ -3,39 +3,72 @@
   const isNull = (obj) => obj === null;
   const isUndefined = (obj) => typeof obj === "undefined";
   const isNullOrUndefined = (obj) => isUndefined(obj) || isNull(obj);
-  class ToastManager {
-    static timeoutMap = /* @__PURE__ */ new Map();
-    static containers = /* @__PURE__ */ new Map();
-    static getContainer(gravity, position) {
-      const containerId = `toast-container-${gravity}-${position}`;
-      if (this.containers.has(containerId)) {
-        return this.containers.get(containerId);
+  const activeToasts = /* @__PURE__ */ new Set();
+  const toastTimeouts = /* @__PURE__ */ new Map();
+  const toastContainers = /* @__PURE__ */ new Map();
+  function debounce(fn, delay, { immediate = false } = {}) {
+    let timer = null;
+    const debounced = function(...args) {
+      const callNow = immediate && !timer;
+      if (timer) {
+        clearTimeout(timer);
       }
-      return this.createContainer(containerId, gravity, position);
-    }
-    static createContainer(id, gravity, position) {
-      const container = document.createElement("div");
-      container.classList.add("toast-container", id, `toast-${gravity}`, `toast-${position}`);
-      container.setAttribute("role", "region");
-      document.body.appendChild(container);
-      this.containers.set(id, container);
-      return container;
-    }
-    static addTimeout(toast, callback) {
-      this.delTimeout(toast);
-      const timeoutId = window.setTimeout(() => {
-        callback();
-        this.delTimeout(toast);
-      }, toast.options.duration);
-      this.timeoutMap.set(toast, timeoutId);
-    }
-    static delTimeout(toast) {
-      if (this.timeoutMap.has(toast)) {
-        clearTimeout(this.timeoutMap.get(toast));
-        this.timeoutMap.delete(toast);
+      timer = setTimeout(() => {
+        timer = null;
+        if (!immediate) {
+          fn.apply(this, args);
+        }
+      }, delay);
+      if (callNow) {
+        fn.apply(this, args);
       }
-    }
+    };
+    debounced.cancel = () => {
+      if (timer) {
+        clearTimeout(timer);
+        timer = null;
+      }
+    };
+    return debounced;
   }
+  const getContainer = (gravity, position) => {
+    const containerId = `toast-container-${gravity}-${position}`;
+    if (!toastContainers.has(containerId)) {
+      const container = document.createElement("div");
+      container.classList.add(
+        "toast-container",
+        containerId,
+        `toast-${gravity}`,
+        `toast-${position}`
+      );
+      document.body.appendChild(container);
+      toastContainers.set(containerId, container);
+    }
+    return toastContainers.get(containerId);
+  };
+  const addTimeout = (toast, callback) => {
+    delTimeout(toast);
+    const timeoutId = window.setTimeout(() => {
+      callback();
+      delTimeout(toast);
+    }, toast.options.duration);
+    toastTimeouts.set(toast, timeoutId);
+  };
+  const delTimeout = (toast) => {
+    const timeoutId = toastTimeouts.get(toast);
+    if (!isNullOrUndefined(timeoutId)) {
+      clearTimeout(timeoutId);
+      toastTimeouts.delete(toast);
+    }
+  };
+  const offscreenContainer = document.createElement("div");
+  offscreenContainer.classList.add("offscreen-container");
+  document.body.appendChild(offscreenContainer);
+  window.addEventListener("resize", debounce(() => {
+    for (const toast of activeToasts) {
+      toast.setToastRect();
+    }
+  }, 100));
   class Toast {
     static defaults = {
       gravity: "top",
@@ -66,13 +99,14 @@
         ...Toast.defaults,
         ...options
       };
-      this.root = ToastManager.getContainer(this.options.gravity, this.options.position);
+      this.root = getContainer(this.options.gravity, this.options.position);
       this.gravity = this.options.gravity;
       this.position = this.options.position;
       this.stopOnFocus = this.options.stopOnFocus;
       this.oldestFirst = this.options.oldestFirst;
       this.element = document.createElement("div");
-      this.applyBaseStyles().addCloseButton().createContent().ensureCloseMethod().measureDimensions().bindEvents();
+      this.applyBaseStyles().addCloseButton().createContent().ensureCloseMethod().bindEvents();
+      activeToasts.add(this);
     }
     applyBaseStyles() {
       this.element.classList.add("toast", `toast-${this.gravity}`, `toast-${this.position}`);
@@ -108,29 +142,16 @@
       }
       return this;
     }
-    measureDimensions() {
-      const originalStyles = {
-        display: this.element.style.display,
-        visibility: this.element.style.visibility,
-        position: this.element.style.position,
-        left: this.element.style.left,
-        top: this.element.style.top,
-        transformOrigin: this.element.style.transformOrigin
-      };
-      this.applyStyles(this.element, {
-        display: "block",
-        visibility: "hidden",
-        position: "absolute",
-        left: "0",
-        top: "0",
-        transformOrigin: "right bottom"
-      });
-      document.body.appendChild(this.element);
+    setToastRect() {
+      if (!this.element.classList.contains("show")) offscreenContainer.appendChild(this.element);
+      this.element.style.removeProperty("--toast-height");
+      this.element.style.removeProperty("--toast-width");
+      this.element.style.setProperty("max-height", "none", "important");
       const { height, width } = this.element.getBoundingClientRect();
       this.element.style.setProperty("--toast-height", `${height}px`);
       this.element.style.setProperty("--toast-width", `${width}px`);
-      document.body.removeChild(this.element);
-      this.applyStyles(this.element, originalStyles);
+      this.element.style.removeProperty("max-height");
+      if (!this.element.classList.contains("show")) offscreenContainer.removeChild(this.element);
       return this;
     }
     ensureCloseMethod() {
@@ -141,8 +162,8 @@
     }
     bindEvents() {
       if (this.stopOnFocus && !isNullOrUndefined(this.options.duration) && this.options.duration > 0) {
-        this.mouseOverHandler = () => ToastManager.delTimeout(this);
-        this.mouseLeaveHandler = () => ToastManager.addTimeout(this, () => this.hide("timeout"));
+        this.mouseOverHandler = () => delTimeout(this);
+        this.mouseLeaveHandler = () => addTimeout(this, () => this.hide("timeout"));
         this.element.addEventListener("mouseover", this.mouseOverHandler);
         this.element.addEventListener("mouseleave", this.mouseLeaveHandler);
       }
@@ -153,12 +174,22 @@
       return this;
     }
     applyStyles(element, styles) {
+      function camelToKebab(str) {
+        return str.replace(/([A-Z])/g, "-$1").toLowerCase();
+      }
       for (const key in styles) {
-        if (styles[key] === void 0) continue;
-        element.style[key] = styles[key];
+        const value = styles[key];
+        const property = camelToKebab(key);
+        if (isNullOrUndefined(value)) {
+          element.style.removeProperty(property);
+          continue;
+        }
+        const important = value.includes("!important");
+        const cleanValue = value.replace(/\s*!important\s*/, "").trim();
+        element.style.setProperty(property, cleanValue, important ? "important" : "");
       }
     }
-    cutoverAnimation(animation) {
+    toggleAnimationState(animation) {
       if (!this.element.classList.replace(animation ? "hide" : "show", animation ? "show" : "hide")) {
         this.element.classList.add(animation ? "show" : "hide");
       }
@@ -178,7 +209,7 @@
     }
     setupAutoHide() {
       if (!isNullOrUndefined(this.options.duration) && this.options.duration > 0) {
-        ToastManager.addTimeout(this, () => this.hide("timeout"));
+        addTimeout(this, () => this.hide("timeout"));
       }
       return this;
     }
@@ -187,7 +218,7 @@
      * @returns this Instance for method chaining
      */
     show() {
-      this.insertToastElement().setupAutoHide().cutoverAnimation(true);
+      this.setToastRect().insertToastElement().toggleAnimationState(true).setupAutoHide();
       return this;
     }
     /**
@@ -218,7 +249,8 @@
      */
     hide(reason = "other") {
       if (!this.element) return;
-      ToastManager.delTimeout(this);
+      delTimeout(this);
+      activeToasts.delete(this);
       this.animationEndHandler = (e) => {
         if (e.animationName.startsWith("toast-out")) {
           this.element.removeEventListener("animationend", this.animationEndHandler);
@@ -229,7 +261,7 @@
         }
       };
       this.element.addEventListener("animationend", this.animationEndHandler);
-      this.removeEventListeners().cutoverAnimation(false);
+      this.removeEventListeners().toggleAnimationState(false);
     }
     /**
      * @deprecated This function is deprecated. Use the hide() instead.
@@ -244,3 +276,4 @@
   globalThis.Toast = createToast;
   globalThis.Toastify = createToast;
 })();
+//# sourceMappingURL=toastify.js.map
