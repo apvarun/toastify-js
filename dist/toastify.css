@@ -1,0 +1,170 @@
+.offscreen-container {
+  position: absolute;
+  visibility: hidden;
+  pointer-events: none;
+  max-width: 480px;
+}
+.toast-container {
+  isolation: isolate;
+  position: fixed;
+  z-index: 2147483647;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  transition: transform calc(0.6 * var(--toast-rate) * 1s) ease, opacity calc(0.6 * var(--toast-rate) * 1s) ease;
+}
+.toast-container.toast-top {
+  top: 0;
+}
+.toast-container.toast-bottom {
+  bottom: 0;
+}
+.toast-container.toast-left {
+  left: 0;
+  align-items: flex-start;
+}
+.toast-container.toast-center {
+  left: 50%;
+  transform: translateX(-50%);
+  align-items: center;
+}
+.toast-container.toast-right {
+  right: 0;
+  align-items: flex-end;
+}
+#toast-container-top-left .toast {
+  margin: 10px 0 0 10px;
+  transform-origin: left center;
+}
+#toast-container-top-center .toast {
+  margin: 10px 0 0 0;
+  transform-origin: top;
+}
+#toast-container-top-right .toast {
+  margin: 10px 10px 0 0;
+  transform-origin: right center;
+}
+#toast-container-bottom-left .toast {
+  margin: 0 0 10px 10px;
+  transform-origin: left center;
+}
+#toast-container-bottom-center .toast {
+  margin: 0 0 10px 0;
+  transform-origin: bottom;
+}
+#toast-container-bottom-right .toast {
+  margin: 0 10px 10px 0;
+  transform-origin: right center;
+}
+.toast {
+  --toast-rate: 1;
+  --toast-translate: 0;
+  --toast-scale: 1;
+  position: relative;
+  transition: transform calc(0.4s * var(--toast-rate)) cubic-bezier(0.34, 1.56, 0.64, 1), opacity calc(0.3s * var(--toast-rate)) ease;
+  transform: translate3d(0, var(--toast-translate), 0) scale(var(--toast-scale));
+  max-width: 480px;
+  max-height: 0px;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  contain: content;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+}
+.toast-close {
+  position: absolute;
+  color: white;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 12px;
+  z-index: 2147483648;
+  transform-origin: center center;
+}
+.toast-content {
+  border-radius: 6px;
+  padding: 14px 18px 14px 18px;
+  max-width: 100%;
+  box-sizing: border-box;
+  background: rgb(55, 208, 255);
+  color: white;
+  cursor: pointer;
+  white-space: normal;
+  word-break: break-all;
+  overflow: hidden;
+  position: relative;
+}
+.toast-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.8);
+  transform: scaleX(var(--toast-progress, 1));
+  transition: transform calc(0.1 * var(--toast-rate) * 1s) ease-in;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+.toast:hover {
+  z-index: 2147483648;
+  --toast-scale: 1.15;
+}
+.toast-container.toast-left .toast .toast-content .toast-progress {
+  transform-origin: left;
+}
+.toast-container.toast-center .toast .toast-content .toast-progress {
+  transform-origin: center;
+}
+.toast-container.toast-right .toast .toast-content .toast-progress {
+  transform-origin: right;
+}
+.toast-container.toast-top .toast.show {
+  animation: toast-in-top calc(0.3 * var(--toast-rate) * 1s) ease-in-out forwards;
+}
+.toast-container.toast-bottom .toast.show {
+  animation: toast-in-bottom calc(0.3 * var(--toast-rate) * 1s) ease-in-out forwards;
+}
+.toast-container.toast-top .toast.hide {
+  animation: toast-out-top calc(0.3 * var(--toast-rate) * 1s) ease-in-out forwards;
+}
+.toast-container.toast-bottom .toast.hide {
+  animation: toast-out-bottom calc(0.3 * var(--toast-rate) * 1s) ease-in-out forwards;
+}
+@keyframes toast-in-top {
+  from {
+    opacity: 0;
+    max-height: 0px;
+  }
+  to {
+    max-height: var(--toast-height);
+  }
+}
+@keyframes toast-in-bottom {
+  from {
+    opacity: 0;
+    max-height: 0px;
+  }
+  to {
+    max-height: var(--toast-height);
+  }
+}
+@keyframes toast-out-top {
+  from {
+    max-height: var(--toast-height);
+  }
+  to {
+    opacity: 0;
+    max-height: 0px;
+  }
+}
+@keyframes toast-out-bottom {
+  from {
+    max-height: var(--toast-height);
+  }
+  to {
+    opacity: 0;
+    max-height: 0px;
+  }
+}
