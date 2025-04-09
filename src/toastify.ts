@@ -64,9 +64,9 @@ const addTimeout = (toast: Toast, callback: () => void): void => {
         const remaining = Math.max(0, duration - elapsed);
         toast.progress!.style.setProperty('--toast-progress', `${remaining / duration}`);
     };
-    const intervalId = window.setInterval(updateRemainingTime, 100);
+    const intervalId = window.setInterval(updateRemainingTime, 20);
     const timeoutId = window.setTimeout(() => {
-        clearInterval(intervalId);
+        toast.progress!.style.setProperty('--toast-progress', `0`);
         callback();
         delTimeout(toast);
     }, duration);
@@ -85,8 +85,6 @@ const delTimeout = (toast: Toast): void => {
         clearInterval(intervalId);
         toastIntervals.delete(toast);
     }
-
-    toast.progress!.style.setProperty('--toast-progress', `0`);
 };
 const offscreenContainer = document.createElement('div');
 offscreenContainer.classList.add('offscreen-container');
@@ -223,6 +221,7 @@ export class Toast {
             this.closeButtonHandler = () => this.hide('close-button');
             this.closeButton.addEventListener('click', this.closeButtonHandler);
             this.element.appendChild(this.closeButton);
+            debugger
         }
         return this;
     }

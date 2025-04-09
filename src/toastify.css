@@ -38,6 +38,7 @@
     right: 0;
     align-items: flex-end;
 }
+
 #toast-container-top-left .toast {
     margin: 10px 0 0 10px;
     transform-origin: left center;
@@ -82,6 +83,18 @@
     contain: content;
     border-radius: 6px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+.toast-close {
+    position: absolute;
+    color: white;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 12px;
+    z-index: 2147483648;
+    transform-origin: center center;
 }
 
 .toast-content {
@@ -186,15 +199,4 @@
         opacity: 0;
         max-height: 0px;
     }
-}
-
-.toast-close {
-    position: absolute;
-    color: white;
-    top: 5px;
-    right: 5px;
-    cursor: pointer;
-    font-size: 12px;
-    line-height: 12px;
-    transform-origin: center center;
 }

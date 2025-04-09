@@ -56,9 +56,9 @@
       const remaining = Math.max(0, duration - elapsed);
       toast.progress.style.setProperty("--toast-progress", `${remaining / duration}`);
     };
-    const intervalId = window.setInterval(updateRemainingTime, 100);
+    const intervalId = window.setInterval(updateRemainingTime, 20);
     const timeoutId = window.setTimeout(() => {
-      clearInterval(intervalId);
+      toast.progress.style.setProperty("--toast-progress", `0`);
       callback();
       delTimeout(toast);
     }, duration);
@@ -76,7 +76,6 @@
       clearInterval(intervalId);
       toastIntervals.delete(toast);
     }
-    toast.progress.style.setProperty("--toast-progress", `0`);
   };
   const offscreenContainer = document.createElement("div");
   offscreenContainer.classList.add("offscreen-container");
@@ -160,6 +159,7 @@
         this.closeButtonHandler = () => this.hide("close-button");
         this.closeButton.addEventListener("click", this.closeButtonHandler);
         this.element.appendChild(this.closeButton);
+        debugger;
       }
       return this;
     }
