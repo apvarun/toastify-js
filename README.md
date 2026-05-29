@@ -143,7 +143,7 @@ If `gravity` is equals to `bottom`, it will be pushed from bottom.
 | newWindow | boolean | Decides whether the `destination` should be opened in a new window or not | false |
 | close | boolean | To show the close icon or not | false |
 | gravity | "top" or "bottom" | To show the toast from top or bottom | "top" |
-| position | "left" or "right" | To show the toast on left or right | "right" |
+| position | "left" or "center" or "right" | The toast horizontal positioning | "right" |
 | backgroundColor | CSS background value | To be deprecated, use `style.background` option instead. Sets the background color of the toast |  |
 | avatar | URL string | Image/icon to be shown before text |  |
 | className | string | Ability to provide custom class name for further customization |  |
